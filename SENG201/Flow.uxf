@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>10</zoom_level>
+  <element>
+    <type>com.baselet.element.old.allinone.ActivityDiagramText</type>
+    <coordinates>
+      <x>100</x>
+      <y>40</y>
+      <w>375</w>
+      <h>500</h>
+    </coordinates>
+    <panel_attributes>title:Game
+Start
+
+setupGame
+
+Create Team
+
+While[  Not all\   cities\defeated]
+
+	Create City
+
+[Super Villan Completed]
+
+End Scene
+
+End
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
