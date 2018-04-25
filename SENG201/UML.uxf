@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>7</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>119</x>
+      <y>175</y>
+      <w>147</w>
+      <h>133</h>
+    </coordinates>
+    <panel_attributes>Game
+
+--
+-team_name: String
+-team: Team
+-number_of_cities: int
+--
++main()
+-setup_game()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>301</x>
+      <y>175</y>
+      <w>147</w>
+      <h>133</h>
+    </coordinates>
+    <panel_attributes>Team
+--
+-heros: ArrayList&lt;Hero&gt;
+-power_ups: ArrayList&lt;PowerUp&gt;
+-healing_items: ArrayList&lt;HealingItem&gt;
+-money: int
+-heal_factor: int
+-luck_factor: int
+-knows_map: boolean
+-price_factor: int
+--
++Team()
++Setters&amp;Getters
+-addHero()
+-displayHero(Hero hero)
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>511</x>
+      <y>175</y>
+      <w>147</w>
+      <h>133</h>
+    </coordinates>
+    <panel_attributes>Hero
+--
+-name: String
+-health: int
+-max_health: int
+--
++Setters&amp;Getters</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>735</x>
+      <y>378</y>
+      <w>147</w>
+      <h>133</h>
+    </coordinates>
+    <panel_attributes>DandyHero
+--
+
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>574</x>
+      <y>301</y>
+      <w>245</w>
+      <h>91</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;330.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>203</x>
+      <y>441</y>
+      <w>147</w>
+      <h>133</h>
+    </coordinates>
+    <panel_attributes>DandyHero
+--
+
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>343</x>
+      <y>364</y>
+      <w>147</w>
+      <h>133</h>
+    </coordinates>
+    <panel_attributes>DandyHero
+--
+
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>791</x>
+      <y>525</y>
+      <w>147</w>
+      <h>133</h>
+    </coordinates>
+    <panel_attributes>DandyHero
+--
+
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>560</x>
+      <y>378</y>
+      <w>147</w>
+      <h>133</h>
+    </coordinates>
+    <panel_attributes>DandyHero
+--
+
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>602</x>
+      <y>518</y>
+      <w>147</w>
+      <h>133</h>
+    </coordinates>
+    <panel_attributes>DandyHero
+--
+
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>14</x>
+      <y>14</y>
+      <w>133</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;170.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>28</x>
+      <y>28</y>
+      <w>133</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;170.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>42</x>
+      <y>42</y>
+      <w>133</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;170.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>56</x>
+      <y>56</y>
+      <w>133</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;170.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>70</x>
+      <y>70</y>
+      <w>133</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;170.0;10.0</additional_attributes>
+  </element>
+</diagram>
