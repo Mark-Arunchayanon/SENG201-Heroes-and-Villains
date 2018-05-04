@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.Random;
 
 public class PaperScissorsRock implements VillainGame {
@@ -15,21 +14,18 @@ public class PaperScissorsRock implements VillainGame {
 		
 		String message = "Choose your Weapon!";
 		
-		ArrayList<String> options = new ArrayList<String>();
-		options.add("Paper");
-		options.add("Scissors");
-		options.add("Rock");
+		String[] options = {"Paper", "Scissors", "Rock"};
 		
 		while(player_score < 2 && villain_score < 2) {
 			
 			int player_choice = m.displayMenu(message, options);
 			
-			int villain_choice = r.nextInt(options.size());
+			int villain_choice = r.nextInt(options.length);
 			
-			m.displayMessage(villain_name + " chose " + options.get(villain_choice));
+			m.displayMessage(villain_name + " chose " + options[villain_choice]);
 			
 			if(player_choice == villain_choice) {
-				m.displayMessage("Both opponents chose " + options.get(player_choice) + ". Draw!");
+				m.displayMessage("Both opponents chose " + options[player_choice] + ". Draw!");
 			} else if(player_choice == villain_choice - 1 || (player_choice == 2 && villain_choice == 0)) {
 				m.displayMessage("You lose this round");
 				villain_score++;
