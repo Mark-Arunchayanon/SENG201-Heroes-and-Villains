@@ -1,5 +1,5 @@
 
-public interface VilainGame {
+public interface VillainGame {
 
 	/**
 	 * Initiates the game to be played

@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Random;
 
-public class PaperScissorsRock implements VilainGame {
+public class PaperScissorsRock implements VillainGame {
 
 	@Override
 	public boolean play(String villain_name) {
@@ -13,7 +13,7 @@ public class PaperScissorsRock implements VilainGame {
 		
 		m.displayMessage("This is a best of three game of Paper Scissors Rock.");
 		
-		String message = "Chose your Weapon!";
+		String message = "Choose your Weapon!";
 		
 		ArrayList<String> options = new ArrayList<String>();
 		options.add("Paper");
