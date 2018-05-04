@@ -30,10 +30,10 @@ public class GuessANumber implements VillainGame {
 				m.displayMessage("You've guessed the correct number!");
 				not_finish = false;
 			} else if (player_guess < villian_num) {
-				m.displayMessage("Higher! " + num_guesses + " guesses left.");
+				m.displayMessage("Higher! " + num_guesses + " guesses left");
 				num_guesses--;
 			} else {
-				m.displayMessage("Lower! " + num_guesses + " guesses left.");
+				m.displayMessage("Lower! " + num_guesses + " guesses left");
 				num_guesses--;
 			}
 		}
