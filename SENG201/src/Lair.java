@@ -2,6 +2,11 @@ import java.util.Random;
 
 public class Lair implements Location {
 	
+	private static final int MIN_DAMAGE_STD = 30;
+	private static final int MAX_DAMAGE_STD = 50;
+	private static final int MIN_DAMAGE_SUPER = 40;
+	private static final int MAX_DAMAGE_SUPER = 55;
+	
 	private String[] names = {"Billy", "Ray", "Ricky", "Bobby", "Joe", "Johnny",
 			"Jimmy", "Jake", "Willy", "Kenny", "Cletus", "Russel", "Renny",
 			"Benny", "Bob", "Steve"}; 
@@ -10,6 +15,8 @@ public class Lair implements Location {
 			"Go away", "I really cannot be bothered dealing with you right now",
 			"Your time is over", "Pasta Lavista baby"};
 	
+	private VillainGame[] games = {(VillainGame) new PaperScissorsRock(),
+			(VillainGame) new GuessANumber(), (VillainGame) new DiceRoll()};
 	
 	Random r = new Random();
 	
@@ -18,6 +25,8 @@ public class Lair implements Location {
 	private String villain_name = names[r.nextInt(names.length)];
 	
 	private String villain_taunt = taunts[r.nextInt(taunts.length)];
+	
+	private VillainGame villain_game = games[r.nextInt(games.length)];
 
 	@Override
 	public void travelTo(Team team) {
@@ -33,7 +42,7 @@ public class Lair implements Location {
 		
 		if (result == 1) {
 			
-			m.displayMessage("Ok. Returning to home base then");
+			m.displayMessage("Ok. Returning to home base");
 			
 			return;
 			
@@ -43,11 +52,25 @@ public class Lair implements Location {
 		
 		if(heros.length > 1) {
 			
-			message = "Which hero is going to fight " + villain_name;
+			message = "Which hero is going to fight " + villain_name + " in a game of "
+			+ villain_game.gameType();
 			
-			m.displayMenu(message, heros);
+			Hero playing_hero = team.getHero(m.displayMenu(message, heros));
 			
-		} else
+		} else {
+			
+			Hero playing_hero = team.getHero(0);
+			
+			message = heros[0] + " is playing " + villain_name + " in a game of "
+			+ villain_game.gameType();
+			
+		}
+		
+		if (villain_game.play(villain_name)) {
+			
+			Hero
+			
+		}
 		
 	}
 
