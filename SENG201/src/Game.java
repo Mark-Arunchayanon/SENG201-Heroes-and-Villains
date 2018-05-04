@@ -5,9 +5,10 @@ public class Game {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		PaperScissorsRock g = new PaperScissorsRock();
-		
-		g.play("Steve");
+		//PaperScissorsRock g = new PaperScissorsRock();
+		GuessANumber n = new GuessANumber();
+		n.play("Steve");
+		//g.play("Steve");
 		
 	}
 
