@@ -32,7 +32,7 @@ public class MenuSystem {
 	 * @return
 	 * The integer corresponding to the option the user selected
 	 */
-	int displayMenu(String message, ArrayList<String> options) {
+	int displayMenu(String message, String[] options) {
 		
 		boolean valid_result = false;
 		
@@ -43,9 +43,9 @@ public class MenuSystem {
 			System.out.println(message);		
 			System.out.println("Please select an option by entering a number:\n");
 		
-			for(int i = 0; i < options.size(); i++) {
+			for(int i = 0; i < options.length; i++) {
 				
-				System.out.println(i + " - " + options.get(i));
+				System.out.println(i + " - " + options[i]);
 				
 			}
 			
@@ -59,7 +59,7 @@ public class MenuSystem {
 				
 			}
 			
-			if(selected >= 0 && selected < options.size()) {
+			if(selected >= 0 && selected < options.length) {
 				
 				valid_result = true;
 				
@@ -71,7 +71,7 @@ public class MenuSystem {
 			
 		}
 		
-		System.out.println("You selected: " + options.get(selected));
+		System.out.println("You selected: " + options[selected]);
 		
 		return selected;
 		
