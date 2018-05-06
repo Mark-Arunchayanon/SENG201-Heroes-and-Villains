@@ -2,7 +2,7 @@
 public class DiceRoll implements VillainGame {
 
 	@Override
-	public boolean play(String villain_name) {
+	public boolean play(String villain_name, String hero_name) {
 		// TODO Auto-generated method stub
 		return false;
 	}

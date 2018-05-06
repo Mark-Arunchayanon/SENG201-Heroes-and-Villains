@@ -3,7 +3,7 @@ import java.util.Random;
 public class GuessANumber implements VillainGame {
 
 	@Override
-	public boolean play(String villain_name) {
+	public boolean play(String villain_name, String hero_name) {
 		// TODO Auto-generated method stub
 		
 		String message = "Pick a number";
@@ -26,7 +26,7 @@ public class GuessANumber implements VillainGame {
 			num_guesses--;
 			
 			if (player_guess == villian_num) {
-				m.displayMessage("You've guessed the correct number!");
+				m.displayMessage(hero_name + " guessed the correct number!");
 				not_finish = false;
 			} else if (player_guess < villian_num) {
 				m.displayMessage("Higher! " + num_guesses + " guesses left");
@@ -36,10 +36,10 @@ public class GuessANumber implements VillainGame {
 		}
 		
 		if (not_finish == false) {
-			m.displayMessage("Congratualtions. You beat " + villain_name);
+			m.displayMessage("Congratualtions. " + hero_name + " beat " + villain_name);
 			return false;
 		} else {
-			m.displayMessage("Unfortunately, you lost this game");
+			m.displayMessage("Unfortunately, " + hero_name + " lost this game");
 			return true;
 		}
 	}

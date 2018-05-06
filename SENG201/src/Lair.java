@@ -70,7 +70,7 @@ public class Lair implements Location {
 			
 		}
 		
-		if (villain_game.play(villain_name)) {
+		if (villain_game.play(villain_name, playing_hero.getName())) {
 			
 			int health;
 			
