@@ -16,7 +16,7 @@ public class Lair implements Location {
 			"Your time is over", "Pasta Lavista baby"};
 	
 	private VillainGame[] games = {(VillainGame) new PaperScissorsRock(),
-			(VillainGame) new GuessANumber(), (VillainGame) new DiceRoll()};
+			(VillainGame) new GuessANumber()};//, (VillainGame) new DiceRoll()};
 	
 	Random r = new Random();
 	
@@ -27,9 +27,11 @@ public class Lair implements Location {
 	private String villain_taunt = taunts[r.nextInt(taunts.length)];
 	
 	private VillainGame villain_game = games[r.nextInt(games.length)];
+	
+	private int villainLives = 3;
 
 	@Override
-	public void travelTo(Team team) {
+	public void travelTo(Team team, boolean last_city) {
 		
 		m.displayMessage(villain_name + " the Villain says \"" +  villain_taunt
 				+ "\"");
@@ -50,16 +52,18 @@ public class Lair implements Location {
 		
 		String[] heros = team.HeroStrings();
 		
+		Hero playing_hero;
+		
 		if(heros.length > 1) {
 			
 			message = "Which hero is going to fight " + villain_name + " in a game of "
 			+ villain_game.gameType();
 			
-			Hero playing_hero = team.getHero(m.displayMenu(message, heros));
+			playing_hero = team.getHero(m.displayMenu(message, heros));
 			
 		} else {
 			
-			Hero playing_hero = team.getHero(0);
+			playing_hero = team.getHero(0);
 			
 			message = heros[0] + " is playing " + villain_name + " in a game of "
 			+ villain_game.gameType();
@@ -68,7 +72,27 @@ public class Lair implements Location {
 		
 		if (villain_game.play(villain_name)) {
 			
-			Hero
+			int health;
+			
+			if(last_city) {
+				
+				health = -MIN_DAMAGE_SUPER - r.nextInt(MAX_DAMAGE_SUPER - MIN_DAMAGE_SUPER);
+				
+			} else {
+				
+				health = -MIN_DAMAGE_STD - r.nextInt(MAX_DAMAGE_STD - MIN_DAMAGE_STD);
+				
+			}
+			
+			m.displayMessage(playing_hero.getName() + " lost " + Math.abs(health) + " health");
+			
+			playing_hero.adjustHealth(health);
+			
+		} else {
+			
+			m.displayMessage("You now travel back to your Home Base");
+			
+			return;
 			
 		}
 		

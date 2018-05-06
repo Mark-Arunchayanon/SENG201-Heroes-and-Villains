@@ -6,6 +6,6 @@ public interface Location {
 	 * @param team The team of heros to transfer to the location
 	 * @return Returns true if transfer successful. False otherwise
 	 */
-	public void travelTo(Team team);
+	public void travelTo(Team team, boolean last_city);
 	
 }
