@@ -28,7 +28,7 @@ public class Lair implements Location {
 	
 	private VillainGame villain_game = games[r.nextInt(games.length)];
 	
-	private int villainLives = 3;
+	private int villain_lives = 3;
 
 	@Override
 	public void travelTo(Team team, boolean last_city) {
@@ -90,9 +90,25 @@ public class Lair implements Location {
 			
 		} else {
 			
-			m.displayMessage("You now travel back to your Home Base");
+			villain_lives--;
 			
-			return;
+			if (villain_lives == 0) {
+				
+				if (last_city) {
+					
+					m.displayMessage("Congratulations, You have completed the game!");
+					
+				} else {
+				
+					m.displayMessage("Congratulations, You have cleared this city. You now travel to your home base in the next city!");
+					
+				}
+				
+			} else {
+			
+				m.displayMessage("You now travel back to your Home Base for rest and recouperation before you defeat " + villain_name + " " + villain_lives + " more times");
+				
+			}
 			
 		}
 		
