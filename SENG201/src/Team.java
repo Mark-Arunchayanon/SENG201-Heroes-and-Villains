@@ -26,13 +26,13 @@ public class Team {
 		
 		for (int i = 0; i < team_size; i++) {
 			
-			heros.add(addHero());
+			addHero();
 			
 		}
 		
 	}
 	
-	private Hero addHero() {
+	private void addHero() {
 		
 		String message = "What type of hero would you like?";
 		
@@ -40,7 +40,7 @@ public class Team {
 		
 		int selected = m.displayMenu(message, options);
 		
-		Hero selected_hero = HERO_TYPES[selected];
+		Hero selected_hero = (Hero) HERO_TYPES[selected].clone();
 		
 		message = "What will be the name of your new hero?";
 		

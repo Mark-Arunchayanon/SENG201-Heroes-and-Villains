@@ -16,7 +16,7 @@ public class Lair implements Location {
 			"Your time is over", "Pasta Lavista baby"};
 	
 
-	private VillainGame[] games = {(VillainGame) new PaperScissorsRock(),
+	private static final VillainGame[] GAMES = {(VillainGame) new PaperScissorsRock(),
 			(VillainGame) new GuessANumber(), (VillainGame) new DiceRoll()};
 
 	
@@ -28,7 +28,7 @@ public class Lair implements Location {
 	
 	private String villain_taunt = TAUNTS[r.nextInt(TAUNTS.length)];
 	
-	private VillainGame villain_game = games[r.nextInt(games.length)];
+	private VillainGame villain_game = GAMES[r.nextInt(GAMES.length)];
 	
 	private int villain_lives = 3;
 
@@ -52,7 +52,7 @@ public class Lair implements Location {
 			
 		}
 		
-		String[] heros = team.HeroStrings();
+		String[] heros = team.heroStrings();
 		
 		Hero playing_hero;
 		
