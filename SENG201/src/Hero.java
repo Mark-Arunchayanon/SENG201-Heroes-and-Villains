@@ -1,7 +1,7 @@
 
 public class Hero {
 	
-	private String name;
+	private String name = null;
 	
 	private int health;
 	
@@ -58,6 +58,16 @@ public class Hero {
 		s += "Health Points";
 		
 		return s;
+		
+	}
+	
+	public void setName(String temp_name) {
+		
+		if (name ==  null) {
+			
+			name = temp_name;
+			
+		}
 		
 	}
 

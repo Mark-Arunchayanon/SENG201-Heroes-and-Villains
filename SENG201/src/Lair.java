@@ -15,8 +15,9 @@ public class Lair implements Location {
 			"Go away", "I really cannot be bothered dealing with you right now",
 			"Your time is over", "Pasta Lavista baby"};
 	
-	private static final VillainGame[] GAMES = {(VillainGame) new PaperScissorsRock(),
-			(VillainGame) new GuessANumber()};//, (VillainGame) new DiceRoll()};
+
+	private VillainGame[] games = {(VillainGame) new PaperScissorsRock(),
+			(VillainGame) new GuessANumber(), (VillainGame) new DiceRoll()};
 	
 	Random r = new Random();
 	
@@ -26,7 +27,7 @@ public class Lair implements Location {
 	
 	private String villain_taunt = TAUNTS[r.nextInt(TAUNTS.length)];
 	
-	private VillainGame villain_game = GAMES[r.nextInt(GAMES.length)];
+	private VillainGame villain_game = games[r.nextInt(games.length)];
 	
 	private int villain_lives = 3;
 

@@ -1,5 +1,7 @@
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Team {
 	
@@ -42,9 +44,18 @@ public class Team {
 		
 		message = "What will be the name of your new hero?";
 		
-		while
+		String name = m.displayStringRequest(message);
 		
-		String
+		while (heroNames().contains(name)) {
+			
+			m.displayMessage("You cannot have multiple heros with the same name");
+			
+			name = m.displayStringRequest(message);
+			
+		}
+		
+		
+		
 	}
 	
 	private String[] heroBlurbs() {
@@ -61,15 +72,17 @@ public class Team {
 		
 	}
 	
-	public String[] heroNames {
+	public Set<String> heroNames() {
 		
-		String[] names = new String[heros.size()];
+		HashSet<String> names = new HashSet<String>();
 		
 		for(int i = 0; i < heros.size(); i++) {
 			
-			names[i] = heros
+			names.add(heros.get(i).getName());
 			
 		}
+		
+		return names;
 		
 	}
 	
