@@ -7,7 +7,7 @@ public class DiceRoll implements VillainGame {
 	public boolean play(String villain_name, String hero_name) {
 		// TODO Auto-generated method stub
 		
-		String message = "Press space and enter to roll the dice";
+		String message = "Press 1 and enter to roll the dice";
 		
 		MenuSystem m = new MenuSystem();
 		Random num = new Random();
@@ -24,10 +24,9 @@ public class DiceRoll implements VillainGame {
 		
 		while(player_score < 2 && villain_score < 2) {
 			System.out.println(message);
-			String player_input = scanner.nextLine();
+			int player_input = scanner.nextInt();
 			
-			
-			if (player_input == " ") {
+			if (player_input == 1) {
 				hero_roll = num.nextInt(6);
 				villain_roll = num.nextInt(6);
 				m.displayMessage(hero_name + " rolled a " + options[hero_roll] + " and " + villain_name + "rolled a " + options[villain_roll]);
@@ -41,7 +40,7 @@ public class DiceRoll implements VillainGame {
 					m.displayMessage(hero_name + " and " + villain_name + " rolled the same number");
 				}
 			} else {
-				System.out.println(message);
+				System.out.println("Invalid");
 			}
 			m.displayMessage("Current scores are");
 			m.displayMessage(hero_name + ": " + player_score + "\n" + villain_name + ": " + villain_score);
