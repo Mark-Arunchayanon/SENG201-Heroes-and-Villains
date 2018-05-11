@@ -18,6 +18,7 @@ public class Lair implements Location {
 
 	private VillainGame[] games = {(VillainGame) new PaperScissorsRock(),
 			(VillainGame) new GuessANumber(), (VillainGame) new DiceRoll()};
+
 	
 	Random r = new Random();
 	
