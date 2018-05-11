@@ -16,8 +16,8 @@ public class Explorer extends Hero {
 	
 	public String toString() {
 		
-		String s = "If you feel like you are constantly getting lost then an exploreo may be a good\n"
-				+ "addition to your team. They have been almost everywhere already (as they consistiently\n"
+		String s = "If you feel like you are constantly getting lost then an explorer may be a good\n"
+				+ "addition to your team. They have been almost everywhere already (as they consistently\n"
 				+ "like to remind you). Because of this they can tell you which directions buildings of\n"
 				+ "significance are in any city you might find yourself in. All this exploring comes at a\n"
 				+ "cost however. They have spent some of their cash already. They also have a lingering\n"
