@@ -82,5 +82,14 @@ public class MenuSystem {
 		
 	}
 
+	public String displayStringRequest(String message) {
+		
+		System.out.println(message);
+		System.out.println("Please enter your desired string");
+		
+		String input = scanner.nextLine();
+		
+		return input;
+	}
 
 }

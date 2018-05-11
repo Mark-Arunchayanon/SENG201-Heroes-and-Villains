@@ -7,26 +7,26 @@ public class Lair implements Location {
 	private static final int MIN_DAMAGE_SUPER = 40;
 	private static final int MAX_DAMAGE_SUPER = 55;
 	
-	private String[] names = {"Billy", "Ray", "Ricky", "Bobby", "Joe", "Johnny",
+	private static final String[] NAMES = {"Billy", "Ray", "Ricky", "Bobby", "Joe", "Johnny",
 			"Jimmy", "Jake", "Willy", "Kenny", "Cletus", "Russel", "Renny",
 			"Benny", "Bob", "Steve"}; 
 	
-	private String[] taunts = {"He He He He", "Fe Fi Fo Fum, I advise you to run",
+	private static final String[] TAUNTS = {"He He He He", "Fe Fi Fo Fum, I advise you to run",
 			"Go away", "I really cannot be bothered dealing with you right now",
 			"Your time is over", "Pasta Lavista baby"};
 	
-	private VillainGame[] games = {(VillainGame) new PaperScissorsRock(),
+	private static final VillainGame[] GAMES = {(VillainGame) new PaperScissorsRock(),
 			(VillainGame) new GuessANumber()};//, (VillainGame) new DiceRoll()};
 	
 	Random r = new Random();
 	
 	MenuSystem m = new MenuSystem();
 	
-	private String villain_name = names[r.nextInt(names.length)];
+	private String villain_name = NAMES[r.nextInt(NAMES.length)];
 	
-	private String villain_taunt = taunts[r.nextInt(taunts.length)];
+	private String villain_taunt = TAUNTS[r.nextInt(TAUNTS.length)];
 	
-	private VillainGame villain_game = games[r.nextInt(games.length)];
+	private VillainGame villain_game = GAMES[r.nextInt(GAMES.length)];
 	
 	private int villain_lives = 3;
 
@@ -87,6 +87,8 @@ public class Lair implements Location {
 			m.displayMessage(playing_hero.getName() + " lost " + Math.abs(health) + " health");
 			
 			playing_hero.adjustHealth(health);
+			
+			team.check_health();
 			
 		} else {
 			
