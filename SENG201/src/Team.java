@@ -5,6 +5,9 @@ import java.util.Set;
 
 public class Team {
 	
+	private int cash = 0;
+	private 
+	
 	private static final Hero[] HERO_TYPES = {(Hero) new Dandy(),
 			(Hero) new Explorer(), (Hero) new Illusionist(),
 			(Hero) new Physician(), (Hero) new Stickler(),
@@ -40,7 +43,7 @@ public class Team {
 		
 		int selected = m.displayMenu(message, options);
 		
-		Hero selected_hero = (Hero) HERO_TYPES[selected].clone();
+		Hero selected_hero = HERO_TYPES[selected];
 		
 		message = "What will be the name of your new hero?";
 		
@@ -54,7 +57,9 @@ public class Team {
 			
 		}
 		
+		selected_hero.setName(name);
 		
+		heros.add(selected_hero);
 		
 	}
 	
@@ -88,7 +93,7 @@ public class Team {
 	
 	public String[] heroStrings() {
 		
-		for (hero: heros) {
+		for (Hero hero: heros) {
 			
 			
 			
