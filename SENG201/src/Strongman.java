@@ -1,5 +1,5 @@
 
-public class Strongman extends Hero {
+public class Strongman implements HeroStatSelector {
 
 	private static final int CASH = 100;
 	private static final int TOTAL_HEALTH = 130;
@@ -7,12 +7,6 @@ public class Strongman extends Hero {
 	private static final double ILLUSION = 0.9;
 	private static final double HAGGLING = 0.9;
 	private static final boolean MAP = false;
-	
-	public Strongman() {
-		
-		super(CASH, TOTAL_HEALTH, HEALING, ILLUSION, HAGGLING, MAP);
-		
-	}
 	
 	public String toString() {
 		
@@ -22,6 +16,41 @@ public class Strongman extends Hero {
 				+ "you end up about as smart as the tree. Healing, Illusion and Haggling all take a hit";
 		
 		return s;
+		
+	}
+	
+
+	@Override
+	public int getCash() {
+		return CASH;
+	}
+
+	@Override
+	public double getHealing() {
+		return HEALING;
+	}
+
+	@Override
+	public double getIllusion() {
+		return ILLUSION;
+	}
+
+	@Override
+	public double getHaggling() {
+		return HAGGLING;
+	}
+
+	@Override
+	public boolean getMap() {
+		return MAP;
+	}
+
+	@Override
+	public Hero createHero() {
+
+		Hero hero = new Hero(TOTAL_HEALTH);
+		
+		return hero;
 		
 	}
 	

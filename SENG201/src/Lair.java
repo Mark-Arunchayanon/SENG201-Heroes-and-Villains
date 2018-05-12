@@ -52,7 +52,7 @@ public class Lair implements Location {
 			
 		}
 		
-		String[] heros = team.heroStrings();
+		String[] heros = team.heroIdentifiers();
 		
 		Hero playing_hero;
 		

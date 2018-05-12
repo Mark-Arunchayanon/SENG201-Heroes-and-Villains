@@ -5,25 +5,18 @@ public class Hero {
 	
 	private int health;
 	
-	private static int CASH;
 	private static int TOTAL_HEALTH;
-	private static double HEALING;
-	private static double ILLUSION;
-	private static double HAGGLING;
-	private static boolean MAP;
+
 	
-	public Hero(int cash, int health, double healing, double illusion, double haggling, boolean map) {
+	public Hero(int temp_health) {
 		
-		CASH = cash;
-		TOTAL_HEALTH = health;
-		HEALING = healing;
-		ILLUSION = illusion;
-		HAGGLING = haggling;
-		MAP = map;
+		TOTAL_HEALTH = temp_health;
+		
+		health = temp_health;
 		
 	}
 
-	protected void adjustHealth(int i) {
+	public void adjustHealth(int i) {
 		
 		health += i;
 		
@@ -46,6 +39,12 @@ public class Hero {
 	public int getHealth() {
 		
 		return health;
+		
+	}
+	
+	public int getTotalHealth() {
+		
+		return TOTAL_HEALTH;
 		
 	}
 	

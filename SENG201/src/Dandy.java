@@ -1,5 +1,5 @@
 
-public class Dandy extends Hero {
+public class Dandy implements HeroStatSelector {
 
 	private static final int CASH = 130;
 	private static final int TOTAL_HEALTH = 90;
@@ -8,13 +8,7 @@ public class Dandy extends Hero {
 	private static final double HAGGLING = 0.9;
 	private static final boolean MAP = false;
 	
-	
-	public Dandy() {
-		
-		super(CASH, TOTAL_HEALTH, HEALING, ILLUSION, HAGGLING, MAP);
-		
-	}
-	
+	@Override
 	public String toString() {
 		
 		String s = "A Dandy can be a useful person to have on a team as they are always happy to shout.\n"
@@ -27,6 +21,40 @@ public class Dandy extends Hero {
 				+ "And with this much money \"a discount is like an insult\", Haggling takes a hit also";
 		
 		return s;
+		
+	}
+
+	@Override
+	public int getCash() {
+		return CASH;
+	}
+
+	@Override
+	public double getHealing() {
+		return HEALING;
+	}
+
+	@Override
+	public double getIllusion() {
+		return ILLUSION;
+	}
+
+	@Override
+	public double getHaggling() {
+		return HAGGLING;
+	}
+
+	@Override
+	public boolean getMap() {
+		return MAP;
+	}
+
+	@Override
+	public Hero createHero() {
+
+		Hero hero = new Hero(TOTAL_HEALTH);
+		
+		return hero;
 		
 	}
 	
