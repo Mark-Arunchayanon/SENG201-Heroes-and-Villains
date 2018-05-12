@@ -8,4 +8,10 @@ public interface Location {
 	 */
 	public void travelTo(Team team, boolean last_city);
 	
+	/**
+	 * Returns the type of the location
+	 * @return The type of the location
+	 */
+	public String getType();
+	
 }

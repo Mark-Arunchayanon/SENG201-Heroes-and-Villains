@@ -15,7 +15,7 @@ public class Team {
 			(HeroStatSelector) new Stickler(),(HeroStatSelector) new Strongman()};
 	
 	//Create arrayList to store the Heros
-	ArrayList<Hero> heros = new ArrayList<Hero>();
+	private ArrayList<Hero> heros = new ArrayList<Hero>();
 	
 	//Create variables to store team stats
 	private int team_size;
@@ -28,7 +28,7 @@ public class Team {
 	//Create arrayList to store objects that the team owns
 //	ArrayList<StoreBought> objects = new ArrayList<StoreBought>();
 	
-	MenuSystem m = new MenuSystem();
+	private MenuSystem m = new MenuSystem();
 	
 	public Team() {
 		
@@ -37,7 +37,7 @@ public class Team {
 		
 		String[] options = {"1", "2", "3"};
 		
-		team_size = m.displayMenu(message, options);
+		team_size = m.displayMenu(message, options) + 1;
 		
 		//Fill the stats variables and heros arrayList
 		for (int i = 0; i < team_size; i++) {
@@ -171,7 +171,13 @@ public class Team {
 	 */
 	public String[] heroIdentifiers() {
 		
-		//TODO everything
+		String[] identifiers = new String[team_size];
+		
+		for(int i = 0; i < team_size; i++) {
+			identifiers[i] = heros.get(i).toString();
+		}
+		
+		return identifiers;
 		
 	}
 	
@@ -183,21 +189,26 @@ public class Team {
 	 */
 	public Hero getHero(int i) {
 		
-		//TODO Fix
-		
-		Hero h = new Hero();
-		
-		return h;
+		return heros.get(i);
 		
 	}
 
 	/**
-	 * Expels any Hero's from the team who's health has
+	 * Expels any Heros from the team who's health has
 	 * reached zero
+	 * @return True if team still contains Heros. False
+	 * otherwise
 	 */
-	public void check_health() {
+	public boolean check_health() {
 		// TODO Auto-generated method stub
 		
+		return true;
+		
+	}
+
+	public boolean getMap() {
+		// TODO Auto-generated method stub
+		return true;
 	}
 	
 }

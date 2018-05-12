@@ -54,7 +54,7 @@ public class Hero {
 		
 		s += " who has ";
 		s += health;
-		s += "Health Points";
+		s += " Health Points";
 		
 		return s;
 		

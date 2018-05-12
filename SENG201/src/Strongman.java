@@ -12,7 +12,7 @@ public class Strongman implements HeroStatSelector {
 		
 		String s = "Behold the mighty Strong Man. Towering above all like a pillar of... well... human.\n"
 				+ "Despite the less than magnificent appearance, the Strong Man does have a lot of health.\n"
-				+ "However, the disadvantage of being strong enough to headbut a tree to the ground is that"
+				+ "However, the disadvantage of being strong enough to headbut a tree to the ground is that\n"
 				+ "you end up about as smart as the tree. Healing, Illusion and Haggling all take a hit";
 		
 		return s;

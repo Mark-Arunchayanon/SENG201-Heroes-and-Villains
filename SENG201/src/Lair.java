@@ -20,9 +20,9 @@ public class Lair implements Location {
 			(VillainGame) new GuessANumber(), (VillainGame) new DiceRoll()};
 
 	
-	Random r = new Random();
+	private Random r = new Random();
 	
-	MenuSystem m = new MenuSystem();
+	private MenuSystem m = new MenuSystem();
 	
 	private String villain_name = NAMES[r.nextInt(NAMES.length)];
 	
@@ -68,7 +68,8 @@ public class Lair implements Location {
 			playing_hero = team.getHero(0);
 			
 			message = heros[0] + " is playing " + villain_name + " in a game of "
-			+ villain_game.gameType();
+			+ villain_game.gameType();			
+			m.displayMessage(message);
 			
 		}
 		
@@ -115,6 +116,26 @@ public class Lair implements Location {
 			}
 			
 		}
+		
+	}
+	
+	public boolean checkVillainDefeated() {
+		
+		if(villain_lives == 0) {
+			
+			return true;
+			
+		} else {
+			
+			return false;
+			
+		}
+		
+	}
+	
+	public String getType() {
+		
+		return "Lair";
 		
 	}
 

@@ -8,9 +8,8 @@ public class Game {
 		
 		Team t = new Team();
 		
-		Lair l = new Lair();
+		City c = new City(t, false);
 		
-		l.travelTo(t, false);
 		
 	}
 
