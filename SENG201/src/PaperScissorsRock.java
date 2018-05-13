@@ -3,7 +3,7 @@ import java.util.Random;
 public class PaperScissorsRock implements VillainGame {
 
 	@Override
-	public boolean play(String villain_name, String hero_name) {
+	public boolean play(String villain_name, Hero playing_hero) {
 		
 		int player_score = 0, villain_score = 0;
 		
@@ -27,23 +27,23 @@ public class PaperScissorsRock implements VillainGame {
 			if(player_choice == villain_choice) {
 				m.displayMessage("Both opponents chose " + options[player_choice] + ". Draw!");
 			} else if(player_choice == villain_choice - 1 || (player_choice == 2 && villain_choice == 0)) {
-				m.displayMessage(hero_name + " loses this round");
+				m.displayMessage(playing_hero + " loses this round");
 				villain_score++;
 			} else {
-				m.displayMessage(hero_name + " wins this round");
+				m.displayMessage(playing_hero + " wins this round");
 				player_score++;
 			}
 			
-			m.displayMessage("Current scores are:\n" + hero_name + "'s score: " + player_score + "\n" + villain_name +
+			m.displayMessage("Current scores are:\n" + playing_hero + "'s score: " + player_score + "\n" + villain_name +
 					"'s score: " + villain_score);
 
 		}
 		
 		if(player_score == 2) {
-			m.displayMessage("Congratualtions. " + hero_name + " beat " + villain_name);
+			m.displayMessage("Congratualtions. " + playing_hero + " beat " + villain_name);
 			return false;
 		} else {
-			m.displayMessage("Unfortunately, " + hero_name + " lost this game");
+			m.displayMessage("Unfortunately, " + playing_hero + " lost this game");
 			return true;
 		}
 		

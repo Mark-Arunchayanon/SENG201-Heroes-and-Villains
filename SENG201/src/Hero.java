@@ -5,15 +5,26 @@ public class Hero {
 	
 	private int health;
 	
-	private static int TOTAL_HEALTH;
-
+	private double illusion;
 	
-	public Hero(int temp_health) {
+	private double healing;
+	
+	private double haggling;
+	
+	private static int TOTAL_HEALTH;
+	
+	
+	public Hero(int temp_health, double temp_illusion, double temp_healing, double temp_haggling) {
 		
 		TOTAL_HEALTH = temp_health;
 		
 		health = temp_health;
 		
+		illusion = temp_illusion;
+		
+		healing = temp_healing;
+		
+		haggling = temp_haggling;
 	}
 
 	public void adjustHealth(int i) {
@@ -74,6 +85,11 @@ public class Hero {
 
 		return name;
 		
+	}
+	
+	public double getIllusion() {
+		
+		return illusion;
 	}
 	
 }

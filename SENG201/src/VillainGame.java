@@ -6,7 +6,7 @@ public interface VillainGame {
 	 * @return true if villain wins, false otherwise
 	 * @param villain_name The name of the villain
 	 */
-	public boolean play(String villain_name, String hero_name);
+	public boolean play(String villain_name, Hero playing_hero);
 	
 	/**
 	 * @return String defining what type of game the object represents
