@@ -147,7 +147,7 @@ public class Hero {
 	 */
 	public double getHaggling() {
 		
-		return illusion + pu_illusion;
+		return haggling + pu_haggling;
 		
 	}
 	
@@ -174,7 +174,7 @@ public class Hero {
 	/**
 	 * Resets both power up stats to zero
 	 */
-	public void resesPU() {
+	public void resetPU() {
 		
 		pu_illusion = 0;
 		pu_haggling = 0;

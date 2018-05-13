@@ -5,7 +5,7 @@ import java.util.Random;
  * @author fer25
  *
  */
-public class map implements Saleable, PowerUp {
+public class Map implements Saleable, PowerUp {
 	
 	//Describes the standard price
 	private static final int BASE_PRICE = 110;
@@ -15,11 +15,11 @@ public class map implements Saleable, PowerUp {
 	
 	private int price;
 	
-	public map() {
+	public Map() {
 		
 		Random r = new Random();
 		
-		price = r.nextInt(PRICE_VARIATION * 2) + price - PRICE_VARIATION;
+		price = r.nextInt(PRICE_VARIATION * 2) + BASE_PRICE - PRICE_VARIATION;
 		
 	}
 

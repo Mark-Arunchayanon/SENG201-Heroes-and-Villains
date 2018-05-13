@@ -5,6 +5,8 @@ import java.util.Set;
 
 /**
  * Creates and manages a Team of Heros.
+ * @author fer25
+ * 
  */
 public class Team {
 	
@@ -21,6 +23,7 @@ public class Team {
 	private int team_size;
 	private int cash = 0;
 	private boolean map = false;
+	private boolean PU_map = false;
 	
 	//Create arrayList to store objects that the team owns
 //	ArrayList<StoreBought> objects = new ArrayList<StoreBought>();
@@ -32,7 +35,7 @@ public class Team {
 		//Establish the size of the team
 		String message = "How many Heros would you like in your team?";
 		
-		String[] options = {"1", "2", "3"};
+		String[] options = {"One", "Two", "Three"};
 		
 		team_size = m.displayMenu(message, options) + 1;
 		
@@ -61,8 +64,13 @@ public class Team {
 		String[] options = heroBlurbs();
 		int selected = m.displayMenu(message, options);
 		
-		//Add the selected Hero to the Team
+		//Create the new Hero object
 		Hero selected_hero = HERO_TYPES[selected].createHero();
+		
+		//Add the Hero's cash to the Team's purse
+		cash += HERO_TYPES[selected].getCash();
+		//See if the hero provides the Team a map
+		if (HERO_TYPES[selected].getMap()) map = true;
 		
 		//Set the name of the new Hero
 		message = "What will be the name of your new hero?";
@@ -169,16 +177,36 @@ public class Team {
 	 * @return True if team still contains Heros. False
 	 * otherwise
 	 */
-	public boolean check_health() {
+	public boolean checkHealth() {
 		// TODO Auto-generated method stub
 		
 		return true;
 		
 	}
 
+	/**
+	 * Returns true if the Team has a map. False otherwise
+	 * @return The Team's map status
+	 */
 	public boolean getMap() {
-		// TODO Auto-generated method stub
-		return true;
+		
+		return map | PU_map;
+		
+	}
+	
+	/**
+	 * Resets the Team's power ups. To be used on clearing a City
+	 */
+	public void resetPU() {
+		
+		PU_map = false;
+		
+		for(Hero hero : heros) {
+			
+			hero.resetPU();
+			
+		}
+		
 	}
 	
 }

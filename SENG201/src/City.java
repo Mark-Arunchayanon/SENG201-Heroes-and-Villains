@@ -26,7 +26,7 @@ public class City {
 		Collections.shuffle(directions);
 		
 		//Enter the city's "kernel"
-		while(team.check_health() && !lair.checkVillainDefeated()) {
+		while(team.checkHealth() && !lair.checkVillainDefeated()) {
 			
 			m.displayMessage("Welcome to your Home Base");
 			

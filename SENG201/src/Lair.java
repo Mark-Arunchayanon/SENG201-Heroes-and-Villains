@@ -87,11 +87,11 @@ public class Lair implements Location {
 				
 			}
 			
-			m.displayMessage(playing_hero.getName() + " lost " + Math.abs(health) + " health");
+			m.displayMessage(playing_hero.getName() + " lost " + Math.abs(health) + " Health Points");
 			
 			playing_hero.adjustHealth(health);
 			
-			team.check_health();
+			team.checkHealth();
 			
 		} else {
 			
