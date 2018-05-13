@@ -30,7 +30,7 @@ public class GuessANumber implements VillainGame {
 			num_guesses--;
 			
 			if (player_guess == villian_num) {
-				m.displayMessage(playing_hero + " guessed the correct number!");
+				m.displayMessage(playing_hero.getName() + " guessed the correct number!");
 				not_finish = false;
 			} else if (player_guess < villian_num) {
 				m.displayMessage("Higher! " + num_guesses + " guesses left");
@@ -43,12 +43,12 @@ public class GuessANumber implements VillainGame {
 		int win_chance = (int) (CHANCE_VAL / illusion);
 		
 		if (not_finish == false) {
-			m.displayMessage("Congratualtions. " + playing_hero + " beat " + villain_name);
+			m.displayMessage("Congratualtions. " + playing_hero.getName() + " beat " + villain_name);
 			return false;
 		} else {
-			m.displayMessage("Unfortunately, " + playing_hero + " lost this game");
+			m.displayMessage("Unfortunately, " + playing_hero.getName() + " lost this game");
 			if (ran_chance >= win_chance) {
-				m.displayMessage("But " + playing_hero + " useds illusion skill to trick " + villain_name + " into winning the game");
+				m.displayMessage("But " + playing_hero.getName() + " useds illusion skill to trick " + villain_name + " into winning the game");
 				return false;
 			} else {
 				return true;

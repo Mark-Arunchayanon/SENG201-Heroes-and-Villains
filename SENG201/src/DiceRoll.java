@@ -33,21 +33,21 @@ public class DiceRoll implements VillainGame {
 			if (player_input == 1) {
 				hero_roll = num.nextInt(6);
 				villain_roll = num.nextInt(6);
-				m.displayMessage(playing_hero + " rolled a " + options[hero_roll] + " and " + villain_name + "rolled a " + options[villain_roll]);
+				m.displayMessage(playing_hero.getName() + " rolled a " + options[hero_roll] + " and " + villain_name + "rolled a " + options[villain_roll]);
 				if (hero_roll > villain_roll) {
 					player_score++;
-					m.displayMessage(playing_hero + " rolled a higher number");
+					m.displayMessage(playing_hero.getName() + " rolled a higher number");
 				} else if (hero_roll < villain_roll) {
 					villain_score++;
 					m.displayMessage(villain_name + " rolled a higher number");
 				} else if (hero_roll == villain_roll) { 
-					m.displayMessage(playing_hero + " and " + villain_name + " rolled the same number");
+					m.displayMessage(playing_hero.getName() + " and " + villain_name + " rolled the same number");
 				}
 			} else {
 				System.out.println("Invalid");
 			}
 			m.displayMessage("Current scores are");
-			m.displayMessage(playing_hero + ": " + player_score + "\n" + villain_name + ": " + villain_score);
+			m.displayMessage(playing_hero.getName() + ": " + player_score + "\n" + villain_name + ": " + villain_score);
 		}
 		
 		if(scanner != null) {
@@ -58,12 +58,12 @@ public class DiceRoll implements VillainGame {
 		int win_chance = (int) (CHANCE_VAL / illusion);
 		
 		if (player_score == 2) {
-			m.displayMessage("Congratualtions. " + playing_hero + " beat " + villain_name);
+			m.displayMessage("Congratualtions. " + playing_hero.getName() + " beat " + villain_name);
 			return false;
 		} else {
-			m.displayMessage("Unfortunately, " + playing_hero + " lost this game");
+			m.displayMessage("Unfortunately, " + playing_hero.getName() + " lost this game");
 			if (ran_chance >= win_chance) {
-				m.displayMessage("But " + playing_hero + " useds illusion skill to trick " + villain_name + " into winning the game");
+				m.displayMessage("But " + playing_hero.getName() + " useds illusion skill to trick " + villain_name + " into winning the game");
 				return false;
 			} else {
 				return true;
