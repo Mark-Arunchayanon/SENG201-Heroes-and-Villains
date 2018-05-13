@@ -23,24 +23,6 @@ public interface HeroStatSelector {
 	public int getCash();
 	
 	/**
-	 * @return The amount of healing associated with
-	 * that type of hero
-	 */
-	public double getHealing();
-	
-	/**
-	 * @return The amount of illusion associated with
-	 * that type of hero
-	 */
-	public double getIllusion();
-	
-	/**
-	 * @return The amount of haggling associated with
-	 * that type of hero
-	 */
-	public double getHaggling();
-	
-	/**
 	 * @return True if the associated hero type provides
 	 * a map. False otherwise
 	 */
