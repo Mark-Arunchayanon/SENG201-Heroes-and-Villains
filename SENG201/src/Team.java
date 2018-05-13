@@ -20,9 +20,6 @@ public class Team {
 	//Create variables to store team stats
 	private int team_size;
 	private int cash = 0;
-	private double healing = 0;
-	private double illusion = 0;
-	private double haggling = 0;
 	private boolean map = false;
 	
 	//Create arrayList to store objects that the team owns
@@ -48,11 +45,6 @@ public class Team {
 			
 		}
 		
-		//Normalise stats to team size
-		healing /= team_size;
-		illusion /= team_size;
-		haggling /= team_size;
-		
 	}
 	
 	/**
@@ -68,9 +60,6 @@ public class Team {
 		String message = "What type of hero would you like?";
 		String[] options = heroBlurbs();
 		int selected = m.displayMenu(message, options);
-		
-		//Add the stats of the selected Hero to the Team's stats
-		addStats(HERO_TYPES[selected]);
 		
 		//Add the selected Hero to the Team
 		Hero selected_hero = HERO_TYPES[selected].createHero();
@@ -90,25 +79,6 @@ public class Team {
 		selected_hero.setName(name);
 		
 		return selected_hero;
-		
-	}
-	
-	/**
-	 * Adds the stats of the specified HeroStatSelector to the
-	 * Team's stats variables
-	 * @param heroType The HeroStatSelector to have its stats
-	 * added
-	 */
-	private void addStats(HeroStatSelector heroType) {
-		
-		cash += heroType.getCash();		
-		healing += heroType.getHealing();		
-		illusion += heroType.getIllusion();
-		haggling += heroType.getHaggling();
-		
-		if (heroType.getMap()) {
-			map = true;
-		}
 		
 	}
 	
