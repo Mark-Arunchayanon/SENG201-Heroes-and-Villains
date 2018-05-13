@@ -8,8 +8,8 @@ import java.util.Random;
 public class hagglingBooster implements Saleable, PowerUp {
 	
 	//Define the minimum and maximum illusion boost the power up will provide
-	private static final double MIN_BOOST = 0.2;
-	private static final double MAX_BOOST = 0.5;
+	private static final double MIN_BOOST = 0.1;
+	private static final double MAX_BOOST = 0.3;
 	//Describes the multiplier to calculate price from performance
 	private static final double PRICE_COEFFICIENT = 200;
 	//Describes the random variance between calculated price and
