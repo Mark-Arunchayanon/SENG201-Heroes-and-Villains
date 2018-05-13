@@ -31,14 +31,14 @@ public class PaperScissorsRock implements VillainGame {
 			if(player_choice == villain_choice) {
 				m.displayMessage("Both opponents chose " + options[player_choice] + ". Draw!");
 			} else if(player_choice == villain_choice - 1 || (player_choice == 2 && villain_choice == 0)) {
-				m.displayMessage(playing_hero + " loses this round");
+				m.displayMessage(playing_hero.getName() + " loses this round");
 				villain_score++;
 			} else {
-				m.displayMessage(playing_hero + " wins this round");
+				m.displayMessage(playing_hero.getName() + " wins this round");
 				player_score++;
 			}
 			
-			m.displayMessage("Current scores are:\n" + playing_hero + "'s score: " + player_score + "\n" + villain_name +
+			m.displayMessage("Current scores are:\n" + playing_hero.getName() + "'s score: " + player_score + "\n" + villain_name +
 					"'s score: " + villain_score);
 
 		}
@@ -47,12 +47,12 @@ public class PaperScissorsRock implements VillainGame {
 		int win_chance = (int) (CHANCE_VAL / illusion);
 		
 		if(player_score == 2) {
-			m.displayMessage("Congratualtions. " + playing_hero + " beat " + villain_name);
+			m.displayMessage("Congratualtions. " + playing_hero.getName() + " beat " + villain_name);
 			return false;
 		} else {
-			m.displayMessage("Unfortunately, " + playing_hero + " lost this game");
+			m.displayMessage("Unfortunately, " + playing_hero.getName() + " lost this game");
 			if (ran_chance >= win_chance) {
-				m.displayMessage("But " + playing_hero + " useds illusion skill to trick " + villain_name + " into winning the game");
+				m.displayMessage("But " + playing_hero.getName() + " used illusion skill to trick " + villain_name + " into winning the game");
 				return false;
 			} else {
 				return true;

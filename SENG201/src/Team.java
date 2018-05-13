@@ -177,7 +177,7 @@ public class Team {
 	 * @return True if team still contains Heros. False
 	 * otherwise
 	 */
-	public boolean check_health() {
+	public boolean checkHealth() {
 		// TODO Auto-generated method stub
 		
 		return true;
@@ -185,12 +185,27 @@ public class Team {
 	}
 
 	/**
-	 * Returns an OR between 
-	 * @return
+	 * Returns true if the Team has a map. False otherwise
+	 * @return The Team's map status
 	 */
 	public boolean getMap() {
 		
 		return map | PU_map;
+		
+	}
+	
+	/**
+	 * Resets the Team's power ups. To be used on clearing a City
+	 */
+	public void resetPU() {
+		
+		PU_map = false;
+		
+		for(Hero hero : heros) {
+			
+			hero.resetPU();
+			
+		}
 		
 	}
 	
