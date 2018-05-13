@@ -22,7 +22,7 @@ public class GuessANumber implements VillainGame {
 		
 		m.displayMessage("You are allowed 3 guesses");
 		
-		String[] options = {"Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine"};
+		String[] options = {"One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten"};
 		
 		while (not_finish && num_guesses != 0) {
 			player_guess = m.displayMenu(message, options);
@@ -58,7 +58,7 @@ public class GuessANumber implements VillainGame {
 
 	@Override
 	public String gameType() {
-		return "Guess a Number between Zero and Nine";
+		return "Guess a Number between One and Ten";
 	}
 
 }

@@ -20,26 +20,10 @@ public class Explorer implements HeroStatSelector {
 		return s;
 		
 	}
-	
 
 	@Override
 	public int getCash() {
 		return CASH;
-	}
-
-	@Override
-	public double getHealing() {
-		return HEALING;
-	}
-
-	@Override
-	public double getIllusion() {
-		return ILLUSION;
-	}
-
-	@Override
-	public double getHaggling() {
-		return HAGGLING;
 	}
 
 	@Override
@@ -50,7 +34,7 @@ public class Explorer implements HeroStatSelector {
 	@Override
 	public Hero createHero() {
 
-		Hero hero = new Hero(TOTAL_HEALTH);
+		Hero hero = new Hero(TOTAL_HEALTH, ILLUSION, HEALING, HAGGLING);
 		
 		return hero;
 		

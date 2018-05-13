@@ -29,21 +29,6 @@ public class Physician implements HeroStatSelector {
 	}
 
 	@Override
-	public double getHealing() {
-		return HEALING;
-	}
-
-	@Override
-	public double getIllusion() {
-		return ILLUSION;
-	}
-
-	@Override
-	public double getHaggling() {
-		return HAGGLING;
-	}
-
-	@Override
 	public boolean getMap() {
 		return MAP;
 	}
@@ -51,7 +36,7 @@ public class Physician implements HeroStatSelector {
 	@Override
 	public Hero createHero() {
 
-		Hero hero = new Hero(TOTAL_HEALTH);
+		Hero hero = new Hero(TOTAL_HEALTH, ILLUSION, HEALING, HAGGLING);
 		
 		return hero;
 		
