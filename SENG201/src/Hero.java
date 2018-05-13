@@ -147,7 +147,7 @@ public class Hero {
 	 */
 	public double getHaggling() {
 		
-		return illusion + pu_illusion;
+		return haggling + pu_haggling;
 		
 	}
 	

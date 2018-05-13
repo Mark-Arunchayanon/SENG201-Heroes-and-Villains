@@ -1,17 +1,17 @@
 import java.util.Random;
 
 /**
- * Defines a PowerUp object that increases a Hero's haggling stat
+ * Defines a PowerUp object that increases a Hero's illusion stat
  * @author fer25
  *
  */
-public class hagglingBooster implements Saleable, PowerUp {
+public class IllusionBooster implements Saleable, PowerUp {
 	
 	//Define the minimum and maximum illusion boost the power up will provide
 	private static final double MIN_BOOST = 0.1;
 	private static final double MAX_BOOST = 0.3;
 	//Describes the multiplier to calculate price from performance
-	private static final double PRICE_COEFFICIENT = 200;
+	private static final double PRICE_COEFFICIENT = 300;
 	//Describes the random variance between calculated price and
 	//price charged
 	private static final int PRICE_VARIATION = 15;
@@ -22,7 +22,7 @@ public class hagglingBooster implements Saleable, PowerUp {
 	private int price;
 	private static double boost;
 	
-	public hagglingBooster() {
+	public IllusionBooster() {
 		
 		Random r = new Random();
 		
@@ -36,14 +36,13 @@ public class hagglingBooster implements Saleable, PowerUp {
 
 	@Override
 	public void applyBonus(Team team, Hero hero) {
-		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
 	public String getSaleDescriptor() {
 		
-		String s = "Haggling Booster\nA Power-Up that increases a Hero's Haggling Stat\n"
+		String s = "Illusion Booster\nA Power-Up that increases a Hero's Illusion Stat\n"
 				+ "Boost: " + boost + "\nPrice: $" + price; 
 		
 		return s;
