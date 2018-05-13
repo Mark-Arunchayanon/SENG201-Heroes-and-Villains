@@ -2,8 +2,11 @@ import java.util.Random;
 
 public class GuessANumber implements VillainGame {
 
+	private static final int MAX_VAL = 1000;
+	private static final double CHANCE_VAL = 700;
+	
 	@Override
-	public boolean play(String villain_name, String hero_name) {
+	public boolean play(String villain_name, Hero playing_hero) {
 		// TODO Auto-generated method stub
 		
 		String message = "Pick a number";
@@ -15,6 +18,7 @@ public class GuessANumber implements VillainGame {
 		int num_guesses = 3;
 		int player_guess = 0;
 		int villian_num = num.nextInt(10);
+		double illusion = playing_hero.getIllusion();
 		
 		m.displayMessage("You are allowed 3 guesses");
 		
@@ -26,7 +30,7 @@ public class GuessANumber implements VillainGame {
 			num_guesses--;
 			
 			if (player_guess == villian_num) {
-				m.displayMessage(hero_name + " guessed the correct number!");
+				m.displayMessage(playing_hero + " guessed the correct number!");
 				not_finish = false;
 			} else if (player_guess < villian_num) {
 				m.displayMessage("Higher! " + num_guesses + " guesses left");
@@ -35,12 +39,20 @@ public class GuessANumber implements VillainGame {
 			}
 		}
 		
+		int ran_chance = num.nextInt(MAX_VAL);
+		int win_chance = (int) (CHANCE_VAL / illusion);
+		
 		if (not_finish == false) {
-			m.displayMessage("Congratualtions. " + hero_name + " beat " + villain_name);
+			m.displayMessage("Congratualtions. " + playing_hero + " beat " + villain_name);
 			return false;
 		} else {
-			m.displayMessage("Unfortunately, " + hero_name + " lost this game");
-			return true;
+			m.displayMessage("Unfortunately, " + playing_hero + " lost this game");
+			if (ran_chance >= win_chance) {
+				m.displayMessage("But " + playing_hero + " useds illusion skill to trick " + villain_name + " into winning the game");
+				return false;
+			} else {
+				return true;
+			}
 		}
 	}
 

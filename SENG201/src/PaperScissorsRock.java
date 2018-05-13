@@ -2,10 +2,14 @@ import java.util.Random;
 
 public class PaperScissorsRock implements VillainGame {
 
+	private static final int MAX_VAL = 1000;
+	private static final double CHANCE_VAL = 700;
+	
 	@Override
 	public boolean play(String villain_name, Hero playing_hero) {
 		
 		int player_score = 0, villain_score = 0;
+		double illusion = playing_hero.getIllusion();
 		
 		MenuSystem m = new MenuSystem();
 		Random r = new Random();
@@ -39,12 +43,20 @@ public class PaperScissorsRock implements VillainGame {
 
 		}
 		
+		int ran_chance = r.nextInt(MAX_VAL);
+		int win_chance = (int) (CHANCE_VAL / illusion);
+		
 		if(player_score == 2) {
 			m.displayMessage("Congratualtions. " + playing_hero + " beat " + villain_name);
 			return false;
 		} else {
 			m.displayMessage("Unfortunately, " + playing_hero + " lost this game");
-			return true;
+			if (ran_chance >= win_chance) {
+				m.displayMessage("But " + playing_hero + " useds illusion skill to trick " + villain_name + " into winning the game");
+				return false;
+			} else {
+				return true;
+			}
 		}
 		
 	}
