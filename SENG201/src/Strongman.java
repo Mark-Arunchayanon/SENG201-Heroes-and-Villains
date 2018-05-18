@@ -3,9 +3,9 @@ public class Strongman implements HeroStatSelector {
 
 	private static final int CASH = 100;
 	private static final int TOTAL_HEALTH = 130;
-	private static final double HEALING = 0.9;
-	private static final double ILLUSION = 0.9;
-	private static final double HAGGLING = 0.9;
+	private static final int HEALING = 90;
+	private static final int ILLUSION = 90;
+	private static final int HAGGLING = 90;
 	private static final boolean MAP = false;
 	
 	public String toString() {

@@ -11,7 +11,7 @@ public interface Saleable {
 	 * name and price
 	 * @return The descriptor
 	 */
-	public String getSaleDescriptor();
+	public String getSaleDescriptor(int haggling);
 	
 	/**
 	 * Gets the sale price that the shop will remove from the

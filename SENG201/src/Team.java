@@ -26,7 +26,7 @@ public class Team {
 	private boolean PU_map = false;
 	
 	//Create arrayList to store objects that the team owns
-//	ArrayList<StoreBought> objects = new ArrayList<StoreBought>();
+	private ArrayList<Saleable> team_items = new ArrayList<Saleable>();
 	
 	private MenuSystem m = new MenuSystem();
 	
@@ -207,6 +207,45 @@ public class Team {
 			
 		}
 		
+	}
+
+	/**
+	 * Returns the ArrayList of items that the team owns
+	 * @return the team_items
+	 */
+	public ArrayList<Saleable> getTeamItems() {
+		return team_items;
+	}
+
+	/**
+	 * Adds a Saleable item to the list of items that the team owns
+	 * @param item The item to add to team_items
+	 */
+	public void addTeamItem(Saleable item) {
+		team_items.add(item);
+	}
+
+	/**
+	 * Gets the amount of cash in the Team's purse
+	 * @return The amount of cash the team has
+	 */
+	public int getCash() {
+		return cash;
+	}
+	
+	/**
+	 * Adds amount to the Team's purse
+	 * Negative amounts are supported
+	 * The function will not allow the Team's purse to go negative
+	 * @param amount The amount to add to the Team's purse
+	 * @return True if transaction successful. False otherwise
+	 */
+	public boolean adjustCash(int amount) {
+		if (amount < cash) {
+			cash += amount;
+			return true;
+		}
+		return false;
 	}
 	
 }

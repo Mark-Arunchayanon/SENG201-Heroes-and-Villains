@@ -14,6 +14,7 @@ public class Map implements Saleable, PowerUp {
 	private static final int PRICE_VARIATION = 15;
 	
 	private int price;
+	private int temp_price;
 	
 	public Map() {
 		
@@ -30,10 +31,12 @@ public class Map implements Saleable, PowerUp {
 	}
 
 	@Override
-	public String getSaleDescriptor() {
+	public String getSaleDescriptor(int haggling) {
+		
+		temp_price = (int) Math.round(price * 100 / haggling);
 		
 		String s = "A Map\nProvides the Team a map of this City"
-				+ "\nPrice: $" + price; 
+				+ "\nPrice: $" + temp_price; 
 		
 		return s;
 		
@@ -41,7 +44,7 @@ public class Map implements Saleable, PowerUp {
 
 	@Override
 	public int getPrice() {
-		return price;
+		return temp_price;
 	}
 
 }

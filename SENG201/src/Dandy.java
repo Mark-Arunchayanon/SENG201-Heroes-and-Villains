@@ -3,9 +3,9 @@ public class Dandy implements HeroStatSelector {
 
 	private static final int CASH = 130;
 	private static final int TOTAL_HEALTH = 90;
-	private static final double HEALING = 1;
-	private static final double ILLUSION = 0.9;
-	private static final double HAGGLING = 0.9;
+	private static final int HEALING = 100;
+	private static final int ILLUSION = 90;
+	private static final int HAGGLING = 90;
 	private static final boolean MAP = false;
 	
 	@Override

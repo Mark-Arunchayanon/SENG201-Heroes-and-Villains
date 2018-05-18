@@ -3,9 +3,9 @@ public class Explorer implements HeroStatSelector {
 
 	private static final int CASH = 80;
 	private static final int TOTAL_HEALTH = 90;
-	private static final double HEALING = 1;
-	private static final double ILLUSION = 1;
-	private static final double HAGGLING = 1;
+	private static final int HEALING = 100;
+	private static final int ILLUSION = 100;
+	private static final int HAGGLING = 100;
 	private static final boolean MAP = true;
 	
 	public String toString() {

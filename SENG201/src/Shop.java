@@ -1,16 +1,129 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Random;
 
 public class Shop implements Location {
+	
+	private static final int MIN_PU_ITEMS = 5;
+	private static final int MAX_PU_ITEMS = 9;
+	private static final int MIN_HEALING_ITEMS = 2;
+	private static final int MAX_HEALING_ITEMS = 4;
+	
+	@SuppressWarnings("rawtypes")
+	private static final Class[] POWER_UPS = {HagglingBooster.class,
+			IllusionBooster.class, Map.class};
+	
+	private static final int DIFFERENCE_PU_ITEMS = MAX_PU_ITEMS - MIN_PU_ITEMS;
+	private static final int DIFFERENCE_HEALING_ITEMS = MAX_HEALING_ITEMS -
+			MIN_HEALING_ITEMS;
+	
+	private MenuSystem m = new MenuSystem();
+	private Random r = new Random();
+	
+	private static int PU_ITEMS;
+	private static int HEALING_ITEMS;
 
+	private ArrayList<Saleable> items = new ArrayList<Saleable>();
+	
+	public Shop () {
+		
+		PU_ITEMS = r.nextInt(DIFFERENCE_PU_ITEMS) + MIN_PU_ITEMS;
+		HEALING_ITEMS = r.nextInt(DIFFERENCE_HEALING_ITEMS) + MIN_HEALING_ITEMS;
+		
+		//Add power ups to items
+		for (int i = 0; i < PU_ITEMS; i++) {
+			
+			@SuppressWarnings("rawtypes")
+			Class power_up = POWER_UPS[r.nextInt(POWER_UPS.length)];
+			
+			try {
+				items.add((Saleable) power_up.newInstance());
+			} catch (InstantiationException | IllegalAccessException e) {
+				// Shouldn't throw error
+				System.out.println(e.getMessage());
+				//e.printStackTrace();
+			}
+			
+		}
+		
+		//Add healing items to items
+		for (int i = 0; i < HEALING_ITEMS; i++) {
+			
+			items.add((Saleable) new HealingItem());
+			
+		}
+		
+		Collections.shuffle(items);
+		
+	}
+	
 	@Override
-	public void travelTo(Team team, boolean last_city) {
-		// TODO Auto-generated method stub
+	public void travelTo(Team team, boolean last_city) {		
+		
+		m.displayMessage("Welcome to the shop.");
+		
+		while(!items.isEmpty()) {
+			
+			String message;
+			
+			String[] hero_id = team.heroIdentifiers();
+			
+			Hero selected_hero;
+			
+			if (hero_id.length > 1) {
+				
+				message = "Which Hero would like to purchase something from the store?";
+				
+				int selection = m.displayMenu(message, hero_id);
+				
+				selected_hero = team.getHero(selection);
+				
+			} else {
+				
+				selected_hero = team.getHero(0);
+				
+			}
+		
+			message =  "What would " + selected_hero.getName() + " like to purchase?\n"
+					+ "You have $" + team.getCash();
+			String[] options = new String[items.size() + 1];
+			
+			for (int i = 0; i < items.size(); i++) {
+				
+				options[i] = items.get(i).getSaleDescriptor(selected_hero.getHaggling());
+				
+			}
+			
+			options[options.length - 1] = "Leave the shop";
+			
+			int selected_item = m.displayMenu(message, options);
+			
+			if (selected_item == options.length - 1) {
+				return;
+			} else {
+				
+				if (team.adjustCash(items.get(selected_item).getPrice())) {
+					
+					team.addTeamItem(items.get(selected_item));
+					items.remove(selected_item);
+					
+					m.displayMessage("Thankyou for your purchase.");
+					
+				} else {
+					
+					m.displayMessage("You do not have enough cash for that item.");
+					
+				}
+				
+			}
+			
+		}
 		
 	}
 
 	@Override
 	public String getType() {
-		// TODO Auto-generated method stub
-		return null;
+		return "Shop";
 	}
 
 }

@@ -14,9 +14,13 @@ public class HealingItem implements Saleable {
 	private int heal = (num.nextInt(MAX_HEAL - MIN_HEAL) + MIN_HEAL) * HEAL_CONSTANT;
 	private int time = num.nextInt(MAX_HEAL_TIME - MIN_HEAL_TIME) + MIN_HEAL_TIME;
 	private int price = (heal / time) * PRICE_COEFF;
+	private int temp_price;
 	
 	@Override
-	public String getSaleDescriptor() {
+	public String getSaleDescriptor(int haggling) {
+		
+		temp_price = (int) Math.round(price * 100 / haggling);
+		
 		String description = "Healing Potion\nA bottle per hero\nHealth boost: " + heal + "\nHeal time: " + time;
 		
 		return description;
@@ -24,7 +28,7 @@ public class HealingItem implements Saleable {
 
 	@Override
 	public int getPrice() {
-		return price;
+		return temp_price;
 	}
 	
 	public int getTime() {

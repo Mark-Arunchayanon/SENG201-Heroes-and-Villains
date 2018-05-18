@@ -8,27 +8,28 @@ import java.util.Random;
 public class HagglingBooster implements Saleable, PowerUp {
 	
 	//Define the minimum and maximum illusion boost the power up will provide
-	private static final double MIN_BOOST = 0.1;
-	private static final double MAX_BOOST = 0.3;
+	private static final int MIN_BOOST = 10;
+	private static final int MAX_BOOST = 30;
 	//Describes the multiplier to calculate price from performance
-	private static final double PRICE_COEFFICIENT = 200;
+	private static final int PRICE_COEFFICIENT = 200;
 	//Describes the random variance between calculated price and
 	//price charged
 	private static final int PRICE_VARIATION = 15;
 	
 	//Pre calulation of constants
-	private static final double BOOST_COEFFICIENT = MAX_BOOST - MIN_BOOST;
+	private static final int BOOST_COEFFICIENT = MAX_BOOST - MIN_BOOST;
 	
 	private int price;
-	private static double boost;
+	private static int boost;
+	private int temp_price;
 	
 	public HagglingBooster() {
 		
 		Random r = new Random();
 		
-		boost = BOOST_COEFFICIENT * r.nextFloat() + MIN_BOOST;
+		boost = r.nextInt(BOOST_COEFFICIENT) + MIN_BOOST;
 		
-		price = (int) (PRICE_COEFFICIENT * boost);
+		price = PRICE_COEFFICIENT * boost;
 		
 		price += r.nextInt(PRICE_VARIATION * 2) + price - PRICE_VARIATION;
 		
@@ -41,10 +42,12 @@ public class HagglingBooster implements Saleable, PowerUp {
 	}
 
 	@Override
-	public String getSaleDescriptor() {
+	public String getSaleDescriptor(int haggling) {
+		
+		temp_price = (int) Math.round(price * 100 / haggling);
 		
 		String s = "Haggling Booster\nA Power-Up that increases a Hero's Haggling Stat\n"
-				+ "Boost: " + boost + "\nPrice: $" + price; 
+				+ "Boost: " + boost + "\nPrice: $" + temp_price; 
 		
 		return s;
 		
@@ -52,7 +55,7 @@ public class HagglingBooster implements Saleable, PowerUp {
 
 	@Override
 	public int getPrice() {
-		return price;
+		return temp_price;
 	}
 
 }

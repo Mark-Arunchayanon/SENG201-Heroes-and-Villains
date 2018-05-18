@@ -10,13 +10,13 @@ public class Hero {
 	//Define the stats of the Hero
 	private int health;
 	private static int TOTAL_HEALTH;
-	private double illusion;
-	private double healing;
-	private double haggling;
+	private int illusion;
+	private int healing;
+	private int haggling;
 	
 	//Define the power up modifiers for a hero.
-	private double pu_illusion = 0;
-	private double pu_haggling = 0;
+	private int pu_illusion = 0;
+	private int pu_haggling = 0;
 	
 	/**
 	 * Creates a Hero object
@@ -26,7 +26,7 @@ public class Hero {
 	 * @param temp_healing The Hero's healing stat
 	 * @param temp_haggling The Hero's haggling stat
 	 */
-	public Hero(int temp_health, double temp_illusion, double temp_healing, double temp_haggling) {
+	public Hero(int temp_health, int temp_illusion, int temp_healing, int temp_haggling) {
 		
 		TOTAL_HEALTH = temp_health;
 		health = temp_health;
@@ -124,7 +124,7 @@ public class Hero {
 	 * stats
 	 * @return The Hero's illusion
 	 */
-	public double getIllusion() {
+	public int getIllusion() {
 		
 		return illusion + pu_illusion;
 		
@@ -134,7 +134,7 @@ public class Hero {
 	 * Returns the healing stat of the Hero
 	 * @return The Hero's healing stat
 	 */
-	public double getHealing() {
+	public int getHealing() {
 		
 		return healing;
 		
@@ -145,7 +145,7 @@ public class Hero {
 	 * stats
 	 * @return The Hero's haggling
 	 */
-	public double getHaggling() {
+	public int getHaggling() {
 		
 		return haggling + pu_haggling;
 		

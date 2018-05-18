@@ -3,9 +3,9 @@ public class Illusionist implements HeroStatSelector {
 
 	private static final int CASH = 90;
 	private static final int TOTAL_HEALTH = 90;
-	private static final double HEALING = 0.9;
-	private static final double ILLUSION = 1.3;
-	private static final double HAGGLING = 1;
+	private static final int HEALING = 90;
+	private static final int ILLUSION = 130;
+	private static final int HAGGLING = 100;
 	private static final boolean MAP = false;
 	
 	public String toString() {
