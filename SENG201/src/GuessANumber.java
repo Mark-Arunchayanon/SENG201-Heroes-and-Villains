@@ -3,7 +3,7 @@ import java.util.Random;
 public class GuessANumber implements VillainGame {
 
 	private static final int MAX_VAL = 1000;
-	private static final double CHANCE_VAL = 700;
+	private static final int CHANCE_VAL = 700;
 	
 	@Override
 	public boolean play(String villain_name, Hero playing_hero) {
@@ -18,7 +18,7 @@ public class GuessANumber implements VillainGame {
 		int num_guesses = 3;
 		int player_guess = 0;
 		int villian_num = num.nextInt(10);
-		double illusion = playing_hero.getIllusion();
+		int illusion = playing_hero.getIllusion();
 		
 		m.displayMessage("You are allowed 3 guesses");
 		
@@ -40,7 +40,7 @@ public class GuessANumber implements VillainGame {
 		}
 		
 		int ran_chance = num.nextInt(MAX_VAL);
-		int win_chance = (int) (CHANCE_VAL / illusion);
+		int win_chance = CHANCE_VAL / illusion;
 		
 		if (not_finish == false) {
 			m.displayMessage("Congratualtions. " + playing_hero.getName() + " beat " + villain_name);

@@ -13,12 +13,16 @@ public class Map implements Saleable, PowerUp {
 	//price charged
 	private static final int PRICE_VARIATION = 15;
 	
+	private Random r = new Random();
+	
 	private int price;
 	private int temp_price;
 	
 	public Map() {
 		
-		Random r = new Random();
+		//Skip the first couple of random numbers as they tend to keep showing up
+		r.nextInt();
+		r.nextInt();
 		
 		price = r.nextInt(PRICE_VARIATION * 2) + BASE_PRICE - PRICE_VARIATION;
 		

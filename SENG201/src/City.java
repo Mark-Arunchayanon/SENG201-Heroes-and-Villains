@@ -30,7 +30,7 @@ public class City {
 			
 			m.displayMessage("Welcome to your Home Base");
 			
-			String message  = "Would you like to:";
+			String message  = "Would you like to?";
 			String[] options = {"Check your teams status", "Travel"};
 			int result = m.displayMenu(message, options);
 			

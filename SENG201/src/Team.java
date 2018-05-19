@@ -241,7 +241,7 @@ public class Team {
 	 * @return True if transaction successful. False otherwise
 	 */
 	public boolean adjustCash(int amount) {
-		if (amount < cash) {
+		if (cash + amount >= 0) {
 			cash += amount;
 			return true;
 		}

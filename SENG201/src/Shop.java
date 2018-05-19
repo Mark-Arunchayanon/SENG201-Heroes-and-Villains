@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Random;
 
@@ -74,7 +75,15 @@ public class Shop implements Location {
 				
 				message = "Which Hero would like to purchase something from the store?";
 				
-				int selection = m.displayMenu(message, hero_id);
+				String[] options = Arrays.copyOf(hero_id, hero_id.length + 1);
+				
+				options[options.length - 1] = "Leave the Shop";
+				
+				int selection = m.displayMenu(message, options);
+				
+				if (selection == options.length - 1) {
+					return;
+				}
 				
 				selected_hero = team.getHero(selection);
 				
@@ -82,6 +91,15 @@ public class Shop implements Location {
 				
 				selected_hero = team.getHero(0);
 				
+				message = "Would you like to purchase something?";
+				
+				String[] options = {"Yes", "No. I wish to travel back to my home base."};
+				
+				int selection = m.displayMenu(message, options);
+				
+				if (selection == 1) {
+					return;
+				}
 			}
 		
 			message =  "What would " + selected_hero.getName() + " like to purchase?\n"
@@ -94,15 +112,13 @@ public class Shop implements Location {
 				
 			}
 			
-			options[options.length - 1] = "Leave the shop";
+			options[options.length - 1] = "Actually, " + selected_hero.getName() + " doesn't want anything";
 			
 			int selected_item = m.displayMenu(message, options);
 			
-			if (selected_item == options.length - 1) {
-				return;
-			} else {
+			if (selected_item != options.length - 1) {
 				
-				if (team.adjustCash(items.get(selected_item).getPrice())) {
+				if (team.adjustCash(- items.get(selected_item).getPrice())) {
 					
 					team.addTeamItem(items.get(selected_item));
 					items.remove(selected_item);
@@ -118,6 +134,8 @@ public class Shop implements Location {
 			}
 			
 		}
+		
+		m.displayMessage("The shop has run out of items to sell");
 		
 	}
 

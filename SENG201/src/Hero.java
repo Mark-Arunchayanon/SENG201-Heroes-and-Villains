@@ -155,7 +155,7 @@ public class Hero {
 	 * Adds illusion_increase to pu_illusion
 	 * @param illusion_increase
 	 */
-	public void adjustPUIllusion(double illusion_increase) {
+	public void adjustPUIllusion(int illusion_increase) {
 		
 		pu_illusion += illusion_increase;
 		
@@ -165,7 +165,7 @@ public class Hero {
 	 * Adds illusion_increase to pu_illusion
 	 * @param illusion_increase
 	 */
-	public void adjustPUHaggling(double haggling_increase) {
+	public void adjustPUHaggling(int haggling_increase) {
 		
 		pu_haggling += haggling_increase;
 		

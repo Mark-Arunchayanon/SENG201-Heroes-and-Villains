@@ -14,4 +14,6 @@ public interface PowerUp {
 	 */
 	public void applyBonus(Team team, Hero hero);
 	
+	public String getApplicationDescriptor();
+	
 }

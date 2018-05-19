@@ -11,7 +11,7 @@ public class IllusionBooster implements Saleable, PowerUp {
 	private static final int MIN_BOOST = 10;
 	private static final int MAX_BOOST = 30;
 	//Describes the multiplier to calculate price from performance
-	private static final int PRICE_COEFFICIENT = 300;
+	private static final int PRICE_COEFFICIENT = 3;
 	//Describes the random variance between calculated price and
 	//price charged
 	private static final int PRICE_VARIATION = 15;
@@ -19,13 +19,17 @@ public class IllusionBooster implements Saleable, PowerUp {
 	//Pre calulation of constants
 	private static final int BOOST_COEFFICIENT = MAX_BOOST - MIN_BOOST;
 	
+	private Random r = new Random();
+	
 	private int price;
 	private static int boost;
 	private int temp_price;
 	
 	public IllusionBooster() {
 		
-		Random r = new Random();
+		//Skip the first couple of random numbers as they tend to keep showing up
+		r.nextInt();
+		r.nextInt();
 		
 		boost = r.nextInt(BOOST_COEFFICIENT) + MIN_BOOST;
 		

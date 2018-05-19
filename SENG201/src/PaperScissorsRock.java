@@ -3,13 +3,13 @@ import java.util.Random;
 public class PaperScissorsRock implements VillainGame {
 
 	private static final int MAX_VAL = 1000;
-	private static final double CHANCE_VAL = 700;
+	private static final int CHANCE_VAL = 700;
 	
 	@Override
 	public boolean play(String villain_name, Hero playing_hero) {
 		
 		int player_score = 0, villain_score = 0;
-		double illusion = playing_hero.getIllusion();
+		int illusion = playing_hero.getIllusion();
 		
 		MenuSystem m = new MenuSystem();
 		Random r = new Random();
@@ -44,7 +44,7 @@ public class PaperScissorsRock implements VillainGame {
 		}
 		
 		int ran_chance = r.nextInt(MAX_VAL);
-		int win_chance = (int) (CHANCE_VAL / illusion);
+		int win_chance = CHANCE_VAL / illusion;
 		
 		if(player_score == 2) {
 			m.displayMessage("Congratualtions. " + playing_hero.getName() + " beat " + villain_name);
