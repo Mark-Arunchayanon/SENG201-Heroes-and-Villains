@@ -98,11 +98,11 @@ public class Hero {
 		s += "'s current Stat: \nHealth: ";
 		s += health;
 		s += "\nIllusion Skill: ";
-		s += illusion;
+		s += (illusion + pu_illusion);
 		s += "\nHealing Skill: ";
 		s += healing;
 		s += "\nHaggling Skill: ";
-		s += haggling;
+		s += (haggling + pu_haggling);
 		
 		return s;
 		

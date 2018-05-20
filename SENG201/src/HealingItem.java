@@ -65,7 +65,7 @@ public class HealingItem implements Saleable {
 		
 		temp_price = (int) Math.round(price * 100 / haggling);
 		
-		String description = "Healing Potion\nA bottle per hero\nHealth boost: " + heal + "\nHeal time: " + time;
+		String description = "Healing Potion\nHeals a hero over a period of time\nHealth boost: " + heal + "\nHeal time: " + time + "s" + "\nPrice: " + temp_price;
 		
 		return description;
 	}
