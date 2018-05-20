@@ -1,20 +1,62 @@
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class HealingItem implements Saleable {
 
 	private static final int MAX_HEAL = 20;
-	private static final int MIN_HEAL = 5;
+	private static final int MIN_HEAL = 8;
 	private static final int MAX_HEAL_TIME = 90;
 	private static final int MIN_HEAL_TIME = 20;
+	//Defines how the healing level is multiplied to give the price
 	private static final int PRICE_COEFF = 40;
-	private static final int HEAL_CONSTANT = 4;
+	//Defines the number of times health is added to the Hero
+	private static final int HEAL_DIVISOR = 4;
+	//Define number of miliseconds in a second
+	private static final int S_TO_MILIS = 1000;
+	//Define timer frequency
 	
-	Random num = new Random();
 	
-	private int heal = (num.nextInt(MAX_HEAL - MIN_HEAL) + MIN_HEAL) * HEAL_CONSTANT;
-	private int time = num.nextInt(MAX_HEAL_TIME - MIN_HEAL_TIME) + MIN_HEAL_TIME;
+	Random r = new Random();
+	
+	private int heal = (r.nextInt((MAX_HEAL - MIN_HEAL) / 4) * 4 + MIN_HEAL);
+	private int time = r.nextInt(MAX_HEAL_TIME - MIN_HEAL_TIME) + MIN_HEAL_TIME;
 	private int price = (heal / time) * PRICE_COEFF;
 	private int temp_price;
+	
+	private int elapsed_time = 0;
+	private int elapsed_time_segments = 1;
+	
+	private Hero hero;
+	
+	
+	Timer timer = new Timer();
+	
+	TimerTask task = new TimerTask() {
+
+		@Override
+		public void run() {
+			
+			
+			elapsed_time += S_TO_MILIS / 4;
+			
+			if (elapsed_time > elapsed_time_segments * (time / HEAL_DIVISOR) * S_TO_MILIS) {
+				
+				elapsed_time_segments++;
+				
+				hero.adjustHealth(heal / 4);
+				
+				if (elapsed_time > time * S_TO_MILIS) {
+					
+					timer.cancel();
+					
+				}
+				
+			}
+			
+		}
+		
+	};
 	
 	@Override
 	public String getSaleDescriptor(int haggling) {
@@ -30,16 +72,14 @@ public class HealingItem implements Saleable {
 	public int getPrice() {
 		return temp_price;
 	}
-	
-	public int getTime() {
-		return time;
+
+	public String getHealingDescriptor() {
+		// TODO Auto-generated method stub
+		return null;
 	}
-	
-	public int getHeal() {
-		return heal;
-	}
-	
-	public int getHealConstant() {
-		return HEAL_CONSTANT;
+
+	public void heal(Hero selected_hero) {
+		// TODO Auto-generated method stub
+		
 	}
 }

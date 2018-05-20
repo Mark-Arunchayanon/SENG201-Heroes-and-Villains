@@ -42,6 +42,8 @@ public class IllusionBooster implements Saleable, PowerUp {
 	@Override
 	public void applyBonus(Team team, Hero hero) {
 		
+		hero.adjustPUIllusion(boost);
+		
 	}
 
 	@Override
@@ -59,6 +61,14 @@ public class IllusionBooster implements Saleable, PowerUp {
 	@Override
 	public int getPrice() {
 		return temp_price;
+	}
+
+	@Override
+	public String getApplicationDescriptor() {
+		String s = "This Illusion Booster Power Up will add "
+				+ boost + " Illusion Points to the Hero it is applied to.\n"
+						+ "This will increace their chance of tricking a Villain in a game while you are in this City";
+		return s;
 	}
 
 }

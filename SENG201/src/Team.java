@@ -27,6 +27,8 @@ public class Team {
 	
 	//Create arrayList to store objects that the team owns
 	private ArrayList<Saleable> team_items = new ArrayList<Saleable>();
+	//Create ArrayList to store current heal operations
+	private ArrayList<HealingItem> heal_operations = new ArrayList<HealingItem>();
 	
 	private MenuSystem m = new MenuSystem();
 	
@@ -191,6 +193,15 @@ public class Team {
 	public boolean getMap() {
 		
 		return map | PU_map;
+		
+	}
+	
+	/**
+	 * Enables the PU_map for this city
+	 */
+	public void setPUMap() {
+		
+		PU_map = true;
 		
 	}
 	

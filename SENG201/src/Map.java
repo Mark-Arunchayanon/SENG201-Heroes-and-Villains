@@ -30,7 +30,8 @@ public class Map implements Saleable, PowerUp {
 
 	@Override
 	public void applyBonus(Team team, Hero hero) {
-		// TODO Auto-generated method stub
+
+		team.setPUMap();
 
 	}
 
@@ -49,6 +50,11 @@ public class Map implements Saleable, PowerUp {
 	@Override
 	public int getPrice() {
 		return temp_price;
+	}
+
+	@Override
+	public String getApplicationDescriptor() {
+		return "This Map Power Up will provide the Team a map of this city";
 	}
 
 }

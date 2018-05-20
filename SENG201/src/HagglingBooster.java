@@ -41,7 +41,8 @@ public class HagglingBooster implements Saleable, PowerUp {
 
 	@Override
 	public void applyBonus(Team team, Hero hero) {
-		// TODO Auto-generated method stub
+		
+		hero.adjustPUHaggling(boost);
 
 	}
 
@@ -60,6 +61,14 @@ public class HagglingBooster implements Saleable, PowerUp {
 	@Override
 	public int getPrice() {
 		return temp_price;
+	}
+
+	@Override
+	public String getApplicationDescriptor() {
+		String s = "This Haggling Booster Power Up will add "
+				+ boost + " Haggling Points to the Hero it is applied to.\n"
+				+ "This will reduce the price they will pay at the shop while you are in this City";
+		return s;
 	}
 
 }

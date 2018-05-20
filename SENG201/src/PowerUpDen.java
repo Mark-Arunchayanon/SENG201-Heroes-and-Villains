@@ -32,7 +32,7 @@ public class PowerUpDen implements Location {
 		
 			if(hero_ids.length > 1) {
 				
-				String message = "What Hero would you like to apply a power up to?";
+				String message = "What Hero would you like to apply a Power Up to?";
 				
 				String [] options = Arrays.copyOf(hero_ids, hero_ids.length + 1);
 				
@@ -60,10 +60,28 @@ public class PowerUpDen implements Location {
 				selected_hero  = team.getHero(0);
 				
 			}
-			
+						
 			String message = "What Power Up would you like to apply to " + selected_hero.getName();
 			
-			String[] options = 
+			String[] options = new String[items.size() + 1];
+			
+			for (int i = 0; i < items.size(); i++) {
+				
+				options[i] = items.get(i).getApplicationDescriptor();
+				
+			}
+			
+			options[options.length - 1] = "Actually, " + selected_hero.getName() + " doesn't need a Power Up";
+			
+			int selected  = m.displayMenu(message, options);
+			
+			if (selected < options.length - 1) {
+				
+				items.get(selected).applyBonus(team, selected_hero);
+				all_items.remove((Saleable) items.get(selected));
+				items.remove(selected);
+				
+			}
 			
 		}
 		
@@ -73,8 +91,7 @@ public class PowerUpDen implements Location {
 
 	@Override
 	public String getType() {
-		// TODO Auto-generated method stub
-		return null;
+		return "Power Up Den";
 	}
 
 }
