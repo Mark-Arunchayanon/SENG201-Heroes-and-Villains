@@ -15,10 +15,7 @@ public class Physician implements HeroStatSelector {
 	private static final int HAGGLING = 100;
 	private static final boolean MAP = false;
 	
-	/**
-	 * Returns the description of the Hero
-	 * @return The Hero's description
-	 */
+	@Override
 	public String toString() {
 		
 		// Description of the hero
@@ -40,32 +37,16 @@ public class Physician implements HeroStatSelector {
 		
 	}
 	
-	/**
-	 * Returns the amount of cash the Hero has
-	 * @return The Hero's cash
-	 */
 	@Override
 	public int getCash() {
 		return CASH;
 	}
 
-	/**
-	 * Returns the true if the Hero has a map, otherwise return false
-	 * @return true or false
-	 */
 	@Override
 	public boolean getMap() {
 		return MAP;
 	}
 
-	/**
-	 * Creates a Hero object
-	 * @param temp_health The maximum health of the Hero.
-	 * THe hero's health is also set to this value on creation
-	 * @param temp_illusion The Hero's illusion stat
-	 * @param temp_healing The Hero's healing stat
-	 * @param temp_haggling The Hero's haggling stat
-	 */
 	@Override
 	public Hero createHero() {
 

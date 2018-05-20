@@ -1,14 +1,20 @@
 import java.util.Random;
 import java.util.Scanner;
-
+/**
+ * This is a game called Dice Roll, roll a higher number to win
+ * Numbers range from 1-6 and it is best out three games
+ * 
+ * @author fer25
+ * @author par116
+ */
 public class DiceRoll implements VillainGame {
 	
+	// Define variables to calculate the chances of illusion skill working on villain
 	private static final int MAX_VAL = 1000;
 	private static final int CHANCE_VAL = 70000;
 	
 	@Override
 	public boolean play(String villain_name, Hero playing_hero) {
-		// TODO Auto-generated method stub
 		
 		String message = "Press 1 and enter to roll the dice";
 		
@@ -16,6 +22,7 @@ public class DiceRoll implements VillainGame {
 		Random num = new Random();
 		Scanner scanner = new Scanner(System.in);
 		
+		//  Create new variables
 		int villain_score = 0;
 		int player_score = 0;
 		int hero_roll = 0;
@@ -26,6 +33,7 @@ public class DiceRoll implements VillainGame {
 		
 		int[] options = {1, 2, 3, 4, 5, 6};
 		
+		// Runs the game until one of the player's score reaches 2. Press 1 and enter to roll, other input will not be accepted.
 		while(player_score < 2 && villain_score < 2) {
 			System.out.println(message);
 			int player_input = scanner.nextInt();
@@ -57,6 +65,7 @@ public class DiceRoll implements VillainGame {
 		int ran_chance = num.nextInt(MAX_VAL);
 		int win_chance = CHANCE_VAL / illusion;
 		
+		// Announce winner or loser. If Hero was defeated, the illusion skill may work and change the defeat into a win
 		if (player_score == 2) {
 			m.displayMessage("Congratualtions. " + playing_hero.getName() + " beat " + villain_name);
 			return false;

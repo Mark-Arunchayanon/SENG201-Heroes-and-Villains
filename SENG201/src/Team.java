@@ -257,4 +257,12 @@ public class Team {
 		return false;
 	}
 	
+	public String getStatus() {
+		String stat;
+		for (int i = 0; i < team_size; i++) {
+			stat = heros.get(i).toString();
+			m.displayMessage(stat);
+		}
+		return "Total cash: $" + cash;
+	}
 }
