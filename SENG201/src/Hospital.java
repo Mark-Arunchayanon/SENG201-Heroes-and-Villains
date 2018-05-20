@@ -76,9 +76,11 @@ public class Hospital implements Location{
 			
 			if (selected < options.length - 1) {
 				
-				items.get(selected).heal(selected_hero);
-				all_items.remove((Saleable) items.get(selected));
+				HealingItem item = items.get(selected);
+				item.heal(selected_hero);
+				all_items.remove((Saleable) item);
 				items.remove(selected);
+				selected_hero.addHealOperation(item);
 				
 			}
 			
