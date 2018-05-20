@@ -1,10 +1,17 @@
-
+/**
+ * Provides an interface for locations that can be traveled
+ * to from the home base in the centre of the City
+ * 
+ * @author fer25
+ *
+ */
 public interface Location {
 
 	/**
 	 * Called to transfer the team to the location
 	 * @param team The team of heros to transfer to the location
-	 * @return Returns true if transfer successful. False otherwise
+	 * @param last_city Should be true if this is the last city in
+	 * the game, False otherwise.
 	 */
 	public void travelTo(Team team, boolean last_city);
 	

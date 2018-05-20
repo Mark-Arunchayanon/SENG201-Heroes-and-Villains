@@ -2,6 +2,7 @@
  * Provides an interface for a PowerUp. These can be purchased at
  * the shop and then applied to a particular Hero in the
  * PowerUpDen
+ * 
  * @author fer25
  *
  */
@@ -14,6 +15,11 @@ public interface PowerUp {
 	 */
 	public void applyBonus(Team team, Hero hero);
 	
+	/**
+	 * Provides a descriptor of the PowerUp containing all the information
+	 * relevant to the application of it
+	 * @return The descriptor
+	 */
 	public String getApplicationDescriptor();
 	
 }

@@ -1,4 +1,11 @@
-
+/**
+ * Provides an interface to define objects that can create
+ * a Hero with particular specifications and can provide information
+ * about the Hero object before its creation.
+ * 
+ * @author fer25
+ *
+ */
 public interface HeroStatSelector {
 
 	/**
@@ -10,8 +17,8 @@ public interface HeroStatSelector {
 	public String toString();
 	
 	/**
-	 * Creates a Hero with the correct total
-	 * health specified by the stats
+	 * Creates a Hero with stats specified by the
+	 * HeroStatSelector
 	 * @return The created hero
 	 */
 	public Hero createHero();

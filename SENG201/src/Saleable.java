@@ -1,6 +1,7 @@
 /**
  * Provides an interface to allow the product to be purchased
  * in the game shop
+ * 
  * @author fer25
  *
  */
