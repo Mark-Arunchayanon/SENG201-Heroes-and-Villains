@@ -1,6 +1,13 @@
+/**
+ * Sets the statistics for the hero Dandy
+ * 
+ * @author fer25
+ * @author par116
+ */
 
 public class Dandy implements HeroStatSelector {
-
+	
+	// Defining the statistics for each skill
 	private static final int CASH = 130;
 	private static final int TOTAL_HEALTH = 90;
 	private static final int HEALING = 100;
@@ -11,6 +18,7 @@ public class Dandy implements HeroStatSelector {
 	@Override
 	public String toString() {
 		
+		// Description of the hero
 		String s = "A Dandy can be a useful person to have on a team as they are always happy to shout.\n"
 				+ "With their parents trust fund money burning a hole in their back pocket they cannot\n"
 				+ "wait to make some new friends by sloshing it about a bit.\n"
@@ -26,17 +34,22 @@ public class Dandy implements HeroStatSelector {
 
 	@Override
 	public int getCash() {
+		
+		// Returns the amount of cash Dandy has
 		return CASH;
 	}
 
 	@Override
 	public boolean getMap() {
+		
+		// Return false if the hero does not have a map, returns true if the hero does have a map
 		return MAP;
 	}
 
 	@Override
 	public Hero createHero() {
 
+		// Creates a hero with the defined statistics
 		Hero hero = new Hero(TOTAL_HEALTH, ILLUSION, HEALING, HAGGLING);
 		
 		return hero;
