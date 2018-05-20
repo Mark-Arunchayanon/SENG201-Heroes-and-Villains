@@ -8,7 +8,7 @@
 public class Dandy implements HeroStatSelector {
 	
 	// Defining the statistics for each skill
-	private static final int CASH = 130;
+	private static final int CASH = 10000;
 	private static final int TOTAL_HEALTH = 90;
 	private static final int HEALING = 100;
 	private static final int ILLUSION = 90;

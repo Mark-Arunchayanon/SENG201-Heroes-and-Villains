@@ -16,7 +16,7 @@ public class Team {
 			(HeroStatSelector) new Illusionist(), (HeroStatSelector) new Physician(),
 			(HeroStatSelector) new Stickler(),(HeroStatSelector) new Strongman()};
 	
-	//Create arrayList to store the Heros
+	//Create arrayList to store the Heros in the Team
 	private ArrayList<Hero> heros = new ArrayList<Hero>();
 	
 	//Create variables to store team stats
