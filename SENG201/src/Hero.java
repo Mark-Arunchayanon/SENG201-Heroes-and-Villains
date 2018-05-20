@@ -186,4 +186,15 @@ public class Hero {
 		
 	}
 	
+	/**
+	 * Adds a HealingItem to the Hero's internal heal_operations ArrayList to preserve the object
+	 * from city to city
+	 * @param item The Healing object to be preserved
+	 */
+	public void addHealOperation(HealingItem item) {
+		
+		heal_operations.add(item);
+		
+	}
+	
 }
