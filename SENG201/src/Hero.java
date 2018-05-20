@@ -26,7 +26,7 @@ public class Hero {
 	/**
 	 * Creates a Hero object
 	 * @param temp_health The maximum health of the Hero.
-	 * THe heros health is also set to this value on creation
+	 * THe hero's health is also set to this value on creation
 	 * @param temp_illusion The Hero's illusion stat
 	 * @param temp_healing The Hero's healing stat
 	 * @param temp_haggling The Hero's haggling stat
@@ -87,13 +87,22 @@ public class Hero {
 		
 	}
 	
+	/**
+	 * Returns the current statistics of the Hero
+	 * @return The Hero's statistics
+	 */
 	public String toString() {
 		
 		String s = name;
 		
-		s += " who has ";
+		s += "'s current Stat: \nHealth: ";
 		s += health;
-		s += " Health Points";
+		s += "\nIllusion Skill: ";
+		s += illusion;
+		s += "\nHealing Skill: ";
+		s += healing;
+		s += "\nHaggling Skill: ";
+		s += haggling;
 		
 		return s;
 		

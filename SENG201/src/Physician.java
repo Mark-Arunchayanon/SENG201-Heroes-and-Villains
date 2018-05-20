@@ -15,6 +15,10 @@ public class Physician implements HeroStatSelector {
 	private static final int HAGGLING = 100;
 	private static final boolean MAP = false;
 	
+	/**
+	 * Returns the description of the Hero
+	 * @return The Hero's description
+	 */
 	public String toString() {
 		
 		// Description of the hero
@@ -24,31 +28,47 @@ public class Physician implements HeroStatSelector {
 				+ "In addition they love to know how things work. They're inquisitive like that. That is\n"
 				+ "why they taught themselves how animals work by dismantling so many of them. They\n"
 				+ "struggle to avoid taking notes as a team member tries some trickery so their\n"
-				+ "Illusion stat takes a hit.";
+				+ "Illusion stat takes a hit.\n"
+				+ "Amount of cash: $" + CASH
+				+ "\nTotal Health: "+ TOTAL_HEALTH
+				+ "\nHealing Skill: " + HEALING
+				+ "\nIllusion Skill: " + ILLUSION
+				+ "\nHaggling Skill: " + HAGGLING
+				+ "\nOwns a Map: " + MAP;
 		
 		return s;
 		
 	}
 	
-
+	/**
+	 * Returns the amount of cash the Hero has
+	 * @return The Hero's cash
+	 */
 	@Override
 	public int getCash() {
-		
-		// Returns the amount of cash the physician has
 		return CASH;
 	}
 
+	/**
+	 * Returns the true if the Hero has a map, otherwise return false
+	 * @return true or false
+	 */
 	@Override
 	public boolean getMap() {
-		
-		// Return false if the hero does not have a map, returns true if the hero does have a map
 		return MAP;
 	}
 
+	/**
+	 * Creates a Hero object
+	 * @param temp_health The maximum health of the Hero.
+	 * THe hero's health is also set to this value on creation
+	 * @param temp_illusion The Hero's illusion stat
+	 * @param temp_healing The Hero's healing stat
+	 * @param temp_haggling The Hero's haggling stat
+	 */
 	@Override
 	public Hero createHero() {
 
-		// Creates a hero with the defined statistics
 		Hero hero = new Hero(TOTAL_HEALTH, ILLUSION, HEALING, HAGGLING);
 		
 		return hero;
