@@ -1,6 +1,13 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * A location that allows HealingItems to be applied to 
+ * 
+ * @author fer25
+ *
+ */
+
 public class Hospital implements Location{
 
 	MenuSystem m = new MenuSystem();

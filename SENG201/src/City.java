@@ -41,14 +41,14 @@ public class City {
 			
 			m.displayMessage("Welcome to your Home Base");
 			
-			//See if the team wishes to 
+			//See if the player wishes to travel or check the Team's status
 			String message  = "Would you like to?";
 			String[] options = {"Check your teams status", "Travel"};
 			int result = m.displayMenu(message, options);
 			
 			if(result == 0) {
 				
-				m.displayMessage(team.toString());
+				m.displayMessage(team.getStatus());
 				
 			} else travel(team, last_city);
 			
@@ -56,14 +56,22 @@ public class City {
 		
 	}
 	
+	/**
+	 * Sends a team to another Location.
+	 * @param team The Team to send
+	 * @param last_city Whether or not this City is the last city in the game
+	 */
 	private void travel(Team team, boolean last_city) {
 		
+		//Query the player as to where they wish to travel to
 		String message = "Where do you wish to travel to?";
 		String[] options = new String[4];
+		//Change how the options display depending on whether or not the team has a map
 		if(team.getMap()){
 			
 			for(int i = 0; i < locations.size(); i++) {
 				
+				//Team has a map. The direction can have the location appended to it
 				options[i] = DIRECTION_NAMES[i] + " to " +
 				locations.get(directions.get(i)).getType();
 				
@@ -76,6 +84,7 @@ public class City {
 		
 		int selected_direction = m.displayMenu(message, options);
 		
+		//Travel to the selected location
 		locations.get(directions.get(selected_direction)).travelTo(team, last_city);
 		
 	}
