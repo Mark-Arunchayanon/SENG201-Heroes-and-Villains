@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  * Defines Hero objects that are used as the protagonists of the game
  * @author fer25 par116
@@ -17,6 +19,9 @@ public class Hero {
 	//Define the power up modifiers for a hero.
 	private int pu_illusion = 0;
 	private int pu_haggling = 0;
+	
+	//Create ArrayList to store current heal operations
+	private ArrayList<HealingItem> heal_operations = new ArrayList<HealingItem>();
 	
 	/**
 	 * Creates a Hero object

@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class DiceRoll implements VillainGame {
 	
 	private static final int MAX_VAL = 1000;
-	private static final int CHANCE_VAL = 700;
+	private static final int CHANCE_VAL = 70000;
 	
 	@Override
 	public boolean play(String villain_name, Hero playing_hero) {

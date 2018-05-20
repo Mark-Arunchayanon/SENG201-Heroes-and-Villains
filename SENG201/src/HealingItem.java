@@ -14,8 +14,8 @@ public class HealingItem implements Saleable {
 	private static final int HEAL_DIVISOR = 4;
 	//Define number of miliseconds in a second
 	private static final int S_TO_MILIS = 1000;
-	//Define timer frequency
-	
+	//Define timer update frequency
+	private static final int TIMER_UPDATE_FREQ = 4;
 	
 	Random r = new Random();
 	
@@ -29,6 +29,7 @@ public class HealingItem implements Saleable {
 	
 	private Hero hero;
 	
+	MenuSystem m  = new MenuSystem();
 	
 	Timer timer = new Timer();
 	
@@ -37,16 +38,17 @@ public class HealingItem implements Saleable {
 		@Override
 		public void run() {
 			
-			
-			elapsed_time += S_TO_MILIS / 4;
+			elapsed_time += S_TO_MILIS / TIMER_UPDATE_FREQ;
 			
 			if (elapsed_time > elapsed_time_segments * (time / HEAL_DIVISOR) * S_TO_MILIS) {
+				
+				m.displayMessage("Elapsed Segments: " + elapsed_time_segments);
 				
 				elapsed_time_segments++;
 				
 				hero.adjustHealth(heal / 4);
 				
-				if (elapsed_time > time * S_TO_MILIS) {
+				if (elapsed_time >= time * S_TO_MILIS) {
 					
 					timer.cancel();
 					
@@ -79,7 +81,10 @@ public class HealingItem implements Saleable {
 	}
 
 	public void heal(Hero selected_hero) {
-		// TODO Auto-generated method stub
+		
+		hero = selected_hero;
+		
+		timer.schedule(task, S_TO_MILIS / TIMER_UPDATE_FREQ, S_TO_MILIS / TIMER_UPDATE_FREQ);
 		
 	}
 }

@@ -27,8 +27,6 @@ public class Team {
 	
 	//Create arrayList to store objects that the team owns
 	private ArrayList<Saleable> team_items = new ArrayList<Saleable>();
-	//Create ArrayList to store current heal operations
-	private ArrayList<HealingItem> heal_operations = new ArrayList<HealingItem>();
 	
 	private MenuSystem m = new MenuSystem();
 	
