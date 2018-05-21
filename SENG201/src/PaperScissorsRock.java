@@ -2,7 +2,7 @@ import java.util.Random;
 
 import javax.swing.JPanel;
 
-public class PaperScissorsRock implements VillainGame, GUIPanel {
+public class PaperScissorsRock implements VillainGame {
 
 	private static final int MAX_VAL = 1000;
 	private static final int CHANCE_VAL = 70000;

@@ -1,6 +1,6 @@
 import javax.swing.JPanel;
 
-public class Game implements GUIPanel {
+public class Game {
 	
 	public static MenuSystem m = new MenuSystem();
 

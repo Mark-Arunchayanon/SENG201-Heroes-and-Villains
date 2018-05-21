@@ -5,7 +5,7 @@ import java.util.ArrayList;
  * @author fer25 par116
  *
  */
-public class Hero {
+public class Hero implements Selectable {
 	
 	private String name = null;
 	
@@ -91,11 +91,9 @@ public class Hero {
 	 * Returns the current statistics of the Hero
 	 * @return The Hero's statistics
 	 */
-	public String toString() {
+	public String getStats() {
 		
-		String s = name;
-		
-		s += "'s current Stat: \nHealth: ";
+		String s = "Current Stats: \nHealth: ";
 		s += health;
 		s += "\nIllusion Skill: ";
 		s += (illusion + pu_illusion);
@@ -204,6 +202,16 @@ public class Hero {
 		
 		heal_operations.add(item);
 		
+	}
+
+	@Override
+	public String getTitle() {
+		return getName();
+	}
+
+	@Override
+	public String getDescriptor() {
+		return getStats();
 	}
 	
 }

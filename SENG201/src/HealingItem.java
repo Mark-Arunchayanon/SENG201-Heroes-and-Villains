@@ -35,7 +35,7 @@ public class HealingItem implements Saleable {
 	private int price = (heal / time) * PRICE_COEFF;
 	private int temp_price;
 	
-	MenuSystem m  = new MenuSystem();
+	//MenuSystem m  = new MenuSystem();
 	
 	//Create variables that store information for the timed healing system
 	private int elapsed_time = 0; //Milliseconds
@@ -52,7 +52,7 @@ public class HealingItem implements Saleable {
 			//Check if the Hero needs healing
 			if (elapsed_time > elapsed_time_segments * (time / HEAL_DIVISOR) * S_TO_MILIS) {
 				
-				if (DEBUG) m.displayMessage("Elapsed Segments: " + elapsed_time_segments);
+				//if (DEBUG) m.displayMessage("Elapsed Segments: " + elapsed_time_segments);
 				
 				elapsed_time_segments++;
 				

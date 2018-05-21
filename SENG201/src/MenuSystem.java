@@ -2,6 +2,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 /**
@@ -14,14 +15,13 @@ public class MenuSystem {
 	
 	private Scanner scanner = new Scanner(System.in);
 	
-	private JFrame frame;
+	private static final JFrame frame = new JFrame("Heros Game");
 	
 	public MenuSystem() {
+		
 		SwingUtilities.invokeLater(new Runnable() {
-			
 			public void run() {
 				
-				frame = new JFrame("Heros Game");
 				frame.setSize(800, 600);
 				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				frame.setVisible(true);
@@ -31,11 +31,20 @@ public class MenuSystem {
 		});
 	}
 	
-	public void updatePanel() {
-		
-		frame.removeAll();
-		frame.setLayout(current_GUI.getLayoutManager());
-		frame.add(current_GUI.getPanel());
+	public void updatePanel(JPanel panel) {
+		System.out.println("Done 17");
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				System.out.println("Done 2");
+				frame.getContentPane().removeAll();
+				System.out.println("Done 3");
+				frame.getContentPane().add(panel);
+				System.out.println("Done 4");
+				frame.revalidate();
+				System.out.println("Done 5");
+				frame.repaint();
+			}			
+		});
 		
 	}
 	
