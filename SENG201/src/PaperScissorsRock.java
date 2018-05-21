@@ -1,18 +1,24 @@
 import java.util.Random;
 
-public class PaperScissorsRock implements VillainGame {
+public class PaperScissorsRock implements VillainGame, GUIPanel {
 
 	private static final int MAX_VAL = 1000;
 	private static final int CHANCE_VAL = 70000;
 	
+	MenuSystem m;
+	Random r = new Random();
+	
+	public PaperScissorsRock(MenuSystem m) {
+
+		this.m = m;
+		
+	}
+
 	@Override
 	public boolean play(String villain_name, Hero playing_hero) {
 		
 		int player_score = 0, villain_score = 0;
 		int illusion = playing_hero.getIllusion();
-		
-		MenuSystem m = new MenuSystem();
-		Random r = new Random();
 		
 		m.displayMessage("This is a best of three game of Paper Scissors Rock.");
 		

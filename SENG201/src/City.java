@@ -9,7 +9,7 @@ import java.util.Collections;
  *
  */
 
-public class City {
+public class City implements GUIPanel {
 	
 	private static final String[] DIRECTION_NAMES = {"North", "East", "South", "West"};
 

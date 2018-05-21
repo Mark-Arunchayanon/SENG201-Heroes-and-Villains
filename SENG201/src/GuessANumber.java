@@ -1,10 +1,14 @@
 import java.util.Random;
 
-public class GuessANumber implements VillainGame {
+public class GuessANumber implements VillainGame, GUIPanel {
 
 	private static final int MAX_VAL = 1000;
 	private static final int CHANCE_VAL = 70000;
 	
+	public GuessANumber(MenuSystem m) {
+		// TODO Auto-generated constructor stub
+	}
+
 	@Override
 	public boolean play(String villain_name, Hero playing_hero) {
 		// TODO Auto-generated method stub

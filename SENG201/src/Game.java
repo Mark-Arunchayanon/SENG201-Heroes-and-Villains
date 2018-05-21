@@ -1,5 +1,5 @@
 
-public class Game {
+public class Game implements GUIPanel {
 	
 	public static MenuSystem m = new MenuSystem();
 

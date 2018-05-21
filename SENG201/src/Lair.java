@@ -25,14 +25,14 @@ public class Lair implements Location {
 	private static final String[] TAUNTS = {"He He He He", "Fe Fi Fo Fum, I advise you to run",
 			"Go away", "I really cannot be bothered dealing with you right now",
 			"Your time is over", "Pasta Lavista baby"};
-	
-	//Create all potential VillainGames
-	private static final VillainGame[] GAMES = {(VillainGame) new PaperScissorsRock(),
-			(VillainGame) new GuessANumber(), (VillainGame) new DiceRoll()};
 
 	
-	private Random r = new Random();
-	private MenuSystem m;
+	private static Random r = new Random();
+	private static MenuSystem m;
+	
+	v//Create all potential VillainGames
+	private static final VillainGame[] GAMES = {(VillainGame) new PaperScissorsRock(m),
+			(VillainGame) new GuessANumber(m), (VillainGame) new DiceRoll(m)};
 	
 	//Set the Villain's parameters
 	private String villain_name = NAMES[r.nextInt(NAMES.length)];
