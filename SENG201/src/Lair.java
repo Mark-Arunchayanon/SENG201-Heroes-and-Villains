@@ -32,7 +32,7 @@ public class Lair implements Location, GUIPanel {
 	private static Random r = new Random();
 	private static MenuSystem m;
 	
-	v//Create all potential VillainGames
+	//Create all potential VillainGames
 	private static final VillainGame[] GAMES = {(VillainGame) new PaperScissorsRock(m),
 			(VillainGame) new GuessANumber(m), (VillainGame) new DiceRoll(m)};
 	

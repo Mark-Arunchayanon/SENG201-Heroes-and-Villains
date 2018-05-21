@@ -13,14 +13,19 @@ public class DiceRoll implements VillainGame {
 	private static final int MAX_VAL = 1000;
 	private static final int CHANCE_VAL = 70000;
 	
+	MenuSystem m;
+	Random num = new Random();
+	
+	public DiceRoll(MenuSystem m) {
+
+		this.m = m;
+		
+	}
+
 	@Override
 	public boolean play(String villain_name, Hero playing_hero) {
 		
 		String message = "Press 1 and enter to roll the dice";
-		
-		MenuSystem m = new MenuSystem();
-		Random num = new Random();
-		Scanner scanner = new Scanner(System.in);
 		
 		//  Create new variables
 		int villain_score = 0;

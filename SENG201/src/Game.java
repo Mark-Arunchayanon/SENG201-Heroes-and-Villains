@@ -1,3 +1,4 @@
+import javax.swing.JPanel;
 
 public class Game implements GUIPanel {
 	
@@ -11,6 +12,12 @@ public class Game implements GUIPanel {
 		City c = new City(team, false, m);
 		
 		
+	}
+
+	@Override
+	public JPanel getPanel() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

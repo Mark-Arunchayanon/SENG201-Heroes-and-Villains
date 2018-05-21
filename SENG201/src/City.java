@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.util.Collections;
 
+import javax.swing.JPanel;
+
 /**
  * Defines the Cities that the game is based around. When a City is created, so to is all the 
  * locations and objects within the City.
@@ -89,6 +91,12 @@ public class City implements GUIPanel {
 		//Travel to the selected location
 		locations.get(directions.get(selected_direction)).travelTo(team, last_city);
 		
+	}
+
+	@Override
+	public JPanel getPanel() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

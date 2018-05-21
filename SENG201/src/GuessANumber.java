@@ -1,12 +1,19 @@
 import java.util.Random;
 
+import javax.swing.JPanel;
+
 public class GuessANumber implements VillainGame, GUIPanel {
 
 	private static final int MAX_VAL = 1000;
 	private static final int CHANCE_VAL = 70000;
 	
+	MenuSystem m;
+	Random num = new Random();
+	
 	public GuessANumber(MenuSystem m) {
-		// TODO Auto-generated constructor stub
+
+		this.m = m;
+		
 	}
 
 	@Override
@@ -14,9 +21,6 @@ public class GuessANumber implements VillainGame, GUIPanel {
 		// TODO Auto-generated method stub
 		
 		String message = "Pick a number";
-		
-		MenuSystem m = new MenuSystem();
-		Random num = new Random();
 		
 		boolean not_finish = true;
 		int num_guesses = 3;
@@ -63,6 +67,12 @@ public class GuessANumber implements VillainGame, GUIPanel {
 	@Override
 	public String gameType() {
 		return "Guess a Number between One and Ten";
+	}
+
+	@Override
+	public JPanel getPanel() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
