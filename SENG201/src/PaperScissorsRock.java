@@ -1,12 +1,14 @@
 import java.util.Random;
 
+import javax.swing.JPanel;
+
 public class PaperScissorsRock implements VillainGame, GUIPanel {
 
 	private static final int MAX_VAL = 1000;
 	private static final int CHANCE_VAL = 70000;
 	
-	MenuSystem m;
-	Random r = new Random();
+	private MenuSystem m;
+	private Random r = new Random();
 	
 	public PaperScissorsRock(MenuSystem m) {
 
@@ -72,6 +74,12 @@ public class PaperScissorsRock implements VillainGame, GUIPanel {
 		
 		return "Paper Scissors Rock";
 		
+	}
+
+	@Override
+	public JPanel getPanel() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

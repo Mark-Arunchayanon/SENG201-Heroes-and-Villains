@@ -1,5 +1,7 @@
 import java.util.Random;
 
+import javax.swing.JPanel;
+
 /**
  * A location that incorporates a Villain. Allows the user to play the Villain at a game
  * 
@@ -7,7 +9,7 @@ import java.util.Random;
  *
  */
 
-public class Lair implements Location {
+public class Lair implements Location, GUIPanel {
 	
 	//Define the amount of damage the Villain does to the Hero on a loss
 	private static final int MIN_DAMAGE_STD = 30;
@@ -164,6 +166,12 @@ public class Lair implements Location {
 		
 		return "Lair";
 		
+	}
+
+	@Override
+	public JPanel getPanel() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
