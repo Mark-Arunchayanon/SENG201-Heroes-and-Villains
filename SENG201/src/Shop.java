@@ -18,7 +18,7 @@ public class Shop implements Location {
 	private static final int DIFFERENCE_HEALING_ITEMS = MAX_HEALING_ITEMS -
 			MIN_HEALING_ITEMS;
 	
-	private MenuSystem m = new MenuSystem();
+	private MenuSystem m;
 	private Random r = new Random();
 	
 	private static int PU_ITEMS;
@@ -26,7 +26,9 @@ public class Shop implements Location {
 
 	private ArrayList<Saleable> items = new ArrayList<Saleable>();
 	
-	public Shop () {
+	public Shop (MenuSystem m) {
+		
+		this.m = m;
 		
 		PU_ITEMS = r.nextInt(DIFFERENCE_PU_ITEMS) + MIN_PU_ITEMS;
 		HEALING_ITEMS = r.nextInt(DIFFERENCE_HEALING_ITEMS) + MIN_HEALING_ITEMS;

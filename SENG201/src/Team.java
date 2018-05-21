@@ -28,9 +28,11 @@ public class Team {
 	//Create arrayList to store objects that the team owns
 	private ArrayList<Saleable> team_items = new ArrayList<Saleable>();
 	
-	private MenuSystem m = new MenuSystem();
+	private MenuSystem m;
 	
-	public Team() {
+	public Team(MenuSystem m) {
+		
+		this.m = m;
 		
 		//Establish the size of the team
 		String message = "How many Heros would you like in your team?";

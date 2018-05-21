@@ -9,8 +9,12 @@ import java.util.Arrays;
  */
 public class Hospital implements Location{
 
-	MenuSystem m = new MenuSystem();
+	MenuSystem m;
 	
+	public Hospital(MenuSystem m) {
+		this.m = m;
+	}
+
 	@Override
 	public void travelTo(Team team, boolean last_city) {
 		

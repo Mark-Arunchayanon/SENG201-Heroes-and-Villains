@@ -32,13 +32,19 @@ public class Lair implements Location {
 
 	
 	private Random r = new Random();
-	private MenuSystem m = new MenuSystem();
+	private MenuSystem m;
 	
 	//Set the Villain's parameters
 	private String villain_name = NAMES[r.nextInt(NAMES.length)];
 	private String villain_taunt = TAUNTS[r.nextInt(TAUNTS.length)];
 	private VillainGame villain_game = GAMES[r.nextInt(GAMES.length)];
 	private int villain_lives = 3;
+
+	public Lair(MenuSystem m) {
+
+		this.m = m;
+		
+	}
 
 	@Override
 	public void travelTo(Team team, boolean last_city) {

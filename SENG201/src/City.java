@@ -17,16 +17,18 @@ public class City {
 	//Directions is used to randomise which direction goes to which location.
 	private ArrayList<Integer> directions = new ArrayList<Integer>(4);	
 	
-	private MenuSystem m = new MenuSystem();
+	private MenuSystem m;
 	
-	public City(Team team, boolean last_city) {
+	public City(Team team, boolean last_city, MenuSystem m) {
+		
+		this.m = m;
 		
 		//Create the locations that can be traveled to within the city
-		Lair lair = new Lair();
+		Lair lair = new Lair(m);
 		locations.add((Location) lair);
-		locations.add((Location) new Hospital());
-		locations.add((Location) new PowerUpDen());
-		locations.add((Location) new Shop());
+		locations.add((Location) new Hospital(m));
+		locations.add((Location) new PowerUpDen(m));
+		locations.add((Location) new Shop(m));
 		
 		//Add the number of locations directions (4)
 		for(int i = 0; i < locations.size(); i++) {

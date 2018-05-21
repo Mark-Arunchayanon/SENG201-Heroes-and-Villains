@@ -2,6 +2,13 @@ import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
+/**
+ * Defines a Saleable object that has the ability to restore health to a Hero.
+ * 
+ * 
+ * @author fer25
+ *
+ */
 public class HealingItem implements Saleable {
 	
 	private static final boolean DEBUG = true; //TODO disable
@@ -22,40 +29,39 @@ public class HealingItem implements Saleable {
 	
 	Random r = new Random();
 	
-	//Generate the 
-	private int heal = (r.nextInt((MAX_HEAL - MIN_HEAL) / 4) * 4 + MIN_HEAL);
+	//Generate the HealingItem's stats
+	private int heal = (r.nextInt((MAX_HEAL - MIN_HEAL) / HEAL_DIVISOR) * HEAL_DIVISOR + MIN_HEAL);
 	private int time = r.nextInt(MAX_HEAL_TIME - MIN_HEAL_TIME) + MIN_HEAL_TIME;
 	private int price = (heal / time) * PRICE_COEFF;
 	private int temp_price;
 	
-	private int elapsed_time = 0;
-	private int elapsed_time_segments = 1;
-	
-	private Hero hero;
-	
 	MenuSystem m  = new MenuSystem();
 	
-	Timer timer = new Timer();
-	
+	//Create variables that store information for the timed healing system
+	private int elapsed_time = 0; //Milliseconds
+	private int elapsed_time_segments = 1;	
+	private Hero hero;	
+	Timer timer = new Timer();	
 	TimerTask task = new TimerTask() {
 
 		@Override
 		public void run() {
-			
+
 			elapsed_time += S_TO_MILIS / TIMER_UPDATE_FREQ;
 			
+			//Check if the Hero needs healing
 			if (elapsed_time > elapsed_time_segments * (time / HEAL_DIVISOR) * S_TO_MILIS) {
 				
 				if (DEBUG) m.displayMessage("Elapsed Segments: " + elapsed_time_segments);
 				
 				elapsed_time_segments++;
 				
+				//Heal Hero
 				hero.adjustHealth(heal / 4);
 				
+				//Check to see if healing complete
 				if (elapsed_time >= time * S_TO_MILIS) {
-					
-					timer.cancel();
-					
+					timer.cancel();					
 				}
 				
 			}
@@ -67,9 +73,11 @@ public class HealingItem implements Saleable {
 	@Override
 	public String getSaleDescriptor(int haggling) {
 		
+		//Adjust the price of the item based on the haggling ability of the Hero
 		temp_price = (int) Math.round(price * 100 / haggling);
 		
-		String description = "Healing Potion\nHeals a hero over a period of time\nHealth boost: " + heal + "\nHeal time: " + time + "s" + "\nPrice: " + temp_price;
+		String description = "Healing Potion\nHeals a hero over a period of time\nHealth boost: "
+		+ heal + "\nHeal time: " + time + "s" + "\nPrice: " + temp_price;
 		
 		return description;
 	}
@@ -89,6 +97,11 @@ public class HealingItem implements Saleable {
 		return null;
 	}
 
+	/**
+	 * Apply the HealingItem to the Hero. This causes the TimerTask to be initiated and
+	 * will continue to run until the Healing is complete
+	 * @param selected_hero
+	 */
 	public void heal(Hero selected_hero) {
 		
 		hero = selected_hero;

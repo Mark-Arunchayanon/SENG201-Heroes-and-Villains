@@ -3,7 +3,13 @@ import java.util.Arrays;
 
 public class PowerUpDen implements Location {
 	
-	private MenuSystem m = new MenuSystem();
+	private MenuSystem m;
+
+	public PowerUpDen(MenuSystem m) {
+
+		this.m = m;
+		
+	}
 
 	@Override
 	public void travelTo(Team team, boolean last_city) {

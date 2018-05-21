@@ -1,6 +1,9 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
+
 /**
  * Provides functionality for a simple number based menu system
  * 
@@ -10,6 +13,23 @@ import java.util.Scanner;
 public class MenuSystem {
 	
 	private Scanner scanner = new Scanner(System.in);
+	
+	JFrame frame;
+	
+	public MenuSystem() {
+		SwingUtilities.invokeLater(new Runnable() {
+			
+			public void run() {
+				
+				frame = new JFrame("Heros Game");
+				frame.setSize(800, 600);
+				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				frame.setVisible(true);
+				
+			}
+			
+		});
+	}
 	
 	/**
 	 * Displays a simple number based menu as below
