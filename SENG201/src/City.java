@@ -6,6 +6,8 @@ import java.util.Collections;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
 
 /**
  * Defines the Cities that the game is based around. When a City is created, so to is all the 
@@ -23,20 +25,53 @@ public class City extends JPanel{
 	//Directions is used to randomise which direction goes to which location.
 	private ArrayList<Integer> directions = new ArrayList<Integer>(4);
 	
-	//Create objects that will be used in the Cities GUI Panel
-	private LayoutManager layout = (LayoutManager) new GridBagLayout();
-	private JButton team_status_button = new JButton("Check your Team's Status");
-	private JLabel team_status_label = new JLabel();
-	private JButton north_button = new JButton("Travel North");
-	private JButton east_button = new JButton("Travel South");
-	private JButton south_button = new JButton("Travel East");
-	private JButton west_button = new JButton("Travel West");
-	
 	private MenuSystem m;
 	
 	public City(Team team, boolean last_city, MenuSystem m) {
 		
 		this.m = m;
+		
+		GridBagLayout gridBagLayout = new GridBagLayout();
+		gridBagLayout.columnWidths = new int[]{0, 0, 0, 0};
+		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0};
+		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		setLayout(gridBagLayout);
+		
+		JButton btnCheckTeamStatus = new JButton("Check Team Status");
+		GridBagConstraints gbc_btnCheckTeamStatus = new GridBagConstraints();
+		gbc_btnCheckTeamStatus.insets = new Insets(0, 0, 5, 5);
+		gbc_btnCheckTeamStatus.gridx = 1;
+		gbc_btnCheckTeamStatus.gridy = 0;
+		add(btnCheckTeamStatus, gbc_btnCheckTeamStatus);
+		
+		JButton btnTravelNorth = new JButton("Travel North");
+		GridBagConstraints gbc_btnTravelNorth = new GridBagConstraints();
+		gbc_btnTravelNorth.insets = new Insets(0, 0, 5, 5);
+		gbc_btnTravelNorth.gridx = 1;
+		gbc_btnTravelNorth.gridy = 1;
+		add(btnTravelNorth, gbc_btnTravelNorth);
+		
+		JButton btnTravelWest = new JButton("Travel West");
+		GridBagConstraints gbc_btnTravelWest = new GridBagConstraints();
+		gbc_btnTravelWest.insets = new Insets(0, 0, 5, 5);
+		gbc_btnTravelWest.gridx = 0;
+		gbc_btnTravelWest.gridy = 2;
+		add(btnTravelWest, gbc_btnTravelWest);
+		
+		JButton btnTravelEast = new JButton("Travel East");
+		GridBagConstraints gbc_btnTravelEast = new GridBagConstraints();
+		gbc_btnTravelEast.insets = new Insets(0, 0, 5, 0);
+		gbc_btnTravelEast.gridx = 2;
+		gbc_btnTravelEast.gridy = 2;
+		add(btnTravelEast, gbc_btnTravelEast);
+		
+		JButton btnTravelSouth = new JButton("Travel South");
+		GridBagConstraints gbc_btnTravelSouth = new GridBagConstraints();
+		gbc_btnTravelSouth.insets = new Insets(0, 0, 0, 5);
+		gbc_btnTravelSouth.gridx = 1;
+		gbc_btnTravelSouth.gridy = 3;
+		add(btnTravelSouth, gbc_btnTravelSouth);
 		
 		//Add the number of locations directions (4)
 		for(int i = 0; i < locations.size(); i++) {
