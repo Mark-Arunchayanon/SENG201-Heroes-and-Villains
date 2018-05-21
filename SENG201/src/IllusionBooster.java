@@ -27,10 +27,6 @@ public class IllusionBooster implements Saleable, PowerUp {
 	
 	public IllusionBooster() {
 		
-		//Skip the first couple of random numbers as they tend to keep showing up
-		r.nextInt();
-		r.nextInt();
-		
 		boost = r.nextInt(BOOST_COEFFICIENT) + MIN_BOOST;
 		
 		price = PRICE_COEFFICIENT * boost;

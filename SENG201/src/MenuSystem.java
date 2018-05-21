@@ -4,7 +4,7 @@ import java.util.Scanner;
 /**
  * Provides functionality for a simple number based menu system
  * 
- * @author frase
+ * @author fer25
  *
  */
 public class MenuSystem {
@@ -79,12 +79,22 @@ public class MenuSystem {
 		
 	}
 	
+	/**
+	 * Displays a message to the Player
+	 * @param message The message to be displayed
+	 */
 	public void displayMessage(String message) {
 		
 		System.out.println(message + "\n");
 		
 	}
 
+	/**
+	 * Displays provided message and a prompt for the user to enter a String.
+	 * This String is then returned as input
+	 * @param message
+	 * @return The String entered by the User
+	 */
 	public String displayStringRequest(String message) {
 		
 		System.out.println(message);

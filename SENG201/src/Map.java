@@ -20,10 +20,6 @@ public class Map implements Saleable, PowerUp {
 	
 	public Map() {
 		
-		//Skip the first couple of random numbers as they tend to keep showing up
-		r.nextInt();
-		r.nextInt();
-		
 		price = r.nextInt(PRICE_VARIATION * 2) + BASE_PRICE - PRICE_VARIATION;
 		
 	}

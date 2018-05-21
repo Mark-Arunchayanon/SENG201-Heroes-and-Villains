@@ -257,6 +257,10 @@ public class Team {
 		return false;
 	}
 	
+	/**
+	 * Provides a string containing the current status of the Team and all its Hero's
+	 * @return The Team's status as a String
+	 */
 	public String getStatus() {
 		String stat;
 		for (int i = 0; i < team_size; i++) {

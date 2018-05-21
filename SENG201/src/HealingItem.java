@@ -3,7 +3,10 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class HealingItem implements Saleable {
+	
+	private static final boolean DEBUG = true; //TODO disable
 
+	//Define the healing quantities and duration of the 
 	private static final int MAX_HEAL = 20;
 	private static final int MIN_HEAL = 8;
 	private static final int MAX_HEAL_TIME = 90;
@@ -19,6 +22,7 @@ public class HealingItem implements Saleable {
 	
 	Random r = new Random();
 	
+	//Generate the 
 	private int heal = (r.nextInt((MAX_HEAL - MIN_HEAL) / 4) * 4 + MIN_HEAL);
 	private int time = r.nextInt(MAX_HEAL_TIME - MIN_HEAL_TIME) + MIN_HEAL_TIME;
 	private int price = (heal / time) * PRICE_COEFF;
@@ -42,7 +46,7 @@ public class HealingItem implements Saleable {
 			
 			if (elapsed_time > elapsed_time_segments * (time / HEAL_DIVISOR) * S_TO_MILIS) {
 				
-				m.displayMessage("Elapsed Segments: " + elapsed_time_segments);
+				if (DEBUG) m.displayMessage("Elapsed Segments: " + elapsed_time_segments);
 				
 				elapsed_time_segments++;
 				
@@ -75,6 +79,11 @@ public class HealingItem implements Saleable {
 		return temp_price;
 	}
 
+	/**
+	 * Provides a descriptor of the HealingItem containing all the information
+	 * relevant to the application of it
+	 * @return The descriptor
+	 */
 	public String getHealingDescriptor() {
 		// TODO Auto-generated method stub
 		return null;
