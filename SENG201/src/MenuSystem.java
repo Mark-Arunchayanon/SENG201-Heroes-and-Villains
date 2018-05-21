@@ -14,7 +14,7 @@ public class MenuSystem {
 	
 	private Scanner scanner = new Scanner(System.in);
 	
-	JFrame frame;
+	private JFrame frame;
 	
 	public MenuSystem() {
 		SwingUtilities.invokeLater(new Runnable() {
@@ -29,6 +29,14 @@ public class MenuSystem {
 			}
 			
 		});
+	}
+	
+	public void updatePanel() {
+		
+		frame.removeAll();
+		frame.setLayout(current_GUI.getLayoutManager());
+		frame.add(current_GUI.getPanel());
+		
 	}
 	
 	/**

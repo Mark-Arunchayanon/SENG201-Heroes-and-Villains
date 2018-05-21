@@ -1,6 +1,10 @@
+import java.awt.GridBagLayout;
+import java.awt.LayoutManager;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
@@ -11,26 +15,28 @@ import javax.swing.JPanel;
  *
  */
 
-public class City implements GUIPanel {
+public class City extends JPanel{
 	
 	private static final String[] DIRECTION_NAMES = {"North", "East", "South", "West"};
 
 	private ArrayList<Location> locations = new ArrayList<Location>(4);
 	//Directions is used to randomise which direction goes to which location.
-	private ArrayList<Integer> directions = new ArrayList<Integer>(4);	
+	private ArrayList<Integer> directions = new ArrayList<Integer>(4);
+	
+	//Create objects that will be used in the Cities GUI Panel
+	private LayoutManager layout = (LayoutManager) new GridBagLayout();
+	private JButton team_status_button = new JButton("Check your Team's Status");
+	private JLabel team_status_label = new JLabel();
+	private JButton north_button = new JButton("Travel North");
+	private JButton east_button = new JButton("Travel South");
+	private JButton south_button = new JButton("Travel East");
+	private JButton west_button = new JButton("Travel West");
 	
 	private MenuSystem m;
 	
 	public City(Team team, boolean last_city, MenuSystem m) {
 		
 		this.m = m;
-		
-		//Create the locations that can be traveled to within the city
-		Lair lair = new Lair(m);
-		locations.add((Location) lair);
-		locations.add((Location) new Hospital(m));
-		locations.add((Location) new PowerUpDen(m));
-		locations.add((Location) new Shop(m));
 		
 		//Add the number of locations directions (4)
 		for(int i = 0; i < locations.size(); i++) {
@@ -93,10 +99,10 @@ public class City implements GUIPanel {
 		
 	}
 
-	@Override
-	public JPanel getPanel() {
-		// TODO Auto-generated method stub
-		return null;
+	private setGui() {
+		
+		
+		
 	}
 	
 }
