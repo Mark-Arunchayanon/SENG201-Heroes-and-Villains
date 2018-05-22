@@ -13,11 +13,9 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 
 public class GuessANumber implements VillainGame {
-	JPanel panel = new JPanel();
-		
-	MenuSystem m;
-	Random num = new Random();
-		
+	
+	private Random num = new Random();
+	private JPanel panel = new JPanel();	
 	private static final int MAX_VAL = 1000;
 	private static final int CHANCE_VAL = 70000;
 	private final int VILLAIN_NUM = num.nextInt(10);
@@ -106,8 +104,6 @@ public class GuessANumber implements VillainGame {
 		gbc_lblNewLabel.gridx = 0;
 		gbc_lblNewLabel.gridy = 4;
 		panel.add(lblNewLabel, gbc_lblNewLabel);
-
-		this.m = m;
 		
 		m.updatePanel(panel);
 		
@@ -162,7 +158,6 @@ public class GuessANumber implements VillainGame {
 		
 		if (not_finish == false) {
 			label1 = "Congratualtions. " + playing_hero.getName() + " beat " + villain_name;
-			return false;
 		} else {
 			label1 = "Unfortunately, " + playing_hero.getName() + " lost this game";
 			if (ran_chance >= win_chance) {

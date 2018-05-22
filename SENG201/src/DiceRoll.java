@@ -24,9 +24,8 @@ public class DiceRoll implements VillainGame {
 	private static final int MAX_VAL = 1000;
 	private static final int CHANCE_VAL = 70000;
 	
-	JPanel panel = new JPanel();
-	MenuSystem m;
-	Random num = new Random();
+	private JPanel panel = new JPanel();
+	private Random num = new Random();
 	private Object synchronizer = new Object();
 	private JLabel lab_1;
 	private JLabel lab_2;
@@ -93,8 +92,6 @@ public class DiceRoll implements VillainGame {
 		gbc_lab_4.gridx = 0;
 		gbc_lab_4.gridy = 4;
 		panel.add(lab_4, gbc_lab_4);
-		
-		this.m = m;
 		
 		m.updatePanel(panel);
 	}
