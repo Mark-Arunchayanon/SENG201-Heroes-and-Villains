@@ -8,7 +8,7 @@ public class Game {
 		// TODO Auto-generated method stub
 		
 		GuessANumber game = new GuessANumber(m);
-		
+		game.play("Bob", new Hero(100, 100, 100, 100));
 		Team team = new Team(m);
 		
 		City c = new City(team, false, m);
