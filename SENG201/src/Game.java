@@ -9,7 +9,6 @@ public class Game {
 		
 
 		//GuessANumber game = new GuessANumber(m);
-
 		Team team = new Team(m);
 		
 		City c = new City(team, false, m);

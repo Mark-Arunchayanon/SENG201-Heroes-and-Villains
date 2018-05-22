@@ -34,70 +34,17 @@ public class DiceRoll implements VillainGame {
 	private String lab2;
 	private String lab3;
 	private String lab4;
-	
+	private MenuSystem m;
 	
 	
 	public DiceRoll(MenuSystem m) {
-		GridBagLayout gbl_panel = new GridBagLayout();
-		gbl_panel.columnWidths = new int[]{0};
-		gbl_panel.rowHeights = new int[]{0, 0, 0, 0, 0, 0};
-		gbl_panel.columnWeights = new double[]{1};
-		gbl_panel.rowWeights = new double[]{0.5, 1.0, 1.0, 0.5, 0.5, Double.MIN_VALUE};
-		panel.setLayout(gbl_panel);
-		
-		lab_1 = new JLabel("Roll the Dice");
-		lab_1.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lab_1.setHorizontalAlignment(SwingConstants.CENTER);
-		GridBagConstraints gbc_lab_1 = new GridBagConstraints();
-		gbc_lab_1.fill = GridBagConstraints.BOTH;
-		gbc_lab_1.insets = new Insets(0, 0, 5, 0);
-		gbc_lab_1.gridx = 0;
-		gbc_lab_1.gridy = 0;
-		panel.add(lab_1, gbc_lab_1);
-		
-		lab_2 = new JLabel("");
-		lab_2.setVerticalAlignment(SwingConstants.CENTER);
-		lab_2.setHorizontalAlignment(SwingConstants.CENTER);
-		GridBagConstraints gbc_lab_2 = new GridBagConstraints();
-		gbc_lab_2.fill = GridBagConstraints.BOTH;
-		gbc_lab_2.insets = new Insets(0, 0, 5, 0);
-		gbc_lab_2.gridx = 0;
-		gbc_lab_2.gridy = 1;
-		panel.add(lab_2, gbc_lab_2);
-		
-		JButton btnNewButton = new JButton("Click to roll the dice");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				synchronized(synchronizer) {
-					//TODO try except
-					synchronizer.notify();
-				}
-			}
-		});
-		
-		lab_3 = new JLabel("");
-		GridBagConstraints gbc_lab_3 = new GridBagConstraints();
-		gbc_lab_3.insets = new Insets(0, 0, 5, 0);
-		gbc_lab_3.gridx = 0;
-		gbc_lab_3.gridy = 2;
-		panel.add(lab_3, gbc_lab_3);
-		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
-		gbc_btnNewButton.insets = new Insets(0, 0, 5, 0);
-		gbc_btnNewButton.gridx = 0;
-		gbc_btnNewButton.gridy = 3;
-		panel.add(btnNewButton, gbc_btnNewButton);
-		
-		lab_4 = new JLabel("This is a best of three games of roll the dice, roll a higher number to win");
-		GridBagConstraints gbc_lab_4 = new GridBagConstraints();
-		gbc_lab_4.gridx = 0;
-		gbc_lab_4.gridy = 4;
-		panel.add(lab_4, gbc_lab_4);
-		
-		m.updatePanel(panel);
+		this.m = m;
 	}
 
 	@Override
 	public boolean play(String villain_name, Hero playing_hero) {
+		
+		DisplayGame();
 		
 		//  Create new variables
 		int villain_score = 0;
@@ -174,6 +121,68 @@ public class DiceRoll implements VillainGame {
 				return true;
 			}
 		}
+	}
+	
+	private void DisplayGame() {
+		
+		panel.removeAll();
+		
+		GridBagLayout gbl_panel = new GridBagLayout();
+		gbl_panel.columnWidths = new int[]{0};
+		gbl_panel.rowHeights = new int[]{0, 0, 0, 0, 0, 0};
+		gbl_panel.columnWeights = new double[]{1};
+		gbl_panel.rowWeights = new double[]{0.5, 1.0, 1.0, 0.5, 0.5, Double.MIN_VALUE};
+		panel.setLayout(gbl_panel);
+		
+		lab_1 = new JLabel("Roll the Dice");
+		lab_1.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lab_1.setHorizontalAlignment(SwingConstants.CENTER);
+		GridBagConstraints gbc_lab_1 = new GridBagConstraints();
+		gbc_lab_1.fill = GridBagConstraints.BOTH;
+		gbc_lab_1.insets = new Insets(0, 0, 5, 0);
+		gbc_lab_1.gridx = 0;
+		gbc_lab_1.gridy = 0;
+		panel.add(lab_1, gbc_lab_1);
+		
+		lab_2 = new JLabel("");
+		lab_2.setVerticalAlignment(SwingConstants.CENTER);
+		lab_2.setHorizontalAlignment(SwingConstants.CENTER);
+		GridBagConstraints gbc_lab_2 = new GridBagConstraints();
+		gbc_lab_2.fill = GridBagConstraints.BOTH;
+		gbc_lab_2.insets = new Insets(0, 0, 5, 0);
+		gbc_lab_2.gridx = 0;
+		gbc_lab_2.gridy = 1;
+		panel.add(lab_2, gbc_lab_2);
+		
+		JButton btnNewButton = new JButton("Click to roll the dice");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				synchronized(synchronizer) {
+					//TODO try except
+					synchronizer.notify();
+				}
+			}
+		});
+		
+		lab_3 = new JLabel("");
+		GridBagConstraints gbc_lab_3 = new GridBagConstraints();
+		gbc_lab_3.insets = new Insets(0, 0, 5, 0);
+		gbc_lab_3.gridx = 0;
+		gbc_lab_3.gridy = 2;
+		panel.add(lab_3, gbc_lab_3);
+		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
+		gbc_btnNewButton.insets = new Insets(0, 0, 5, 0);
+		gbc_btnNewButton.gridx = 0;
+		gbc_btnNewButton.gridy = 3;
+		panel.add(btnNewButton, gbc_btnNewButton);
+		
+		lab_4 = new JLabel("This is a best of three games of roll the dice, roll a higher number to win");
+		GridBagConstraints gbc_lab_4 = new GridBagConstraints();
+		gbc_lab_4.gridx = 0;
+		gbc_lab_4.gridy = 4;
+		panel.add(lab_4, gbc_lab_4);
+		
+		m.updatePanel(panel);
 	}
 
 	@Override
