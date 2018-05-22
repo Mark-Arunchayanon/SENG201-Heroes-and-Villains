@@ -1,5 +1,7 @@
 import java.util.Random;
-import java.util.Scanner;
+
+import javax.swing.JButton;
+import javax.swing.JPanel;
 /**
  * This is a game called Dice Roll, roll a higher number to win
  * Numbers range from 1-6 and it is best out three games
@@ -15,6 +17,7 @@ public class DiceRoll implements VillainGame {
 	
 	MenuSystem m;
 	Random num = new Random();
+	
 	
 	public DiceRoll(MenuSystem m) {
 
@@ -89,5 +92,6 @@ public class DiceRoll implements VillainGame {
 	public String gameType() {
 		return ("Dice Roll, roll a higher number");
 	}
+
 
 }
