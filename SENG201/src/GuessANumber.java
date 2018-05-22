@@ -22,8 +22,8 @@ public class GuessANumber implements VillainGame {
 	private static final int CHANCE_VAL = 70000;
 	private final int VILLAIN_NUM = num.nextInt(10);
 	private int guess = -1;
-	JLabel label_1;
-	JLabel label_2;
+	private JLabel label_1;
+	private JLabel label_2;
 	private String label1;
 	private String label2 = "";
 	
