@@ -24,6 +24,7 @@ public class IllusionBooster implements Saleable, PowerUp {
 	private int price;
 	private static int boost;
 	private int temp_price;
+	private int current_haggling;
 	
 	public IllusionBooster() {
 		
@@ -43,18 +44,6 @@ public class IllusionBooster implements Saleable, PowerUp {
 	}
 
 	@Override
-	public String getSaleDescriptor(int haggling) {
-		
-		temp_price = (int) Math.round(price * 100 / haggling);
-		
-		String s = "Illusion Booster\nA Power-Up that increases a Hero's Illusion Stat\n"
-				+ "Boost: " + boost + "\nPrice: $" + temp_price; 
-		
-		return s;
-		
-	}
-
-	@Override
 	public int getPrice() {
 		return temp_price;
 	}
@@ -65,6 +54,26 @@ public class IllusionBooster implements Saleable, PowerUp {
 				+ boost + " Illusion Points to the Hero it is applied to.\n"
 						+ "This will increace their chance of tricking a Villain in a game while you are in this City";
 		return s;
+	}
+
+	@Override
+	public String getTitle() {
+		return "Illusion Booster";
+	}
+
+	@Override
+	public String getDescriptor() {
+		temp_price = (int) Math.round(price * 100 / current_haggling);
+		
+		String s = "Illusion Booster\nA Power-Up that increases a Hero's Illusion Stat\n"
+				+ "Boost: " + boost + "\nPrice: $" + temp_price; 
+		
+		return s;
+	}
+
+	@Override
+	public void setHaggling(int haggling) {
+		current_haggling = haggling;
 	}
 
 }

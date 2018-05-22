@@ -61,17 +61,30 @@ public class Shop implements Location {
 	}
 	
 	@Override
-	public void travelTo(Team team, boolean last_city) {		
+	public void travelTo(Team team, boolean last_city) {
 		
-		m.displayMessage("Welcome to the shop.");
 		
 		while(!items.isEmpty()) {
 			
-			String message;
+			Hero selected_hero = selectHero(team);
 			
-			String[] hero_id = team.heroIdentifiers();
+			//User has pushed cancel button
+			if(selected_hero == null) {
+				return;
+			}
 			
-			Hero selected_hero;
+			String title = "Welcome to the Shop";
+			String description = "What would " + selected_hero.getName() +
+					" like to purchase?.\nYou have " + team.getCash() + "$";
+			
+			Selectable[] items_array = new Selectable[1];
+			items_array = items.toArray(items_array);
+			ItemSelector selector = new ItemSelector(title, description, items_array);
+			
+			m.updatePanel(selector);
+			
+			Saleable purchased_item = (Saleable) selector.getSelectedObject();
+			
 			
 			if (hero_id.length > 1) {
 				
@@ -139,6 +152,21 @@ public class Shop implements Location {
 		
 		m.displayMessage("The shop has run out of items to sell");
 		
+	}
+
+	private Hero selectHero(Team team) {
+		String title = "Welcome to the Shop";
+		String description = "Which Hero would like to purchase something?";
+		
+		Selectable[] heros = new Selectable[1];
+		heros = team.getHeros().toArray(heros);
+		ItemSelector selector = new ItemSelector(title, description, heros);
+		
+		m.updatePanel(selector);
+		
+		Hero selected_hero = (Hero) selector.getSelectedObject();
+		
+		return selected_hero;
 	}
 
 	@Override

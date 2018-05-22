@@ -5,14 +5,14 @@
  * @author fer25
  *
  */
-public interface Saleable {
+public interface Saleable extends Selectable {
 
 	/**
-	 * Gets the descriptor that can be used in the store. Includes
-	 * name and price
-	 * @return The descriptor
+	 * Allows the purchasing Hero's haggling stat to be passed to the
+	 * Saleable object before it is passed to an ItemSelector
+	 * @param haggling the haggling stat of the purchasing Hero
 	 */
-	public String getSaleDescriptor(int haggling);
+	public void setHaggling(int haggling);
 	
 	/**
 	 * Gets the sale price that the shop will remove from the

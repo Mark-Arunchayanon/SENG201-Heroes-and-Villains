@@ -9,9 +9,7 @@ import java.util.TimerTask;
  * @author fer25
  *
  */
-public class HealingItem implements Saleable {
-	
-	private static final boolean DEBUG = true; //TODO disable
+public class HealingItem implements Saleable, Selectable {
 
 	//Define the healing quantities and duration of the 
 	private static final int MAX_HEAL = 20;
@@ -27,22 +25,21 @@ public class HealingItem implements Saleable {
 	//Define timer update frequency
 	private static final int TIMER_UPDATE_FREQ = 4;
 	
-	Random r = new Random();
+	private Random r = new Random();
 	
 	//Generate the HealingItem's stats
 	private int heal = (r.nextInt((MAX_HEAL - MIN_HEAL) / HEAL_DIVISOR) * HEAL_DIVISOR + MIN_HEAL);
 	private int time = r.nextInt(MAX_HEAL_TIME - MIN_HEAL_TIME) + MIN_HEAL_TIME;
 	private int price = (heal / time) * PRICE_COEFF;
 	private int temp_price;
-	
-	//MenuSystem m  = new MenuSystem();
+	private int current_haggling;
 	
 	//Create variables that store information for the timed healing system
 	private int elapsed_time = 0; //Milliseconds
 	private int elapsed_time_segments = 1;	
 	private Hero hero;	
-	Timer timer = new Timer();	
-	TimerTask task = new TimerTask() {
+	private Timer timer = new Timer();	
+	private TimerTask task = new TimerTask() {
 
 		@Override
 		public void run() {
@@ -69,18 +66,6 @@ public class HealingItem implements Saleable {
 		}
 		
 	};
-	
-	@Override
-	public String getSaleDescriptor(int haggling) {
-		
-		//Adjust the price of the item based on the haggling ability of the Hero
-		temp_price = (int) Math.round(price * 100 / haggling);
-		
-		String description = "Healing Potion\nHeals a hero over a period of time\nHealth boost: "
-		+ heal + "\nHeal time: " + time + "s" + "\nPrice: " + temp_price;
-		
-		return description;
-	}
 
 	@Override
 	public int getPrice() {
@@ -108,5 +93,26 @@ public class HealingItem implements Saleable {
 		
 		timer.schedule(task, S_TO_MILIS / TIMER_UPDATE_FREQ, S_TO_MILIS / TIMER_UPDATE_FREQ);
 		
+	}
+
+	@Override
+	public String getTitle() {
+		return "Healing Item";
+	}
+
+	@Override
+	public String getDescriptor() {
+		//Adjust the price of the item based on the haggling ability of the Hero
+		temp_price = (int) Math.round(price * 100 / current_haggling);
+		
+		String description = "Healing Potion\nHeals a hero over a period of time\nHealth boost: "
+		+ heal + "\nHeal time: " + time + "s" + "\nPrice: " + temp_price;
+		
+		return description;
+	}
+
+	@Override
+	public void setHaggling(int haggling) {
+		current_haggling = haggling;
 	}
 }

@@ -6,7 +6,7 @@
  * @author fer25
  *
  */
-public interface PowerUp {
+public interface PowerUp extends Selectable {
 
 	/**
 	 * Applies a PowerUp to the correct stat of either a Hero or a
