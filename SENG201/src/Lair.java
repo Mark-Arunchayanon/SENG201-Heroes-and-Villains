@@ -9,7 +9,7 @@ import javax.swing.JPanel;
  *
  */
 
-public class Lair implements Location, GUIPanel {
+public class Lair extends JPanel implements Location{
 	
 	//Define the amount of damage the Villain does to the Hero on a loss
 	private static final int MIN_DAMAGE_STD = 30;
@@ -44,12 +44,19 @@ public class Lair implements Location, GUIPanel {
 
 	public Lair(MenuSystem m) {
 
-		this.m = m;
+		Lair.m = m;
 		
 	}
 
 	@Override
 	public void travelTo(Team team, boolean last_city) {
+		
+		Selectable[] heros = new Selectable[1];
+		heros = team.getHeros().toArray(heros);
+		
+		ItemSelector selector = new ItemSelector("Select a Hero", heros);
+		m.updatePanel((JPanel) selector);
+		//selector.getSelectedObject();
 		
 		m.displayMessage(villain_name + " the Villain says \"" +  villain_taunt
 				+ "\"");
@@ -166,12 +173,6 @@ public class Lair implements Location, GUIPanel {
 		
 		return "Lair";
 		
-	}
-
-	@Override
-	public JPanel getPanel() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

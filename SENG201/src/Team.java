@@ -271,4 +271,14 @@ public class Team {
 		}
 		return "Total cash: $" + cash;
 	}
+	
+	/**
+	 * Returns the ArrayList of Heros on the Team
+	 * @return The ArrayList of Heros
+	 */
+	public ArrayList<Hero> getHeros(){
+		
+		return heros;
+		
+	}
 }

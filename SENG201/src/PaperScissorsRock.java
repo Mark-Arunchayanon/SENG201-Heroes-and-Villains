@@ -2,13 +2,6 @@ import java.util.Random;
 
 import javax.swing.JPanel;
 
-/**
- * This is a game called Paper, Scissors, Rock. Choose one of the options and try beat the villain
- * This is best out three games
- * 
- * @author fer25
- * @author par116
- */
 public class PaperScissorsRock implements VillainGame {
 
 	private static final int MAX_VAL = 1000;
