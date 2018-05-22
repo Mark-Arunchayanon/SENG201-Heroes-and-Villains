@@ -1,6 +1,10 @@
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.util.Random;
 
 import javax.swing.JPanel;
+import javax.swing.JTextPane;
 
 /**
  * A location that incorporates a Villain. Allows the user to play the Villain at a game
@@ -55,26 +59,11 @@ public class Lair extends JPanel implements Location{
 	@Override
 	public void travelTo(Team team, boolean last_city) {
 		
-		Selectable[] heros = new Selectable[1];
-		heros = team.getHeros().toArray(heros);
-		
-		ItemSelector selector = new ItemSelector("Select a Hero", heros);
-		m.updatePanel((JPanel) selector);
-		Hero selected = (Hero) selector.getSelectedObject();
-		m.displayMessage(selected.getName());
-		
-		m.displayMessage(villain_name + " the Villain says \"" +  villain_taunt
-				+ "\"");
-		
-		//Query the user on whether or not they would like to enter the lair
-		String message = "Would you like to enter the Lair of " + villain_name + "?";
-		String[] options = {"Yes", "No"};
-		int result = m.displayMenu(message, options);
+		Hero selected_hero = displayHeroSelect(team);
 		
 		//Go back to home base of they do not wish to enter
-		if (result == 1) {	
+		if (selected_hero == null) {	
 			
-			m.displayMessage("Ok. Returning to home base");			
 			return;
 			
 		}
@@ -124,6 +113,44 @@ public class Lair extends JPanel implements Location{
 		
 	}
 	
+	private Hero displayHeroSelect(Team team) {
+		
+		removeAll();
+		
+		Selectable[] heros = new Selectable[1];
+		heros = team.getHeros().toArray(heros);
+		
+		ItemSelector selector = new ItemSelector(villain_taunt, heros);		
+
+		GridBagLayout gridBagLayout = new GridBagLayout();
+		gridBagLayout.columnWidths = new int[]{0};
+		gridBagLayout.rowHeights = new int[]{0, 0};
+		gridBagLayout.columnWeights = new double[]{1.0};
+		gridBagLayout.rowWeights = new double[]{Double.MIN_VALUE, 1.0};
+		setLayout(gridBagLayout);
+		
+		JTextPane txtpnTaunt = new JTextPane();
+		txtpnTaunt.setText("Taunt");
+		GridBagConstraints gbc_txtpnTaunt = new GridBagConstraints();
+		gbc_txtpnTaunt.insets = new Insets(0, 0, 5, 0);
+		gbc_txtpnTaunt.fill = GridBagConstraints.BOTH;
+		gbc_txtpnTaunt.gridx = 0;
+		gbc_txtpnTaunt.gridy = 0;
+		add(txtpnTaunt, gbc_txtpnTaunt);
+		
+		JPanel panel = (JPanel) selector;
+		GridBagConstraints gbc_panel = new GridBagConstraints();
+		gbc_panel.fill = GridBagConstraints.BOTH;
+		gbc_panel.gridx = 0;
+		gbc_panel.gridy = 1;
+		add(panel, gbc_panel);
+		
+		m.updatePanel(this);
+		
+		return (Hero) selector.getSelectedObject();
+		
+	}
+
 	/**
 	 * Selects the Hero that the player wants to play the Villain in the game
 	 * @param team The team containing the hero that will play the Villain

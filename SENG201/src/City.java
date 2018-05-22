@@ -59,35 +59,23 @@ public class City extends JPanel{
 		//Shuffle directions to randomise which direction points to which location
 		Collections.shuffle(directions);
 		
-		//Set up the GUI
-		displayOptions();
+		while (!lair.checkVillainDefeated() && team.checkHealth()) {
 		
-		//Wait till the GUI has been interacted with
-		synchronized(synchronizer) {			
-			try {
-				synchronizer.wait();
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}			
+			//Set up the GUI
+			displayOptions();
+			
+			//Wait till the GUI has been interacted with
+			synchronized(synchronizer) {			
+				try {
+					synchronizer.wait();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}			
+			}
+			
+			locations.get(travel_direction).travelTo(team, last_city);
 		}
-		
-		travel(travel_direction);
-		
-		travel_direction = -1;
-		
-	}
-	
-	/**
-	 * Sends a team to another Location.
-	 * @param team The Team to send
-	 * @param last_city Whether or not this City is the last city in the game
-	 */
-	private void travel(int i) {
-		
-		locations.get(i).travelTo(team, last_city);
-		
-		displayOptions();
 		
 	}
 	

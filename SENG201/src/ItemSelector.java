@@ -100,7 +100,7 @@ public class ItemSelector extends JPanel implements ActionListener {
 		
 		JButton btnCancel = new JButton(cancel_string);
 		btnCancel.setActionCommand(cancel_string);
-		btnSelect.addActionListener(this);
+		btnCancel.addActionListener(this);
 		GridBagConstraints gbc_btnCancel = new GridBagConstraints();
 		gbc_btnCancel.gridx = 1;
 		gbc_btnCancel.gridy = 2;
@@ -113,12 +113,13 @@ public class ItemSelector extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		synchronized(synchronizer) {
-			
-			if (e.getActionCommand() == select_string) {
+		synchronized(synchronizer) {			
+			String command = e.getActionCommand();			
+			if (command.equals(select_string)) {
 				selected = Integer.parseInt(radio_buttons.getSelection().getActionCommand());
 				synchronizer.notify();
-			} else if (e.getActionCommand() == cancel_string) {
+			} else if (command.equals(cancel_string)) {
+				System.out.println("Check");
 				selected = -1;
 				synchronizer.notify();
 			} else {
