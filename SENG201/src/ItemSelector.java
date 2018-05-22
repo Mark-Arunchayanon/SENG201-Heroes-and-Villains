@@ -76,8 +76,6 @@ public class ItemSelector extends JPanel implements ActionListener {
 		//Add all the radio buttons to the GUI. Select the first one
 		for (int i = 0; i < items.length; i++) {
 			
-			System.out.println(i);
-			
 			JRadioButton rdbtn = new JRadioButton(items[i].getTitle());
 			if(i == 0) {
 				rdbtn.setSelected(true);
@@ -116,8 +114,6 @@ public class ItemSelector extends JPanel implements ActionListener {
 		gbc_btnCancel.gridy = 3;
 		add(btnCancel, gbc_btnCancel);
 		
-		System.out.println("Done");
-		
 	}
 
 	@Override
@@ -129,7 +125,6 @@ public class ItemSelector extends JPanel implements ActionListener {
 				selected = Integer.parseInt(radio_buttons.getSelection().getActionCommand());
 				synchronizer.notify();
 			} else if (command.equals(cancel_string)) {
-				System.out.println("Check");
 				selected = -1;
 				synchronizer.notify();
 			} else {

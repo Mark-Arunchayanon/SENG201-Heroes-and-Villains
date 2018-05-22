@@ -25,11 +25,98 @@ public class GuessANumber implements VillainGame {
 	private String label1;
 	private String label2 = "";
 	
+	private MenuSystem m;
+	
 	private Object synchronizer = new Object();
 	
 	private JTextField txtType;
 	
 	public GuessANumber(MenuSystem m) {
+		this.m = m;		
+	}
+
+	@Override
+	public boolean play(String villain_name, Hero playing_hero) {
+		// TODO Auto-generated method stub
+		
+		DisplayGame();
+		
+		boolean not_finish = true;
+		int num_guesses = 3;
+		int villian_num = VILLAIN_NUM;
+		int illusion = playing_hero.getIllusion();
+		
+		
+		//m.displayMessage("You are allowed 3 guesses");
+		
+		//String[] options = {"One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten"};
+		
+		while (not_finish && num_guesses != 0) {
+			
+			synchronized(synchronizer) {
+				try {
+					synchronizer.wait();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
+			num_guesses--;
+			
+			if (guess == villian_num) {
+				label1 = playing_hero.getName() + " guessed the correct number!";
+				not_finish = false;
+			} else if (guess < villian_num) {
+				label1 = "Higher! " + num_guesses + " guesses left";
+			} else {
+				label1 = "Lower! " + num_guesses + " guesses left";
+			}
+			guess = -1;
+			
+			SwingUtilities.invokeLater(new Runnable() {
+				public void run() {
+					label_1.setText(label1);
+					txtType.setText("");
+				}
+			});
+		}
+		
+		int ran_chance = num.nextInt(MAX_VAL);
+		int win_chance = CHANCE_VAL / illusion;
+		
+		if (not_finish == false) {
+			label1 = "Congratualtions. " + playing_hero.getName() + " beat " + villain_name;
+		} else {
+			label1 = "Unfortunately, " + playing_hero.getName() + " lost this game";
+			if (ran_chance >= win_chance) {
+				label2 = "But " + playing_hero.getName() + " useds illusion skill to trick " + villain_name + " into winning the game";
+			}
+		}
+		
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				label_2.setText(label2);
+				label_1.setText(label1);
+			}
+		});
+		
+		if (not_finish == false) {
+			return false;
+		} else {
+			if (ran_chance >= win_chance) {
+				return false;
+			} else {
+				return true;
+			}
+		}
+		
+	}
+
+	private void DisplayGame() {
+		
+		panel.removeAll();
+		
 		GridBagLayout gbl_panel = new GridBagLayout();
 		gbl_panel.columnWidths = new int[]{600, 0};
 		gbl_panel.rowHeights = new int[]{50, 50, 50, 50, 50, 0};
@@ -106,81 +193,6 @@ public class GuessANumber implements VillainGame {
 		panel.add(lblNewLabel, gbc_lblNewLabel);
 		
 		m.updatePanel(panel);
-		
-	}
-
-	@Override
-	public boolean play(String villain_name, Hero playing_hero) {
-		// TODO Auto-generated method stub
-		
-		boolean not_finish = true;
-		int num_guesses = 3;
-		int villian_num = VILLAIN_NUM;
-		int illusion = playing_hero.getIllusion();
-		
-		
-		//m.displayMessage("You are allowed 3 guesses");
-		
-		//String[] options = {"One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten"};
-		
-		while (not_finish && num_guesses != 0) {
-			
-			synchronized(synchronizer) {
-				try {
-					synchronizer.wait();
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-			
-			num_guesses--;
-			
-			if (guess == villian_num) {
-				label1 = playing_hero.getName() + " guessed the correct number!";
-				not_finish = false;
-			} else if (guess < villian_num) {
-				label1 = "Higher! " + num_guesses + " guesses left";
-			} else {
-				label1 = "Lower! " + num_guesses + " guesses left";
-			}
-			guess = -1;
-			
-			SwingUtilities.invokeLater(new Runnable() {
-				public void run() {
-					label_1.setText(label1);
-				}
-			});
-		}
-		
-		int ran_chance = num.nextInt(MAX_VAL);
-		int win_chance = CHANCE_VAL / illusion;
-		
-		if (not_finish == false) {
-			label1 = "Congratualtions. " + playing_hero.getName() + " beat " + villain_name;
-		} else {
-			label1 = "Unfortunately, " + playing_hero.getName() + " lost this game";
-			if (ran_chance >= win_chance) {
-				label2 = "But " + playing_hero.getName() + " useds illusion skill to trick " + villain_name + " into winning the game";
-			}
-		}
-		
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				label_2.setText(label2);
-				label_1.setText(label1);
-			}
-		});
-		
-		if (not_finish == false) {
-			return false;
-		} else {
-			if (ran_chance >= win_chance) {
-				return false;
-			} else {
-				return true;
-			}
-		}
 		
 	}
 

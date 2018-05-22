@@ -45,7 +45,7 @@ public class Lair implements Location{
 		this.m = m;
 		
 		//Create all potential VillainGames
-		final VillainGame[] GAMES = {(VillainGame) new PaperScissorsRock(m),
+		final VillainGame[] GAMES = {//(VillainGame) new PaperScissorsRock(m),
 				(VillainGame) new GuessANumber(m), (VillainGame) new DiceRoll(m)};
 		
 		//Set the Villain's parameters
@@ -84,7 +84,7 @@ public class Lair implements Location{
 			selected_hero.adjustHealth(-health);
 			
 			String title = "Failure";
-			String body = selected_hero.getName() + " was defeated by " + villain_name + "and lost " +
+			String body = selected_hero.getName() + " was defeated by " + villain_name + " and lost " +
 			health + " Health Points. They now have " + selected_hero.getHealth() + " Health Points";
 			
 			if(selected_hero.getHealth() == 0) {
@@ -99,21 +99,23 @@ public class Lair implements Location{
 			
 			//The player won the game. Congratulate them and take a life off the Villain
 			villain_lives--;
-			
-			if (villain_lives == 0) {
-				//If Villain defeated
-				if (last_city) {
-					//If the game is defeated
-					m.displayMessage("Congratulations, You have completed the game!");					
-				} else {				
-					m.displayMessage("Congratulations, You have cleared this city."
-							+ "You now travel to your home base in the next city!");					
-				}				
-			} else {
-				m.displayMessage("You now travel back to your Home Base for rest"
-						+ "and recouperation before you defeat " + villain_name + " "
-						+ villain_lives + " more times");				
+			String body;
+			if (villain_lives == 0 && last_city) {
+				return;
 			}
+			if (villain_lives == 0) {
+				//If Villain defeated			
+				body = "Congratulations, You have cleared this city."
+						+ "You now travel to your home base in the next city";
+			} else {
+				body = "You now travel back to your Home Base for rest"
+						+ "and recouperation before you defeat " + villain_name + " "
+						+ villain_lives + " more times";				
+			}
+			
+			InformationPanel info = new InformationPanel("Congratulations", body);
+			m.updatePanel(info);
+			info.blockTillOK();
 			
 		}
 		
@@ -129,36 +131,6 @@ public class Lair implements Location{
 		m.updatePanel(selector);
 		
 		return (Hero) selector.getSelectedObject();
-		
-	}
-
-	/**
-	 * Selects the Hero that the player wants to play the Villain in the game
-	 * @param team The team containing the hero that will play the Villain
-	 * @return The Hero that will play the Villain
-	 */
-	private Hero select_hero(Team team) {
-		
-		//Select the hero that is going to combat the Villain
-		String[] heros = team.heroIdentifiers();
-		Hero playing_hero;
-		//If there is more than one Hero query the player on which Hero they want to use
-		if(heros.length > 1) {
-			
-			String message = "Which hero is going to fight " + villain_name + " in a game of "
-			+ villain_game.gameType();			
-			playing_hero = team.getHero(m.displayMenu(message, heros));
-			
-		} else { //Otherwise select the only available hero
-			
-			playing_hero = team.getHero(0);			
-			String message = heros[0] + " is playing " + villain_name + " in a game of "
-			+ villain_game.gameType();			
-			m.displayMessage(message);
-			
-		}
-		
-		return playing_hero;
 		
 	}
 	

@@ -32,16 +32,11 @@ public class MenuSystem {
 	}
 	
 	public void updatePanel(JPanel panel) {
-		System.out.println("Done 17");
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				System.out.println("Done 2");
 				frame.getContentPane().removeAll();
-				System.out.println("Done 3");
 				frame.getContentPane().add(panel);
-				System.out.println("Done 4");
 				frame.revalidate();
-				System.out.println("Done 5");
 				frame.repaint();
 			}			
 		});
