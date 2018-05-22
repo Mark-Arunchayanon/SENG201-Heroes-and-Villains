@@ -35,6 +35,9 @@ public class City extends JPanel{
 	private Team team;
 	private boolean last_city;
 	
+	private Object synchronizer = new Object();
+	private int travel_direction;
+	
 	public City(Team team, boolean last_city, MenuSystem m) {
 		
 		this.m = m;
@@ -58,6 +61,20 @@ public class City extends JPanel{
 		
 		//Set up the GUI
 		displayOptions();
+		
+		//Wait till the GUI has been interacted with
+		synchronized(synchronizer) {			
+			try {
+				synchronizer.wait();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}			
+		}
+		
+		travel(travel_direction);
+		
+		travel_direction = -1;
 		
 	}
 	
@@ -130,9 +147,11 @@ public class City extends JPanel{
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-
-				travel(directions.get(0));
 				
+				synchronized(synchronizer) {
+					travel_direction = directions.get(0);
+					synchronizer.notify();
+				}				
 			}			
 		};
 		btnTravelNorth.addActionListener(btnTravelNorthListner);
@@ -148,7 +167,10 @@ public class City extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 
-				travel(directions.get(3));
+				synchronized(synchronizer) {
+					travel_direction = directions.get(3);
+					synchronizer.notify();
+				}	
 				
 			}			
 		};
@@ -165,7 +187,10 @@ public class City extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 
-				travel(directions.get(1));
+				synchronized(synchronizer) {
+					travel_direction = directions.get(1);
+					synchronizer.notify();
+				}	
 				
 			}			
 		};
@@ -182,7 +207,10 @@ public class City extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				
-				travel(directions.get(2));
+				synchronized(synchronizer) {
+					travel_direction = directions.get(2);
+					synchronizer.notify();
+				}	
 				
 			}			
 		};

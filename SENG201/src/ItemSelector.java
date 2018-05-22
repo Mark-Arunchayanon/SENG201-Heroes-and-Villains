@@ -12,15 +12,18 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextPane;
 import java.awt.Panel;
 import javax.swing.JScrollPane;
+import javax.swing.BoxLayout;
 
 public class ItemSelector extends JPanel implements ActionListener {
 	
-	String select_string = "Select";
-	String cancel_string = "Cancel";
+	private String select_string = "Select";
+	private String cancel_string = "Cancel";
 	
-	Selectable[] items;
+	private Selectable[] items;
 	
-	int selected = -2;
+	private int selected = -2;
+	
+	private Object synchronizer = new Object();
 	
 	ButtonGroup radio_buttons = new ButtonGroup();
 	JTextPane txtpnDescriptor;
@@ -58,6 +61,7 @@ public class ItemSelector extends JPanel implements ActionListener {
 		
 		Panel panel = new Panel();
 		scrollPane.setViewportView(panel);
+		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 		
 		//Add all the radio buttons to the GUI. Select the first one
 		for (int i = 0; i < items.length; i++) {
@@ -109,20 +113,33 @@ public class ItemSelector extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		if (e.getActionCommand() == select_string) {
-			selected = Integer.parseInt(radio_buttons.getSelection().getActionCommand());
-		} else if (e.getActionCommand() == cancel_string) {
-			selected = -1;
-		} else {
-			int currently_selected = Integer.parseInt(e.getActionCommand());
-			txtpnDescriptor.setText(items[currently_selected].getDescriptor());
+		synchronized(synchronizer) {
+			
+			if (e.getActionCommand() == select_string) {
+				selected = Integer.parseInt(radio_buttons.getSelection().getActionCommand());
+				synchronizer.notify();
+			} else if (e.getActionCommand() == cancel_string) {
+				selected = -1;
+				synchronizer.notify();
+			} else {
+				int currently_selected = Integer.parseInt(e.getActionCommand());
+				txtpnDescriptor.setText(items[currently_selected].getDescriptor());
+			}
+			
 		}
-		
+			
 	}
 	
-	public Object getSelectedObject() {
+	public Selectable getSelectedObject() {
 		
-		while(selected == -2);
+		synchronized(synchronizer) 	{		
+			try {
+				synchronizer.wait();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}			
+		}
 		
 		if(selected == -1) {
 			return null;
@@ -134,7 +151,14 @@ public class ItemSelector extends JPanel implements ActionListener {
 	
 	public int getSelectedIndex() {
 		
-		while(selected == -2);
+		synchronized(synchronizer) 	{		
+			try {
+				synchronizer.wait();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}			
+		}
 		
 		return selected;
 		

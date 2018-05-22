@@ -28,23 +28,27 @@ public class Lair extends JPanel implements Location{
 			"Go away", "I really cannot be bothered dealing with you right now",
 			"Your time is over", "Pasta Lavista baby"};
 
+	private String villain_name;
+	private String villain_taunt;
+	private VillainGame villain_game;
+	private int villain_lives;
 	
 	private static Random r = new Random();
-	private static MenuSystem m;
-	
-	//Create all potential VillainGames
-	private static final VillainGame[] GAMES = {(VillainGame) new PaperScissorsRock(m),
-			(VillainGame) new GuessANumber(m), (VillainGame) new DiceRoll(m)};
-	
-	//Set the Villain's parameters
-	private String villain_name = NAMES[r.nextInt(NAMES.length)];
-	private String villain_taunt = TAUNTS[r.nextInt(TAUNTS.length)];
-	private VillainGame villain_game = GAMES[r.nextInt(GAMES.length)];
-	private int villain_lives = 3;
+	private MenuSystem m;	
 
 	public Lair(MenuSystem m) {
 
-		Lair.m = m;
+		this.m = m;
+		
+		//Create all potential VillainGames
+		final VillainGame[] GAMES = {(VillainGame) new PaperScissorsRock(m),
+				(VillainGame) new GuessANumber(m), (VillainGame) new DiceRoll(m)};
+		
+		//Set the Villain's parameters
+		villain_name = NAMES[r.nextInt(NAMES.length)];
+		villain_taunt = TAUNTS[r.nextInt(TAUNTS.length)];
+		villain_game = GAMES[r.nextInt(GAMES.length)];
+		villain_lives = 3;
 		
 	}
 
@@ -56,7 +60,8 @@ public class Lair extends JPanel implements Location{
 		
 		ItemSelector selector = new ItemSelector("Select a Hero", heros);
 		m.updatePanel((JPanel) selector);
-		//selector.getSelectedObject();
+		Hero selected = (Hero) selector.getSelectedObject();
+		m.displayMessage(selected.getName());
 		
 		m.displayMessage(villain_name + " the Villain says \"" +  villain_taunt
 				+ "\"");
