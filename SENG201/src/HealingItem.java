@@ -2,6 +2,9 @@ import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import javax.swing.JLabel;
+import javax.swing.SwingUtilities;
+
 /**
  * Defines a Saleable object that has the ability to restore health to a Hero.
  * 
@@ -22,8 +25,6 @@ public class HealingItem implements Saleable, Selectable {
 	private static final int HEAL_DIVISOR = 4;
 	//Define number of miliseconds in a second
 	private static final int S_TO_MILIS = 1000;
-	//Define timer update frequency
-	private static final int TIMER_UPDATE_FREQ = 4;
 	
 	private Random r = new Random();
 	
@@ -37,28 +38,42 @@ public class HealingItem implements Saleable, Selectable {
 	//Create variables that store information for the timed healing system
 	private int elapsed_time = 0; //Milliseconds
 	private int elapsed_time_segments = 1;	
-	private Hero hero;	
+	private Hero hero;
+	private Team team;
+	private JLabel label;
+	private HealingItem self = this;
 	private Timer timer = new Timer();	
 	private TimerTask task = new TimerTask() {
 
 		@Override
 		public void run() {
 
-			elapsed_time += S_TO_MILIS / TIMER_UPDATE_FREQ;
+			elapsed_time += S_TO_MILIS;
+			
+			if(label != null) {
+				SwingUtilities.invokeLater(new Runnable() {
+					public void run() {
+						int time_remaining = time - elapsed_time / S_TO_MILIS;
+						if (time_remaining < 0) time_remaining = 0;
+						label.setText("<html>Healing " + hero.getName() +
+								"<br>Time Remaining: " + time_remaining);
+					}
+				});
+			}
 			
 			//Check if the Hero needs healing
-			if (elapsed_time > elapsed_time_segments * (time / HEAL_DIVISOR) * S_TO_MILIS) {
-				
-				//if (DEBUG) m.displayMessage("Elapsed Segments: " + elapsed_time_segments);
+			if (elapsed_time > elapsed_time_segments * (time * S_TO_MILIS/ HEAL_DIVISOR)) {
 				
 				elapsed_time_segments++;
 				
 				//Heal Hero
-				hero.adjustHealth(heal / 4);
+				hero.adjustHealth(heal / HEAL_DIVISOR);
+				System.out.println(hero.getHealth());///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////Change
 				
 				//Check to see if healing complete
 				if (elapsed_time >= time * S_TO_MILIS) {
-					timer.cancel();					
+					timer.cancel();
+					team.removeHealOperation(self);
 				}
 				
 			}
@@ -87,11 +102,11 @@ public class HealingItem implements Saleable, Selectable {
 	 * will continue to run until the Healing is complete
 	 * @param selected_hero
 	 */
-	public void heal(Hero selected_hero) {
-		
+	public void heal(Hero selected_hero, Team team) {
 		hero = selected_hero;
+		this.team = team;
 		
-		timer.schedule(task, S_TO_MILIS / TIMER_UPDATE_FREQ, S_TO_MILIS / TIMER_UPDATE_FREQ);
+		timer.schedule(task, S_TO_MILIS, S_TO_MILIS);
 		
 	}
 
@@ -114,5 +129,13 @@ public class HealingItem implements Saleable, Selectable {
 	@Override
 	public void setHaggling(int haggling) {
 		current_haggling = haggling;
+	}
+	
+	/**
+	 * Sets a label in the Hospital that the Healing item can update its remainimg time on
+	 * @param label The label to be updated
+	 */
+	public void setLabel(JLabel label) {
+		this.label = label;
 	}
 }

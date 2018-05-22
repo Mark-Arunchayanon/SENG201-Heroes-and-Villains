@@ -20,9 +20,6 @@ public class Hero implements Selectable {
 	private int pu_illusion = 0;
 	private int pu_haggling = 0;
 	
-	//Create ArrayList to store current heal operations
-	private ArrayList<HealingItem> heal_operations = new ArrayList<HealingItem>();
-	
 	/**
 	 * Creates a Hero object
 	 * @param temp_health The maximum health of the Hero.
@@ -190,17 +187,6 @@ public class Hero implements Selectable {
 		
 		pu_illusion = 0;
 		pu_haggling = 0;
-		
-	}
-	
-	/**
-	 * Adds a HealingItem to the Hero's internal heal_operations ArrayList to preserve the object
-	 * from city to city
-	 * @param item The Healing object to be preserved
-	 */
-	public void addHealOperation(HealingItem item) {
-		
-		heal_operations.add(item);
 		
 	}
 

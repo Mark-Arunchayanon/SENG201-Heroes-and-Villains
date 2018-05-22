@@ -28,6 +28,9 @@ public class Team {
 	//Create arrayList to store objects that the team owns
 	private ArrayList<Saleable> team_items = new ArrayList<Saleable>();
 	
+	//Create ArrayList to store current heal operations
+	private ArrayList<HealingItem> heal_operations = new ArrayList<HealingItem>();
+	
 	private MenuSystem m;
 	
 	public Team(MenuSystem m) {
@@ -280,5 +283,33 @@ public class Team {
 		
 		return heros;
 		
+	}
+	
+	/**
+	 * Adds a HealingItem to the Team's internal heal_operations ArrayList to preserve the object
+	 * from city to city
+	 * @param item The Healing object to be preserved
+	 */
+	public void addHealOperation(HealingItem item) {
+		
+		heal_operations.add(item);
+		
+	}
+	
+	/**
+	 * Removes a HealingItem from the Team's internal heal_operations ArrayList
+	 * @param item The Healing object to be removed
+	 */
+	public void removeHealOperation(HealingItem item) {
+		
+		heal_operations.remove(item);
+		
+	}
+	
+	/**
+	 * @return The array of current healing operations
+	 */
+	public ArrayList<HealingItem> getHealingOperations() {
+		return heal_operations;
 	}
 }

@@ -45,7 +45,7 @@ public class Lair implements Location{
 		this.m = m;
 		
 		//Create all potential VillainGames
-		final VillainGame[] GAMES = {//(VillainGame) new PaperScissorsRock(m),
+		final VillainGame[] GAMES = {(VillainGame) new PaperScissorsRock(m),
 				(VillainGame) new GuessANumber(m), (VillainGame) new DiceRoll(m)};
 		
 		//Set the Villain's parameters

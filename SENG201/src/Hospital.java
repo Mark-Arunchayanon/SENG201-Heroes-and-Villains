@@ -1,5 +1,16 @@
+import java.awt.Component;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.Panel;
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import javax.swing.BoxLayout;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JSeparator;
+import javax.swing.JTextPane;
 
 /**
  * A location that allows HealingItems to be applied to a Hero
@@ -7,9 +18,12 @@ import java.util.Arrays;
  * @author fer25
  *
  */
-public class Hospital implements Location{
+public class Hospital extends JPanel implements Location{
 
-	MenuSystem m;
+	MenuSystem m;	
+	Team team;
+	
+	JPanel left_panel;
 	
 	public Hospital(MenuSystem m) {
 		this.m = m;
@@ -17,6 +31,8 @@ public class Hospital implements Location{
 
 	@Override
 	public void travelTo(Team team, boolean last_city) {
+		
+		this.team = team;
 		
 		//Get all the items the Team owns
 		ArrayList<Saleable> all_items = team.getTeamItems();
@@ -29,25 +45,103 @@ public class Hospital implements Location{
 			}			
 		}
 		
-		m.displayMessage("Welcome to the Hospital");
-		
 		//Allow healing items to be applied while the Team has some in their inventory
 		while (!items.isEmpty()) {
 			
-			//Get the Hero the player wants, return if that is null
 			Hero selected_hero = selectHero(team);
-			if (selected_hero == null) return;
 			
-			//Get the HealingItem the User wants to apply to selected_hero
-			HealingItem selected_item = selectItem(items, selected_hero);
+			//User want to return to Home Base
+			if (selected_hero == null) {
+				return;
+			}
 			
-			//If a HealingItem was selected apply it
-			if (!(selected_item == null)) {
-				applyItem(selected_hero, selected_item, all_items, items);			
-			}			
+			String title = "Welcome to the Hospital";
+			String description = "What healing item would you like to use?";
+			
+			Selectable[] items_array = new Selectable[1];
+			items_array = items.toArray(items_array);
+			ItemSelector selector = new ItemSelector(title, description, items_array);
+			left_panel = selector;
+			displayHospital();
+			
+			HealingItem selected_item = (HealingItem) selector.getSelectedObject();
+			
+			if (selected_item == null); //Do nothing, Application cancelled
+			else {
+				applyItem(selected_hero, selected_item, all_items, items);
+			}		
+		}
+		String title = "You should get Health Insurance";
+		String body = "You do not have any healing items to use.";
+		
+		InformationPanel info = new InformationPanel(title, body);
+		left_panel = info;
+		displayHospital();
+		info.blockTillOK();
+		
+	}
+	
+	private void displayHospital() {
+		
+		removeAll();
+		
+		GridBagLayout gridBagLayout = new GridBagLayout();
+		gridBagLayout.columnWidths = new int[]{0, 0};
+		gridBagLayout.rowHeights = new int[]{0};
+		gridBagLayout.columnWeights = new double[]{1.0, 0.4};
+		gridBagLayout.rowWeights = new double[]{1.0};
+		setLayout(gridBagLayout);
+		
+		JPanel panel_1 = left_panel;
+		GridBagConstraints gbc_panel_1 = new GridBagConstraints();
+		gbc_panel_1.insets = new Insets(0, 0, 0, 5);
+		gbc_panel_1.fill = GridBagConstraints.BOTH;
+		gbc_panel_1.gridx = 0;
+		gbc_panel_1.gridy = 0;
+		add(panel_1, gbc_panel_1);
+		
+		Panel panel = new Panel();
+		GridBagConstraints gbc_panel = new GridBagConstraints();
+		gbc_panel.fill = GridBagConstraints.VERTICAL;
+		gbc_panel.gridx = 1;
+		gbc_panel.gridy = 0;
+		add(panel, gbc_panel);
+		GridBagLayout gbl_panel = new GridBagLayout();
+		gbl_panel.columnWidths = new int[]{0};
+		gbl_panel.rowHeights = new int[]{0, 0};
+		gbl_panel.columnWeights = new double[]{1.0};
+		gbl_panel.rowWeights = new double[]{Double.MIN_VALUE, 1.0};
+		panel.setLayout(gbl_panel);
+		
+		JTextPane txtpnCurrentHealingOperations = new JTextPane();
+		txtpnCurrentHealingOperations.setText("Current Healing Operations.\nTime Till Completion");
+		txtpnCurrentHealingOperations.setEditable(false);
+		GridBagConstraints gbc_txtpnCurrentHealingOperations = new GridBagConstraints();
+		gbc_txtpnCurrentHealingOperations.insets = new Insets(0, 0, 0, 5);
+		gbc_txtpnCurrentHealingOperations.fill = GridBagConstraints.BOTH;
+		gbc_txtpnCurrentHealingOperations.gridx = 0;
+		gbc_txtpnCurrentHealingOperations.gridy = 0;
+		panel.add(txtpnCurrentHealingOperations, gbc_txtpnCurrentHealingOperations);
+		
+		Panel timer_panel = new Panel();
+		GridBagConstraints gbc_timer_panel = new GridBagConstraints();
+		gbc_timer_panel.fill = GridBagConstraints.BOTH;
+		gbc_timer_panel.gridx = 0;
+		gbc_timer_panel.gridy = 1;
+		panel.add(timer_panel, gbc_timer_panel);
+		timer_panel.setLayout(new BoxLayout(timer_panel, BoxLayout.Y_AXIS));
+		
+		for (HealingItem item : team.getHealingOperations()) {
+			JLabel TimerLabel = new JLabel();
+			TimerLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+			timer_panel.add(TimerLabel);
+			item.setLabel(TimerLabel);
+			
+			JSeparator separator = new JSeparator();
+			timer_panel.add(separator);
 		}
 		
-		m.displayMessage("You do not have any Healing Items to apply");
+		m.updatePanel(this);
 		
 	}
 	
@@ -62,83 +156,29 @@ public class Hospital implements Location{
 	private void applyItem(Hero selected_hero, HealingItem selected_item,
 			ArrayList<Saleable> all_items, ArrayList<HealingItem> items) {
 
-		selected_item.heal(selected_hero);
+		selected_item.heal(selected_hero, team);
 		//Remove the item from the Team's inventory
 		all_items.remove((Saleable) selected_item);
 		items.remove(selected_item);
-		selected_hero.addHealOperation(selected_item);
+		team.addHealOperation(selected_item);
+		//Update display to show new timer
+		displayHospital();
 		
 	}
-
-	/**
-	 * Gets the user to select the Healing Item that they want to apply to
-	 * selected_hero
-	 * @param items The healing items to choose from
-	 * @param selected_hero The Hero that the item will be applied to
-	 * @return The HealingItem or null is the user doesn't want to apply a
-	 * HealingItem to that Hero
-	 */
-	private HealingItem selectItem(ArrayList<HealingItem> items, Hero selected_hero) {
-		
-		//Query the User what HealingItem they would like to apply to the Hero
-		String message = "What Healing Item would you like to apply to " + selected_hero.getName();
-		String[] options = new String[items.size() + 1];			
-		for (int i = 0; i < items.size(); i++) {				
-			options[i] = items.get(i).getHealingDescriptor();				
-		}
-		//Add an escape option
-		options[options.length - 1] = "Actually, " + selected_hero.getName() + " doesn't need healing";
-		int selected  = m.displayMenu(message, options);
-		
-		//Check if a HealingItem selected
-		if (selected < options.length - 1) {
-			return items.get(selected);
-		} else {
-			return null;//If the User doesn't want to apply any of the HealingItems
-		}
-		
-	}
-
-	/**
-	 * Selects the Hero that the User would like to apply a healing item to 
-	 * @param team The team containing the Hero the user will select
-	 * @return The hero the User selected or null if the player wishes to leave
-	 * the hospital
-	 */
+	
 	private Hero selectHero(Team team) {
+		String title = "Welcome to the Hospital";
+		String description = "Which Hero would you like to heal?";
 		
-		//Get the identifiers of all the Heros in the Team
-		String[] hero_ids = team.heroIdentifiers();
+		Selectable[] heros = new Selectable[1];
+		heros = team.getHeros().toArray(heros);
+		ItemSelector selector = new ItemSelector(title, description, heros);
+		left_panel = selector;
+		displayHospital();
 		
-		Hero selected_hero;		
-		//Check to see if there is more than one Hero in the Team
-		if(hero_ids.length > 1) {
-			
-			//Query the User on what Hero they would like to heal
-			String message = "What Hero would you like to heal?";			
-			String [] options = Arrays.copyOf(hero_ids, hero_ids.length + 1);
-			//Add an option to leave the Hospital
-			options[options.length - 1] = "Leave the Hospital";			
-			int selected = m.displayMenu(message, options);			
-			if (selected == options.length - 1) {
-				return null; //If the player wishes to leave the Hospital
-			}
-			//Get the Hero the player desires
-			selected_hero = team.getHero(selected);			
-		} else {
-			
-			//Only one Hero, get them.
-			selected_hero  = team.getHero(0);
-			//Check that the player actually wants to heal them
-			String message = "Would you like to heal " + selected_hero.getName() + "?";
-			String [] options = {"Yes", "No I would like to travel back to my Home Base"};
-			int selected = m.displayMenu(message, options);
-			if (selected == 1) {
-				return null;//If the player wishes to leave the Hospital
-			}
-			
-		}		
-		return selected_hero;		
+		Hero selected_hero = (Hero) selector.getSelectedObject();
+		
+		return selected_hero;
 	}
 
 	@Override

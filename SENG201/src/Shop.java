@@ -73,85 +73,62 @@ public class Shop implements Location {
 				return;
 			}
 			
-			String title = "Welcome to the Shop";
-			String description = "What would " + selected_hero.getName() +
-					" like to purchase?.\nYou have " + team.getCash() + "$";
+			Saleable purchased_item = selectItem(team, selected_hero);
 			
-			Selectable[] items_array = new Selectable[1];
-			items_array = items.toArray(items_array);
-			ItemSelector selector = new ItemSelector(title, description, items_array);
-			
-			m.updatePanel(selector);
-			
-			Saleable purchased_item = (Saleable) selector.getSelectedObject();
-			
-			
-			if (hero_id.length > 1) {
+			if (purchased_item == null); //Do nothing. Sale has been cancelled
+			else if (team.adjustCash(-purchased_item.getPrice())) {
 				
-				message = "Which Hero would like to purchase something from the store?";
+				team.addTeamItem(purchased_item);
+				items.remove(purchased_item);
 				
-				String[] options = Arrays.copyOf(hero_id, hero_id.length + 1);
+				String title = "Thankyou for your purchase";
+				String body = "Your purchase has been added to your inventory";				
+				InformationPanel info = new InformationPanel(title, body);
+				m.updatePanel(info);
 				
-				options[options.length - 1] = "Leave the Shop";
-				
-				int selection = m.displayMenu(message, options);
-				
-				if (selection == options.length - 1) {
-					return;
-				}
-				
-				selected_hero = team.getHero(selection);
+				info.blockTillOK();
 				
 			} else {
 				
-				selected_hero = team.getHero(0);
+				String title = "Declined";
+				String body = "You do not have enough cash for that purchase";				
+				InformationPanel info = new InformationPanel(title, body);
+				m.updatePanel(info);
 				
-				message = "Would you like to purchase something?";
-				
-				String[] options = {"Yes", "No. I wish to travel back to my home base."};
-				
-				int selection = m.displayMenu(message, options);
-				
-				if (selection == 1) {
-					return;
-				}
-			}
-		
-			message =  "What would " + selected_hero.getName() + " like to purchase?\n"
-					+ "You have $" + team.getCash();
-			String[] options = new String[items.size() + 1];
-			
-			for (int i = 0; i < items.size(); i++) {
-				
-				options[i] = items.get(i).getSaleDescriptor(selected_hero.getHaggling());
-				
-			}
-			
-			options[options.length - 1] = "Actually, " + selected_hero.getName() + " doesn't want anything";
-			
-			int selected_item = m.displayMenu(message, options);
-			
-			if (selected_item != options.length - 1) {
-				
-				if (team.adjustCash(- items.get(selected_item).getPrice())) {
-					
-					team.addTeamItem(items.get(selected_item));
-					items.remove(selected_item);
-					
-					m.displayMessage("Thankyou for your purchase.");
-					
-				} else {
-					
-					m.displayMessage("You do not have enough cash for that item.");
-					
-				}
-				
+				info.blockTillOK();
 			}
 			
 		}
 		
-		m.displayMessage("The shop has run out of items to sell");
+		String title = "The Shop is closing now";
+		String body = "We have no more items to sell you. Thankyou for your Patronage";				
+		InformationPanel info = new InformationPanel(title, body);
+		m.updatePanel(info);
 		
+		info.blockTillOK();
+		
+	}
+
+	private Saleable selectItem(Team team, Hero selected_hero) {
+		
+		//Inform each item of the selected Hero's haggling ability
+		for (Saleable item : items) {
+			item.setHaggling(selected_hero.getHaggling());
+		}
+		
+		String title = "Welcome to the Shop";
+		String description = "What would " + selected_hero.getName() +
+				" like to purchase?.\nYou have " + team.getCash() + "$";
+		
+		Selectable[] items_array = new Selectable[1];
+		items_array = items.toArray(items_array);
+		ItemSelector selector = new ItemSelector(title, description, items_array);
+		
+		m.updatePanel(selector);
+		
+		Saleable purchased_item = (Saleable) selector.getSelectedObject();
+		
+		return purchased_item;
 	}
 
 	private Hero selectHero(Team team) {

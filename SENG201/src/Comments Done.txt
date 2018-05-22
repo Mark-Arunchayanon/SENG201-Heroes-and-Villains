@@ -28,3 +28,7 @@ Stickler
 Strongman
 Team
 VillainGame
+
+Paper Scissors Rock. Wrong person Wins
+Most healing items are free
+All items seem to have the same random boost
