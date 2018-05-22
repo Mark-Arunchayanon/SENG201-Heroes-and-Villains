@@ -28,15 +28,15 @@ public class ItemSelector extends JPanel implements ActionListener {
 	ButtonGroup radio_buttons = new ButtonGroup();
 	JTextPane txtpnDescriptor;
 	
-	public ItemSelector(String title, Selectable[] items) {
+	public ItemSelector(String title, String description, Selectable[] items) {
 		
 		this.items = items;
 		
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0};
-		gridBagLayout.rowHeights = new int[]{0, 0, 0};
+		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0};
 		gridBagLayout.columnWeights = new double[]{1.0, 1.0};
-		gridBagLayout.rowWeights = new double[]{Double.MIN_VALUE, 1.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{Double.MIN_VALUE, Double.MIN_VALUE, 1.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
 		JTextPane txtpnTitle = new JTextPane();
@@ -51,12 +51,22 @@ public class ItemSelector extends JPanel implements ActionListener {
 		gbc_txtpnTitle.gridy = 0;
 		add(txtpnTitle, gbc_txtpnTitle);
 		
+		JTextPane txtpnDescription = new JTextPane();
+		txtpnDescription.setText(description);
+		GridBagConstraints gbc_txtpnDescription = new GridBagConstraints();
+		gbc_txtpnDescription.gridwidth = 2;
+		gbc_txtpnDescription.insets = new Insets(0, 0, 5, 5);
+		gbc_txtpnDescription.fill = GridBagConstraints.BOTH;
+		gbc_txtpnDescription.gridx = 0;
+		gbc_txtpnDescription.gridy = 1;
+		add(txtpnDescription, gbc_txtpnDescription);
+		
 		JScrollPane scrollPane = new JScrollPane();
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
 		gbc_scrollPane.fill = GridBagConstraints.BOTH;
 		gbc_scrollPane.insets = new Insets(0, 0, 5, 5);
 		gbc_scrollPane.gridx = 0;
-		gbc_scrollPane.gridy = 1;
+		gbc_scrollPane.gridy = 2;
 		add(scrollPane, gbc_scrollPane);
 		
 		Panel panel = new Panel();
@@ -86,7 +96,7 @@ public class ItemSelector extends JPanel implements ActionListener {
 		gbc_txtpnDescriptor.insets = new Insets(0, 0, 5, 0);
 		gbc_txtpnDescriptor.fill = GridBagConstraints.BOTH;
 		gbc_txtpnDescriptor.gridx = 1;
-		gbc_txtpnDescriptor.gridy = 1;
+		gbc_txtpnDescriptor.gridy = 2;
 		add(txtpnDescriptor, gbc_txtpnDescriptor);
 		
 		JButton btnSelect = new JButton(select_string);
@@ -95,7 +105,7 @@ public class ItemSelector extends JPanel implements ActionListener {
 		GridBagConstraints gbc_btnSelect = new GridBagConstraints();
 		gbc_btnSelect.insets = new Insets(0, 0, 0, 5);
 		gbc_btnSelect.gridx = 0;
-		gbc_btnSelect.gridy = 2;
+		gbc_btnSelect.gridy = 3;
 		add(btnSelect, gbc_btnSelect);
 		
 		JButton btnCancel = new JButton(cancel_string);
@@ -103,7 +113,7 @@ public class ItemSelector extends JPanel implements ActionListener {
 		btnCancel.addActionListener(this);
 		GridBagConstraints gbc_btnCancel = new GridBagConstraints();
 		gbc_btnCancel.gridx = 1;
-		gbc_btnCancel.gridy = 2;
+		gbc_btnCancel.gridy = 3;
 		add(btnCancel, gbc_btnCancel);
 		
 		System.out.println("Done");

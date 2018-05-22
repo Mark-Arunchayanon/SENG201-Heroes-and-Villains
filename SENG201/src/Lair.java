@@ -13,7 +13,7 @@ import javax.swing.JTextPane;
  *
  */
 
-public class Lair extends JPanel implements Location{
+public class Lair implements Location{
 	
 	//Define the amount of damage the Villain does to the Hero on a loss
 	private static final int MIN_DAMAGE_STD = 30;
@@ -68,11 +68,8 @@ public class Lair extends JPanel implements Location{
 			
 		}
 		
-		//Select a Hero to challenge the Villain
-		Hero playing_hero = select_hero(team);
-		
 		//Play the game and react to the result
-		if (villain_game.play(villain_name, playing_hero)) {
+		if (villain_game.play(villain_name, selected_hero)) {
 			
 			//The player lost the game. Calculate the amount of health the Hero looses
 			int health;
@@ -84,10 +81,19 @@ public class Lair extends JPanel implements Location{
 				health = MIN_DAMAGE_STD + r.nextInt(MAX_DAMAGE_STD - MIN_DAMAGE_STD);				
 			}
 			
-			m.displayMessage(playing_hero.getName() + " lost " + health + " Health Points");
-			playing_hero.adjustHealth(-health);
-			//Remove any Heros that have dropped below 0 Health
-			team.checkHealth();
+			selected_hero.adjustHealth(-health);
+			
+			String title = "Failure";
+			String body = selected_hero.getName() + " was defeated by " + villain_name + "and lost " +
+			health + " Health Points. They now have " + selected_hero.getHealth() + " Health Points";
+			
+			if(selected_hero.getHealth() == 0) {
+				body += " and have died";
+			}
+			
+			InformationPanel info = new InformationPanel(title, body);			
+			m.updatePanel(info);			
+			info.blockTillOK();
 			
 		} else {
 			
@@ -115,37 +121,12 @@ public class Lair extends JPanel implements Location{
 	
 	private Hero displayHeroSelect(Team team) {
 		
-		removeAll();
-		
 		Selectable[] heros = new Selectable[1];
 		heros = team.getHeros().toArray(heros);
 		
-		ItemSelector selector = new ItemSelector(villain_taunt, heros);		
-
-		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{0};
-		gridBagLayout.rowHeights = new int[]{0, 0};
-		gridBagLayout.columnWeights = new double[]{1.0};
-		gridBagLayout.rowWeights = new double[]{Double.MIN_VALUE, 1.0};
-		setLayout(gridBagLayout);
+		ItemSelector selector = new ItemSelector(villain_taunt, "Select a hero", heros);
 		
-		JTextPane txtpnTaunt = new JTextPane();
-		txtpnTaunt.setText("Taunt");
-		GridBagConstraints gbc_txtpnTaunt = new GridBagConstraints();
-		gbc_txtpnTaunt.insets = new Insets(0, 0, 5, 0);
-		gbc_txtpnTaunt.fill = GridBagConstraints.BOTH;
-		gbc_txtpnTaunt.gridx = 0;
-		gbc_txtpnTaunt.gridy = 0;
-		add(txtpnTaunt, gbc_txtpnTaunt);
-		
-		JPanel panel = (JPanel) selector;
-		GridBagConstraints gbc_panel = new GridBagConstraints();
-		gbc_panel.fill = GridBagConstraints.BOTH;
-		gbc_panel.gridx = 0;
-		gbc_panel.gridy = 1;
-		add(panel, gbc_panel);
-		
-		m.updatePanel(this);
+		m.updatePanel(selector);
 		
 		return (Hero) selector.getSelectedObject();
 		

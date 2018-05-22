@@ -74,7 +74,12 @@ public class City extends JPanel{
 				}			
 			}
 			
-			locations.get(travel_direction).travelTo(team, last_city);
+			//This indicates the user wishes to see the Team's status
+			if(travel_direction == 4) {
+				displayTeamStatus();
+			} else {			
+				locations.get(travel_direction).travelTo(team, last_city);
+			}
 		}
 		
 	}
@@ -114,7 +119,10 @@ public class City extends JPanel{
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				displayTeamStatus();
+				synchronized(synchronizer) {
+					travel_direction = 4;
+					synchronizer.notify();
+				}
 			}
 		
 		};
@@ -229,51 +237,13 @@ public class City extends JPanel{
 	
 	private void displayTeamStatus() {
 		
-		removeAll();
+		InformationPanel display = new InformationPanel("Status", "Sum Stuff");
 		
-		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{0, 0};
-		gridBagLayout.rowHeights = new int[]{0, 0, 0};
-		gridBagLayout.columnWeights = new double[]{1.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.20, 1.0, 0.20};
-		setLayout(gridBagLayout);
+		m.updatePanel(display);
 		
-		JTextPane txtpnTeamStatus = new JTextPane();
-		txtpnTeamStatus.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		txtpnTeamStatus.setEditable(false);
-		txtpnTeamStatus.setText("Team Status");
-		StyledDocument txtpnTeamStatus_SD = txtpnTeamStatus.getStyledDocument();
-		SimpleAttributeSet center = new SimpleAttributeSet();
-		StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
-		txtpnTeamStatus_SD.setParagraphAttributes(0, txtpnTeamStatus_SD.getLength(), center, false);
-		GridBagConstraints gbc_txtpnTeamStatus = new GridBagConstraints();
-		gbc_txtpnTeamStatus.insets = new Insets(0, 0, 5, 0);
-		gbc_txtpnTeamStatus.fill = GridBagConstraints.BOTH;
-		gbc_txtpnTeamStatus.gridx = 0;
-		gbc_txtpnTeamStatus.gridy = 0;
-		add(txtpnTeamStatus, gbc_txtpnTeamStatus);
+		display.blockTillOK();
 		
-		JTextPane txtpnUpdate = new JTextPane();
-		txtpnUpdate.setText("Update");
-		GridBagConstraints gbc_txtpnUpdate = new GridBagConstraints();
-		gbc_txtpnUpdate.insets = new Insets(0, 0, 5, 0);
-		gbc_txtpnUpdate.fill = GridBagConstraints.BOTH;
-		gbc_txtpnUpdate.gridx = 0;
-		gbc_txtpnUpdate.gridy = 1;
-		add(txtpnUpdate, gbc_txtpnUpdate);
-		
-		JButton btnOk = new JButton("Ok");
-		btnOk.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				displayOptions();
-			}
-		});
-		GridBagConstraints gbc_btnOk = new GridBagConstraints();
-		gbc_btnOk.gridx = 0;
-		gbc_btnOk.gridy = 2;
-		add(btnOk, gbc_btnOk);
-		
-		m.updatePanel(this);
+		displayOptions();
 		
 	}	
 	

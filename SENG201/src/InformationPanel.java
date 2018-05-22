@@ -9,7 +9,9 @@ import java.awt.event.ActionEvent;
 
 public class InformationPanel extends JPanel {
 	
-	public InformationPanel() {
+	private Object synchronizer = new Object();
+	
+	public InformationPanel(String Title, String Body) {
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0};
 		gridBagLayout.rowHeights = new int[]{0, 0, 0};
@@ -18,7 +20,7 @@ public class InformationPanel extends JPanel {
 		setLayout(gridBagLayout);
 		
 		JTextPane txtpnTitle = new JTextPane();
-		txtpnTitle.setText("Congratulations");
+		txtpnTitle.setText(Title);
 		GridBagConstraints gbc_txtpnTitle = new GridBagConstraints();
 		gbc_txtpnTitle.insets = new Insets(0, 0, 5, 0);
 		gbc_txtpnTitle.fill = GridBagConstraints.BOTH;
@@ -27,7 +29,7 @@ public class InformationPanel extends JPanel {
 		add(txtpnTitle, gbc_txtpnTitle);
 		
 		JTextPane txtpnBody = new JTextPane();
-		txtpnBody.setText("Message of Congratulations");
+		txtpnBody.setText(Body);
 		GridBagConstraints gbc_txtpnBody = new GridBagConstraints();
 		gbc_txtpnBody.insets = new Insets(0, 0, 5, 0);
 		gbc_txtpnBody.fill = GridBagConstraints.BOTH;
@@ -37,15 +39,32 @@ public class InformationPanel extends JPanel {
 		
 		JButton btnOK = new JButton("OK");
 		btnOK.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+			public void actionPerformed(ActionEvent arg0) {				
+				synchronized (synchronizer) {
+					synchronizer.notify();
+				}				
 			}
 		});
 		GridBagConstraints gbc_btnOK = new GridBagConstraints();
 		gbc_btnOK.gridx = 0;
 		gbc_btnOK.gridy = 2;
 		add(btnOK, gbc_btnOK);
+		
 	}
-
 	
+	public void blockTillOK() {
+		
+		synchronized(synchronizer) {
+			try {
+				synchronizer.wait();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		return;
+		
+	}
 
 }
