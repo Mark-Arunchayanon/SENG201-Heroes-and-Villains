@@ -5,7 +5,7 @@ Explorer - Done
 Game
 Guess a Number - Done
 HagglingBooster - Done
-HealingItem -
+HealingItem - Done
 Hero -
 HeroStatSelector - Done
 Hospital -
@@ -26,10 +26,9 @@ Selectable -
 Shop -
 Stickler - Done
 Strongman - Done
-Team -
+Team 
 VillainGame - Done
 
-Paper Scissors Rock. Wrong person Wins
 Most healing items are free
 All items seem to have the same random boost
 Reward for beating villain
