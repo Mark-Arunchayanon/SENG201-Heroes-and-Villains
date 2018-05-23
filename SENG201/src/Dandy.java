@@ -16,7 +16,7 @@ public class Dandy implements HeroStatSelector {
 	private static final boolean MAP = false;
 	
 	@Override
-	public String toString() {
+	public String getDescriptor() {
 		
 		// Description of the hero
 		String s = "A Dandy can be a useful person to have on a team as they are always happy to shout.\n"
@@ -55,6 +55,11 @@ public class Dandy implements HeroStatSelector {
 		
 		return hero;
 		
+	}
+
+	@Override
+	public String getTitle() {
+		return "Dandy";
 	}
 	
 }

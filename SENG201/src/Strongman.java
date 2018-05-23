@@ -16,7 +16,7 @@ public class Strongman implements HeroStatSelector {
 	private static final boolean MAP = false;
 	
 	@Override
-	public String toString() {
+	public String getDescriptor() {
 		
 		// Description of the hero
 		String s = "Behold the mighty Strong Man. Towering above all like a pillar of... well... human.\n"
@@ -51,6 +51,11 @@ public class Strongman implements HeroStatSelector {
 		
 		return hero;
 		
+	}
+
+	@Override
+	public String getTitle() {
+		return "StrongMan";
 	}
 	
 }

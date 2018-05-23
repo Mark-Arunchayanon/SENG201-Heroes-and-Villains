@@ -6,16 +6,7 @@
  * @author fer25
  * @author par116
  */
-public interface HeroStatSelector {
-
-	/**
-	 * Provides a descriptor about the type of
-	 * hero being created
-	 * @return String describing type of hero
-	 * to be created
-	 */
-	public String toString();
-	
+public interface HeroStatSelector extends Selectable {
 	/**
 	 * Creates a Hero with stats specified by the
 	 * HeroStatSelector

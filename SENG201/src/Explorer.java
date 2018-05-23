@@ -16,7 +16,7 @@ public class Explorer implements HeroStatSelector {
 	private static final boolean MAP = true;
 	
 	@Override
-	public String toString() {
+	public String getDescriptor() {
 		
 		// Description of the hero
 		String s = "If you feel like you are constantly getting lost then an explorer may be a good\n"
@@ -53,6 +53,11 @@ public class Explorer implements HeroStatSelector {
 		
 		return hero;
 		
+	}
+
+	@Override
+	public String getTitle() {
+		return "Explorer";
 	}
 	
 }

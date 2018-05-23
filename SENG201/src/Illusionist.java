@@ -16,7 +16,7 @@ public class Illusionist implements HeroStatSelector {
 	private static final boolean MAP = false;
 	
 	@Override
-	public String toString() {
+	public String getDescriptor() {
 		
 		// Description of the hero
 		String s = "If you can put up with the constant vanishing, Illusionists are good to have arround.\n"
@@ -53,6 +53,11 @@ public class Illusionist implements HeroStatSelector {
 		
 		return hero;
 		
+	}
+
+	@Override
+	public String getTitle() {
+		return "Illusionist";
 	}
 	
 }

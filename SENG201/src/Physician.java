@@ -16,7 +16,7 @@ public class Physician implements HeroStatSelector {
 	private static final boolean MAP = false;
 	
 	@Override
-	public String toString() {
+	public String getDescriptor() {
 		
 		// Description of the hero
 		String s = "Physicians are great to have around after a brutal round of Rock, Paper, Scissors.\n"
@@ -54,6 +54,11 @@ public class Physician implements HeroStatSelector {
 		
 		return hero;
 		
+	}
+
+	@Override
+	public String getTitle() {
+		return "Physician";
 	}
 	
 }

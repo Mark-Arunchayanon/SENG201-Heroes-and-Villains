@@ -16,7 +16,7 @@ public class Stickler implements HeroStatSelector {
 	private static final boolean MAP = false;
 	
 	@Override
-	public String toString() {
+	public String getDescriptor() {
 		
 		// Description of the hero
 		String s = "If you find yourself trying to survive with only $2 fried rice from The Wok, a Stickler\n"
@@ -51,6 +51,11 @@ public class Stickler implements HeroStatSelector {
 		
 		return hero;
 		
+	}
+
+	@Override
+	public String getTitle() {
+		return "Stickler";
 	}
 	
 }
