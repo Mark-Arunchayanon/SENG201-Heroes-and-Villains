@@ -20,7 +20,7 @@ public class StringGetPanel extends JPanel {
 	private String user_text;
 	private Object synchronizer = new Object();
 	
-	private JTextPane txtpnBlah;
+	private JTextPane txtpndescription;
 	private JTextPane textPane;
 	
 	public StringGetPanel(String title) {
@@ -29,6 +29,7 @@ public class StringGetPanel extends JPanel {
 	
 	/**
 	 * Create the panel.
+	 * @wbp.parser.constructor
 	 */
 	public StringGetPanel(String title, String body) {
 		GridBagLayout gridBagLayout = new GridBagLayout();
@@ -49,15 +50,15 @@ public class StringGetPanel extends JPanel {
 		gbc_txtpnTitle.gridy = 0;
 		add(txtpnTitle, gbc_txtpnTitle);
 		
-		txtpnBlah = new JTextPane();
-		txtpnBlah.setEditable(false);
-		txtpnBlah.setText(body);
-		GridBagConstraints gbc_txtpnBlah = new GridBagConstraints();
-		gbc_txtpnBlah.insets = new Insets(0, 0, 5, 0);
-		gbc_txtpnBlah.fill = GridBagConstraints.BOTH;
-		gbc_txtpnBlah.gridx = 0;
-		gbc_txtpnBlah.gridy = 1;
-		add(txtpnBlah, gbc_txtpnBlah);
+		txtpndescription = new JTextPane();
+		txtpndescription.setEditable(false);
+		txtpndescription.setText(body);
+		GridBagConstraints gbc_txtpndescription = new GridBagConstraints();
+		gbc_txtpndescription.insets = new Insets(0, 0, 5, 0);
+		gbc_txtpndescription.fill = GridBagConstraints.BOTH;
+		gbc_txtpndescription.gridx = 0;
+		gbc_txtpndescription.gridy = 1;
+		add(txtpndescription, gbc_txtpndescription);
 		
 		textPane = new JTextPane();
 		GridBagConstraints gbc_textPane = new GridBagConstraints();
@@ -86,7 +87,7 @@ public class StringGetPanel extends JPanel {
 	public void bodyTextSet(String text) {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				txtpnBlah.setText(text);
+				txtpndescription.setText(text);
 			}
 		});
 	}

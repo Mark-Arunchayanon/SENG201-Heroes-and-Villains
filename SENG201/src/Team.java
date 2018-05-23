@@ -13,10 +13,10 @@ import javax.swing.JOptionPane;
 public class Team {
 	
 	//Create array containing selectors for all the different hero types
-	private static final HeroStatSelector[] HERO_TYPES = {
-			(HeroStatSelector) new Dandy(), (HeroStatSelector) new Explorer(),
-			(HeroStatSelector) new Illusionist(), (HeroStatSelector) new Physician(),
-			(HeroStatSelector) new Stickler(),(HeroStatSelector) new Strongman()};
+	private static final Selectable[] HERO_TYPES = {
+			(Selectable) new Dandy(), (Selectable) new Explorer(),
+			(Selectable) new Illusionist(), (Selectable) new Physician(),
+			(Selectable) new Stickler(),(Selectable) new Strongman()};
 	
 	private String teamName;
 	
@@ -50,10 +50,10 @@ public class Team {
 		
 		while (team_size == 0) {
 			try {
-				int team_size = Integer.parseInt(Sget.getUserString());
+				team_size = Integer.parseInt(Sget.getUserString());
 				
 				if (team_size < 1 || team_size > 3) {
-					team_size =0;
+					team_size = 0;
 					JOptionPane.showMessageDialog(m.getFrame(),
 							"Value must be from one to three",
 							"Invalid Input",
@@ -68,14 +68,7 @@ public class Team {
 			
 		}
 		
-		//Fill the stats variables and heros arrayList
-		for (int i = 0; i < team_size; i++) {
-			
-			Hero new_hero = createHero();
-			
-			heros.add(new_hero);
-			
-		}
+		createHeros();
 		
 		setNames();
 		
@@ -91,8 +84,20 @@ public class Team {
 			String body = "What would you like the name"
 					+ "of your number " + i + " Hero to be?";
 			Sget.bodyTextSet(body);
+			String name = Sget.getUserString();
+			//Hero's cannot share a name
+			while (heroNames().contains(name)) {
+				
+				JOptionPane.showMessageDialog(m.getFrame(),
+						"Hero's cannot share a name",
+						"Invalid Input",
+						JOptionPane.INFORMATION_MESSAGE);
+				
+				name = Sget.getUserString();
+				
+			}
 			
-			heros.get(i).setName(Sget.getUserString());
+			heros.get(i-1).setName(name);
 			
 		}
 		
@@ -105,38 +110,24 @@ public class Team {
 	 * variables.
 	 * @return The created Hero
 	 */
-	private Hero createHero() {
-		
+	private void createHeros() {
 		String title = "Setup your Team";
-		
-		//Get user to select what type of hero they desire
-		String message = "What type of hero would you like?";
-		String[] options = heroBlurbs();
-		int selected = m.displayMenu(message, options);
-		
-		//Create the new Hero object
-		Hero selected_hero = HERO_TYPES[selected].createHero();
-		
-		//Add the Hero's cash to the Team's purse
-		cash += HERO_TYPES[selected].getCash();
-		//See if the hero provides the Team a map
-		if (HERO_TYPES[selected].getMap()) map = true;
-		
-		//Set the name of the new Hero
-		message = "What will be the name of your new hero?";
-		String name = m.displayStringRequest(message);
-		//Hero's cannot share a name
-		while (heroNames().contains(name)) {
+		ItemSelector selector = new ItemSelector(title, HERO_TYPES);
+		m.updatePanel(selector);
+		for(int i = 1; i <= team_size; i++) {
+			String body = "What would you like the type"
+					+ "of your number " + i + " Hero to be?";
 			
-			m.displayMessage("You cannot have multiple heros with the same name");
+			selector.descriptionTextSet(body);
+			HeroStatSelector selected = (HeroStatSelector) selector.getSelectedObject();
+			heros.add(selected.createHero());
 			
-			name = m.displayStringRequest(message);
+			//Add the Hero's cash to the Team's purse
+			cash += selected.getCash();
+			//See if the hero provides the Team a map
+			if (selected.getMap()) map = true;
 			
 		}
-		
-		selected_hero.setName(name);
-		
-		return selected_hero;
 		
 	}
 	

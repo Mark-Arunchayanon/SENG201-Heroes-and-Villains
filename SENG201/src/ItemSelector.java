@@ -31,6 +31,10 @@ public class ItemSelector extends JPanel implements ActionListener {
 	JTextPane txtpnDescriptor;
 	JTextPane txtpnDescription;
 	
+	public ItemSelector(String title, Selectable[] items) {
+		this(title, "", items);
+	}
+	
 	public ItemSelector(String title, String description, Selectable[] items) {
 		
 		this.items = items;
