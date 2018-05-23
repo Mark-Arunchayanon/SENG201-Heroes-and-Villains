@@ -48,7 +48,7 @@ public class HealingItem implements Saleable, Selectable {
 		public void run() {
 
 			elapsed_time += S_TO_MILIS;
-			
+			// Set label to show time remaining
 			if(label != null) {
 				SwingUtilities.invokeLater(new Runnable() {
 					public void run() {
