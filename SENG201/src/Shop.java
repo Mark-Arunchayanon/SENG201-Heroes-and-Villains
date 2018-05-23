@@ -5,24 +5,17 @@ import java.util.Random;
 
 public class Shop implements Location {
 	
-	private static final int MIN_PU_ITEMS = 5;
-	private static final int MAX_PU_ITEMS = 9;
-	private static final int MIN_HEALING_ITEMS = 2;
-	private static final int MAX_HEALING_ITEMS = 4;
+	private static final int MIN_ITEMS = 10;
+	private static final int MAX_ITEMS = 25;
 	
 	@SuppressWarnings("rawtypes")
-	private static final Class[] POWER_UPS = {HagglingBooster.class,
-			IllusionBooster.class, Map.class};
+	private static final Class[] SALEABLES = {HagglingBooster.class,
+			IllusionBooster.class, Map.class, HealingItem.class};
 	
-	private static final int DIFFERENCE_PU_ITEMS = MAX_PU_ITEMS - MIN_PU_ITEMS;
-	private static final int DIFFERENCE_HEALING_ITEMS = MAX_HEALING_ITEMS -
-			MIN_HEALING_ITEMS;
+	private static final int DIFFERENCE_ITEMS = MAX_ITEMS - MIN_ITEMS;
 	
 	private MenuSystem m;
 	private Random r = new Random();
-	
-	private static int PU_ITEMS;
-	private static int HEALING_ITEMS;
 
 	private ArrayList<Saleable> items = new ArrayList<Saleable>();
 	
@@ -30,14 +23,13 @@ public class Shop implements Location {
 		
 		this.m = m;
 		
-		PU_ITEMS = r.nextInt(DIFFERENCE_PU_ITEMS) + MIN_PU_ITEMS;
-		HEALING_ITEMS = r.nextInt(DIFFERENCE_HEALING_ITEMS) + MIN_HEALING_ITEMS;
+		int num_items = r.nextInt(DIFFERENCE_ITEMS) + MIN_ITEMS;
 		
 		//Add power ups to items
-		for (int i = 0; i < PU_ITEMS; i++) {
+		for (int i = 0; i < num_items; i++) {
 			
 			@SuppressWarnings("rawtypes")
-			Class power_up = POWER_UPS[r.nextInt(POWER_UPS.length)];
+			Class power_up = SALEABLES[r.nextInt(SALEABLES.length)];
 			
 			try {
 				items.add((Saleable) power_up.newInstance());
@@ -45,13 +37,6 @@ public class Shop implements Location {
 				// Shouldn't throw error
 				e.printStackTrace();
 			}
-			
-		}
-		
-		//Add healing items to items
-		for (int i = 0; i < HEALING_ITEMS; i++) {
-			
-			items.add((Saleable) new HealingItem());
 			
 		}
 		

@@ -25,8 +25,12 @@ import javax.swing.text.StyledDocument;
  */
 
 public class City extends JPanel{
-
+	// Percent chance that the team will have an item stolen or given while travelling
 	private int PERCENT_CHANCE_CHANGE = 15;
+	
+	@SuppressWarnings("rawtypes")
+	private static final Class[] SALEABLES = {HagglingBooster.class,
+			IllusionBooster.class, Map.class, HealingItem.class};
 	
 	private ArrayList<Location> locations = new ArrayList<Location>(4);
 	//Directions is used to randomise which direction goes to which location.
@@ -90,12 +94,35 @@ public class City extends JPanel{
 		locations.get(travel_direction).travelTo(team, last_city);
 		
 		int ran_chance = r.nextInt(100);
+		String message = "";
+		String warning = "Notice";
 		ArrayList<Saleable> team_stash = team.getTeamItems();
 		
 		if (ran_chance < PERCENT_CHANCE_CHANGE) {
-			String message = "Unfortunately there was a theif on the loose, one of your items have been stolen";
+			message = "Unfortunately there was a thief on the loose, one of the team's items have been stolen";
+			if (team_stash.size() != 0) {
+				team_stash.remove(r.nextInt(team_stash.size()));
+			} else {
+				message = "A thief tried to steal an item from the team's inventory, luckily it was empty";
+			}
+		} else if (ran_chance >= (100 - PERCENT_CHANCE_CHANGE)){
+			message = "The team stumbled across an item during their travel";
+			@SuppressWarnings("rawtypes")
+			Class power_up = SALEABLES[r.nextInt(SALEABLES.length)];
+			
+			try {
+				team_stash.add((Saleable) power_up.newInstance());
+			} catch (InstantiationException | IllegalAccessException e) {
+				// Shouldn't throw error
+				e.printStackTrace();
+			}
 			
 		}
+		
+		InformationPanel info = new InformationPanel(warning, message);
+		m.updatePanel(info);
+		
+		info.blockTillOK();
 	}
 	
 	/**
