@@ -5,7 +5,7 @@ import java.util.Random;
  * @author fer25
  * @author par116
  */
-public class IllusionBooster implements Saleable, PowerUp {
+public class IllusionBooster extends PowerUp {
 	
 	//Define the minimum and maximum illusion boost the power up will provide
 	private static final int MIN_BOOST = 10;
@@ -19,11 +19,8 @@ public class IllusionBooster implements Saleable, PowerUp {
 	//Pre calulation of constants
 	private static final int BOOST_COEFFICIENT = MAX_BOOST - MIN_BOOST;
 	
-	// Create variables for illusion boost price and amount, and for haggling skill
-	private int price;
-	private static int boost;
-	private int temp_price;
-	private int current_haggling;
+	// Create variable for illusion boost
+	private int boost;
 	
 	@Override
 	public void setRandom(Random r) {
@@ -44,11 +41,6 @@ public class IllusionBooster implements Saleable, PowerUp {
 	}
 
 	@Override
-	public int getPrice() {
-		return temp_price;
-	}
-
-	@Override
 	public String getApplicationDescriptor() {
 		String s = "This Illusion Booster Power Up will add "
 				+ boost + " Illusion Points to the Hero it is applied to.\n"
@@ -62,18 +54,11 @@ public class IllusionBooster implements Saleable, PowerUp {
 	}
 
 	@Override
-	public String getDescriptor() {
-		temp_price = (int) Math.round(price * 100 / current_haggling);
-		
+	public String getSaleDescriptor() {		
 		String s = "Illusion Booster\nA Power-Up that increases a Hero's Illusion Stat\n"
 				+ "Boost: " + boost + "\nPrice: $" + temp_price; 
 		
 		return s;
-	}
-
-	@Override
-	public void setHaggling(int haggling) {
-		current_haggling = haggling;
 	}
 
 }

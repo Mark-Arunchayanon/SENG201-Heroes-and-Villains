@@ -11,7 +11,7 @@ import javax.swing.SwingUtilities;
  * @author fer25
  * @author par116
  */
-public class HealingItem implements Saleable, Selectable {
+public class HealingItem extends Saleable {
 
 	//Define the healing quantities and duration of the 
 	private static final int MAX_HEAL = 20;
@@ -32,9 +32,6 @@ public class HealingItem implements Saleable, Selectable {
 	//Generate the HealingItem's stats
 	private int heal;
 	private int time;
-	private int price;
-	private int temp_price;
-	private int current_haggling;
 	
 	//Create variables that store information for the timed healing system
 	private int elapsed_time = 0; //Milliseconds
@@ -88,12 +85,7 @@ public class HealingItem implements Saleable, Selectable {
 		time = r.nextInt(TIME_COEFFICIENT) + MIN_HEAL_TIME;
 		price = heal * PRICE_COEFF / time;
 	}
-
-	@Override
-	public int getPrice() {
-		return temp_price;
-	}
-
+	
 	/**
 	 * Provides a descriptor of the HealingItem containing all the information
 	 * relevant to the application of it
@@ -121,22 +113,6 @@ public class HealingItem implements Saleable, Selectable {
 	public String getTitle() {
 		return "Healing Item";
 	}
-
-	@Override
-	public String getDescriptor() {
-		//Adjust the price of the item based on the haggling ability of the Hero
-		temp_price = (int) Math.round(price * 100 / current_haggling);
-		
-		String description = "Healing Potion\nHeals a hero over a period of time\nHealth boost: "
-		+ heal + "\nHeal time: " + time + "s" + "\nPrice: " + temp_price;
-		
-		return description;
-	}
-
-	@Override
-	public void setHaggling(int haggling) {
-		current_haggling = haggling;
-	}
 	
 	/**
 	 * Sets a label in the Hospital that the Healing item can update its remainimg time on
@@ -145,4 +121,24 @@ public class HealingItem implements Saleable, Selectable {
 	public void setLabel(JLabel label) {
 		this.label = label;
 	}
+
+	@Override
+	public String getSaleDescriptor() {
+		//Adjust the price of the item based on the haggling ability of the Hero
+				
+		String description = "Healing Potion\nHeals a hero over a period of time\nHealth boost: "
+		+ heal + "\nHeal time: " + time + "s" + "\nPrice: " + temp_price;
+		
+		return description;
+	}
+	
+	@Override
+	public String getDescriptor() {
+		if (sold) {
+			return getHealingDescriptor();
+		} else {
+			return getSaleDescriptor();
+		}
+	}
 }
+	

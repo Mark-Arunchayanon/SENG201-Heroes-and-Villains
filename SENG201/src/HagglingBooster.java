@@ -5,7 +5,7 @@ import java.util.Random;
  * @author fer25
  * @author par116
  */
-public class HagglingBooster implements Saleable, PowerUp {
+public class HagglingBooster extends PowerUp {
 	
 	//Define the minimum and maximum illusion boost the power up will provide
 	private static final int MIN_BOOST = 10;
@@ -18,12 +18,8 @@ public class HagglingBooster implements Saleable, PowerUp {
 	
 	//Pre calculation of constants
 	private static final int BOOST_COEFFICIENT = MAX_BOOST - MIN_BOOST;
-
-	// Create variables haggling boost statistics and hero haggling skill
-	private int price;
-	private static int boost;
-	private int temp_price;
-	private int current_haggling;
+	
+	private int boost;
 	
 	@Override
 	public void setRandom(Random r) {		
@@ -42,11 +38,6 @@ public class HagglingBooster implements Saleable, PowerUp {
 	}
 
 	@Override
-	public int getPrice() {
-		return temp_price;
-	}
-
-	@Override
 	public String getApplicationDescriptor() {
 		String s = "This Haggling Booster Power Up will add "
 				+ boost + " Haggling Points to the Hero it is applied to.\n"
@@ -61,8 +52,6 @@ public class HagglingBooster implements Saleable, PowerUp {
 
 	@Override
 	public String getDescriptor() {
-		// Calculate price according to the current hero customer's haggling skill
-		temp_price = (int) Math.round(price * 100 / current_haggling);
 		
 		String s = "Haggling Booster\nA Power-Up that increases a Hero's Haggling Stat\n"
 				+ "Boost: " + boost + "\nPrice: $" + temp_price; 
@@ -71,8 +60,9 @@ public class HagglingBooster implements Saleable, PowerUp {
 	}
 
 	@Override
-	public void setHaggling(int haggling) {
-		current_haggling = haggling;
+	public String getSaleDescriptor() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

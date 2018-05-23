@@ -6,20 +6,29 @@
  * @author fer25
  * @author par116
  */
-public interface PowerUp extends Selectable {
+public abstract class PowerUp extends Saleable {
 
 	/**
 	 * Applies a PowerUp to the correct stat of either a Hero or a
 	 * Team depending on the type of PowerUp 
 	 * @param hero
 	 */
-	public void applyBonus(Team team, Hero hero);
+	public abstract void applyBonus(Team team, Hero hero);
 	
 	/**
 	 * Provides a descriptor of the PowerUp containing all the information
 	 * relevant to the application of it
 	 * @return The descriptor
 	 */
-	public String getApplicationDescriptor();
+	public abstract String getApplicationDescriptor();
+	
+	@Override
+	public String getDescriptor() {
+		if (sold) {
+			return getApplicationDescriptor();
+		} else {
+			return getSaleDescriptor();
+		}
+	}
 	
 }
