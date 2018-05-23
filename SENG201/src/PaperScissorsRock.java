@@ -119,7 +119,6 @@ public class PaperScissorsRock implements VillainGame {
 		try {
 			Thread.sleep(3000);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		// Returns false if hero wins, returns true if villain wins
@@ -179,7 +178,6 @@ public class PaperScissorsRock implements VillainGame {
 		button1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				synchronized(synchronizer) {
-					//TODO try except
 					player_choice = 0;
 					synchronizer.notify();
 				}

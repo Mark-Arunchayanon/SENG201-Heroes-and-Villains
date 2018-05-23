@@ -1,6 +1,5 @@
 import java.util.Random;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -28,7 +27,7 @@ public class GuessANumber implements VillainGame {
 	private JPanel panel = new JPanel();
 	
 	private final int VILLAIN_NUM = num.nextInt(10);
-	private int guess = -1;
+	private int guess;
 	
 	private JLabel label_1;
 	private JLabel label_2;
@@ -39,7 +38,6 @@ public class GuessANumber implements VillainGame {
 	
 	private Object synchronizer = new Object();
 	
-	private JTextField txtType;
 	
 	/**
 	 * store the MenuSystem locally on the object construction
@@ -82,12 +80,10 @@ public class GuessANumber implements VillainGame {
 			} else {
 				label1 = "Lower! " + num_guesses + " guesses left";
 			}
-			guess = -1;
 			
 			SwingUtilities.invokeLater(new Runnable() {
 				public void run() {
 					label_1.setText(label1);
-					txtType.setText("");
 				}
 			});
 		}
@@ -139,80 +135,218 @@ public class GuessANumber implements VillainGame {
 		
 		panel.removeAll();
 		
-		GridBagLayout gbl_panel = new GridBagLayout();
-		gbl_panel.columnWidths = new int[]{600, 0};
-		gbl_panel.rowHeights = new int[]{50, 50, 50, 50, 50, 0};
-		gbl_panel.columnWeights = new double[]{1, Double.MIN_VALUE};
-		gbl_panel.rowWeights = new double[]{1, 2, 2, 2, 2, Double.MIN_VALUE};
-		panel.setLayout(gbl_panel);
+		GridBagLayout gridBagLayout = new GridBagLayout();
+		gridBagLayout.columnWidths = new int[]{0, 0, 0, 0, 0};
+		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0};
+		gridBagLayout.columnWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0};
+		gridBagLayout.rowWeights = new double[]{0.5, 1.0, 1.0, 1.0, 1.0, 0.5};
+		panel.setLayout(gridBagLayout);
+		
+		JLabel lblNewLabel_1 = new JLabel("Guess A Number");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 16));
+		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
+		gbc_lblNewLabel_1.gridwidth = 5;
+		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 0);
+		gbc_lblNewLabel_1.gridx = 0;
+		gbc_lblNewLabel_1.gridy = 0;
+		panel.add(lblNewLabel_1, gbc_lblNewLabel_1);
 		
 		label_1 = new JLabel("");
 		label_1.setHorizontalAlignment(SwingConstants.CENTER);
 		GridBagConstraints gbc_label_1 = new GridBagConstraints();
-		gbc_label_1.fill = GridBagConstraints.BOTH;
+		gbc_label_1.gridwidth = 5;
 		gbc_label_1.insets = new Insets(0, 0, 5, 0);
 		gbc_label_1.gridx = 0;
-		gbc_label_1.gridy = 0;
+		gbc_label_1.gridy = 1;
 		panel.add(label_1, gbc_label_1);
-		
-		txtType = new JTextField();
-		txtType.setHorizontalAlignment(SwingConstants.CENTER);
-		GridBagConstraints gbc_txtType = new GridBagConstraints();
-		gbc_txtType.fill = GridBagConstraints.BOTH;
-		gbc_txtType.insets = new Insets(0, 0, 5, 0);
-		gbc_txtType.gridx = 0;
-		gbc_txtType.gridy = 1;
-		panel.add(txtType, gbc_txtType);
-		txtType.setColumns(10);
 		
 		label_2 = new JLabel("");
 		label_2.setHorizontalAlignment(SwingConstants.CENTER);
 		GridBagConstraints gbc_label_2 = new GridBagConstraints();
-		gbc_label_2.fill = GridBagConstraints.BOTH;
-		gbc_label_2.insets = new Insets(0, 0, 5, 0);
+		gbc_label_2.gridwidth = 5;
+		gbc_label_2.insets = new Insets(0, 0, 5, 5);
 		gbc_label_2.gridx = 0;
 		gbc_label_2.gridy = 2;
 		panel.add(label_2, gbc_label_2);
 		
-		JButton btnNewButton = new JButton("Click to guess");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton button1 = new JButton("1");
+		button1.setFont(new Font("Tahoma", Font.BOLD, 13));
+		GridBagConstraints gbc_button1 = new GridBagConstraints();
+		button1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				synchronized(synchronizer) {
-					//TODO try except
-					try {
-						int temp_guess = Integer.parseInt(txtType.getText());
-						if (temp_guess < 11 && temp_guess > 0) guess = temp_guess;
-						synchronizer.notify();
-					} catch (NumberFormatException f) {
-						// Player is notified to only type integers in the text box
-					}
-					
-					
+					guess = 1;
+					synchronizer.notify();
 				}
 			}
 		});
-		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
-		gbc_btnNewButton.insets = new Insets(0, 0, 5, 0);
-		gbc_btnNewButton.gridx = 0;
-		gbc_btnNewButton.gridy = 3;
-		panel.add(btnNewButton, gbc_btnNewButton);
+		gbc_button1.fill = GridBagConstraints.BOTH;
+		gbc_button1.insets = new Insets(0, 0, 5, 5);
+		gbc_button1.gridx = 0;
+		gbc_button1.gridy = 3;
+		panel.add(button1, gbc_button1);
 		
-		JLabel lblNewLabel_2 = new JLabel("You are allowed 3 guesses");
-		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-		GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
-		gbc_lblNewLabel_2.anchor = GridBagConstraints.NORTH;
-		gbc_lblNewLabel_2.gridx = 0;
-		gbc_lblNewLabel_2.gridy = 4;
-		panel.add(lblNewLabel_2, gbc_lblNewLabel_2);
+		JButton button2 = new JButton("2");
+		button2.setFont(new Font("Tahoma", Font.BOLD, 13));
+		GridBagConstraints gbc_button2 = new GridBagConstraints();
+		button2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				synchronized(synchronizer) {
+					guess = 2;
+					synchronizer.notify();
+				}
+			}
+		});
+		gbc_button2.fill = GridBagConstraints.BOTH;
+		gbc_button2.insets = new Insets(0, 0, 5, 5);
+		gbc_button2.gridx = 1;
+		gbc_button2.gridy = 3;
+		panel.add(button2, gbc_button2);
 		
-		JLabel lblNewLabel = new JLabel("Enter your number and click the button above to guess the number");
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
-		gbc_lblNewLabel.fill = GridBagConstraints.BOTH;
-		gbc_lblNewLabel.gridx = 0;
-		gbc_lblNewLabel.gridy = 4;
-		panel.add(lblNewLabel, gbc_lblNewLabel);
+		JButton button3 = new JButton("3");
+		button3.setFont(new Font("Tahoma", Font.BOLD, 13));
+		GridBagConstraints gbc_button3 = new GridBagConstraints();
+		button3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				synchronized(synchronizer) {
+					guess = 3;
+					synchronizer.notify();
+				}
+			}
+		});
+		gbc_button3.fill = GridBagConstraints.BOTH;
+		gbc_button3.insets = new Insets(0, 0, 5, 5);
+		gbc_button3.gridx = 2;
+		gbc_button3.gridy = 3;
+		panel.add(button3, gbc_button3);
+		
+		JButton button4 = new JButton("4");
+		button4.setFont(new Font("Tahoma", Font.BOLD, 13));
+		GridBagConstraints gbc_button4 = new GridBagConstraints();
+		button4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				synchronized(synchronizer) {
+					guess = 4;
+					synchronizer.notify();
+				}
+			}
+		});
+		gbc_button4.fill = GridBagConstraints.BOTH;
+		gbc_button4.insets = new Insets(0, 0, 5, 5);
+		gbc_button4.gridx = 3;
+		gbc_button4.gridy = 3;
+		panel.add(button4, gbc_button4);
+		
+		JButton button5 = new JButton("5");
+		button5.setFont(new Font("Tahoma", Font.BOLD, 13));
+		GridBagConstraints gbc_button5 = new GridBagConstraints();
+		button5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				synchronized(synchronizer) {
+					guess = 5;
+					synchronizer.notify();
+				}
+			}
+		});
+		gbc_button5.fill = GridBagConstraints.BOTH;
+		gbc_button5.insets = new Insets(0, 0, 5, 0);
+		gbc_button5.gridx = 4;
+		gbc_button5.gridy = 3;
+		panel.add(button5, gbc_button5);
+		
+		JButton button6 = new JButton("6");
+		button6.setFont(new Font("Tahoma", Font.BOLD, 13));
+		GridBagConstraints gbc_button6 = new GridBagConstraints();
+		button6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				synchronized(synchronizer) {
+					guess = 6;
+					synchronizer.notify();
+				}
+			}
+		});
+		gbc_button6.fill = GridBagConstraints.BOTH;
+		gbc_button6.insets = new Insets(0, 0, 5, 5);
+		gbc_button6.gridx = 0;
+		gbc_button6.gridy = 4;
+		panel.add(button6, gbc_button6);
+		
+		JButton button7 = new JButton("7");
+		button7.setFont(new Font("Tahoma", Font.BOLD, 13));
+		GridBagConstraints gbc_button7 = new GridBagConstraints();
+		button7.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				synchronized(synchronizer) {
+					guess = 7;
+					synchronizer.notify();
+				}
+			}
+		});
+		gbc_button7.fill = GridBagConstraints.BOTH;
+		gbc_button7.insets = new Insets(0, 0, 5, 5);
+		gbc_button7.gridx = 1;
+		gbc_button7.gridy = 4;
+		panel.add(button7, gbc_button7);
+		
+		JButton button8 = new JButton("8");
+		button8.setFont(new Font("Tahoma", Font.BOLD, 13));
+		GridBagConstraints gbc_button8 = new GridBagConstraints();
+		button8.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				synchronized(synchronizer) {
+					guess = 8;
+					synchronizer.notify();
+				}
+			}
+		});
+		gbc_button8.fill = GridBagConstraints.BOTH;
+		gbc_button8.insets = new Insets(0, 0, 5, 5);
+		gbc_button8.gridx = 2;
+		gbc_button8.gridy = 4;
+		panel.add(button8, gbc_button8);
+		
+		JButton button9 = new JButton("9");
+		button9.setFont(new Font("Tahoma", Font.BOLD, 13));
+		GridBagConstraints gbc_button9 = new GridBagConstraints();
+		button9.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				synchronized(synchronizer) {
+					guess = 9;
+					synchronizer.notify();
+				}
+			}
+		});
+		gbc_button9.fill = GridBagConstraints.BOTH;
+		gbc_button9.insets = new Insets(0, 0, 5, 5);
+		gbc_button9.gridx = 3;
+		gbc_button9.gridy = 4;
+		panel.add(button9, gbc_button9);
+		
+		JButton button10 = new JButton("10");
+		button10.setFont(new Font("Tahoma", Font.BOLD, 13));
+		GridBagConstraints gbc_button10 = new GridBagConstraints();
+		button10.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				synchronized(synchronizer) {
+					guess = 10;
+					synchronizer.notify();
+				}
+			}
+		});
+		gbc_button10.fill = GridBagConstraints.BOTH;
+		gbc_button10.insets = new Insets(0, 0, 5, 0);
+		gbc_button10.gridx = 4;
+		gbc_button10.gridy = 4;
+		panel.add(button10, gbc_button10);
+		
+		JLabel label_3 = new JLabel("Pick a number from the above");
+		label_3.setHorizontalAlignment(SwingConstants.CENTER);
+		label_3.setFont(new Font("Tahoma", Font.BOLD, 13));
+		GridBagConstraints gbc_label_3 = new GridBagConstraints();
+		gbc_label_3.gridwidth = 5;
+		gbc_label_3.gridx = 0;
+		gbc_label_3.gridy = 5;
+		panel.add(label_3, gbc_label_3);
 		
 		m.updatePanel(panel);
 		
