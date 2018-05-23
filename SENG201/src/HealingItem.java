@@ -19,7 +19,7 @@ public class HealingItem implements Saleable, Selectable {
 	private static final int MAX_HEAL_TIME = 90;
 	private static final int MIN_HEAL_TIME = 20;
 	//Defines how the healing level is multiplied to give the price
-	private static final int PRICE_COEFF = 40;
+	private static final int PRICE_COEFF = 80;
 	//Defines the number of times health is added to the Hero
 	private static final int HEAL_DIVISOR = 4;
 	//Define number of milliseconds in a second
@@ -30,7 +30,7 @@ public class HealingItem implements Saleable, Selectable {
 	//Generate the HealingItem's stats
 	private int heal = (r.nextInt((MAX_HEAL - MIN_HEAL) / HEAL_DIVISOR) * HEAL_DIVISOR + MIN_HEAL);
 	private int time = r.nextInt(MAX_HEAL_TIME - MIN_HEAL_TIME) + MIN_HEAL_TIME;
-	private int price = (heal / time) * PRICE_COEFF;
+	private int price = heal * PRICE_COEFF / time;
 	private int temp_price;
 	private int current_haggling;
 	

@@ -18,6 +18,9 @@ public class Team {
 			(Selectable) new Illusionist(), (Selectable) new Physician(),
 			(Selectable) new Stickler(),(Selectable) new Strongman()};
 	
+	private static final int MAX_HEROS = 3;
+	private static final int MIN_HEROS = 1;
+	
 	private String team_name;
 	
 	//Create arrayList to store the Heros in the Team
@@ -48,7 +51,7 @@ public class Team {
 		team_name = Sget.getUserString();		
 		
 		body = "How many Heros would you like in your team?\n"
-				+ "Please enter an Integer from one to three";
+				+ "Please enter an Integer from " + MIN_HEROS + " to " + MAX_HEROS;
 		
 		Sget.bodyTextSet(body);
 		
@@ -56,10 +59,10 @@ public class Team {
 			try {
 				team_size = Integer.parseInt(Sget.getUserString());
 				
-				if (team_size < 1 || team_size > 3) {
+				if (team_size < MIN_HEROS || team_size > MAX_HEROS) {
 					team_size = 0;
 					JOptionPane.showMessageDialog(m.getFrame(),
-							"Value must be from one to three",
+							"Value must be from " + MIN_HEROS + " to " + MAX_HEROS,
 							"Invalid Input",
 							JOptionPane.INFORMATION_MESSAGE);
 				}
@@ -86,7 +89,7 @@ public class Team {
 		m.updatePanel(Sget);
 		for(int i = 1; i <= heros.size(); i++) {
 			
-			String body = "What would you like the name"
+			String body = "What would you like the name "
 					+ "of your number " + i + " Hero to be?";
 			Sget.bodyTextSet(body);
 			String name = Sget.getUserString();
@@ -120,7 +123,7 @@ public class Team {
 		ItemSelector selector = new ItemSelector(title, HERO_TYPES, false);
 		m.updatePanel(selector);
 		for(int i = 1; i <= team_size; i++) {
-			String body = "What would you like the type"
+			String body = "What would you like the type "
 					+ "of your number " + i + " Hero to be?";
 			
 			selector.descriptionTextSet(body);
