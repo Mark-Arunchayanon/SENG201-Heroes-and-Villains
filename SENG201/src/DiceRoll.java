@@ -177,6 +177,7 @@ public class DiceRoll implements VillainGame {
 		
 		JButton btnNewButton = new JButton("Click to roll the dice");
 		btnNewButton.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				synchronized(synchronizer) {
 					//TODO try except
