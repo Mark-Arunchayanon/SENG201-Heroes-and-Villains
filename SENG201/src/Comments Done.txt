@@ -13,20 +13,20 @@ IllusionBooster - Done
 Illusionist - Done
 InformationPanel - Done
 ItemSelector - Done
-Lair
+Lair - Done
 Location - Done
 Map - Done
 MenuSystem - Done
 PaperScissorsRock - Done
 Physician - Done
 PowerUp - Done
-PowerUpDen
+PowerUpDen - Done
 Saleable - Done
 Selectable - Done
 Shop -
 Stickler - Done
 Strongman - Done
-Team 
+Team - Done
 VillainGame - Done
 
 Most healing items are free

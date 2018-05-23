@@ -1,13 +1,11 @@
 import java.util.Random;
 
-
 /**
  * A location that incorporates a Villain. Allows the user to play the Villain at a game
  * 
- * @author fer25, par116
- *
+ * @author fer25
+ * @author par116
  */
-
 public class Lair implements Location{
 	
 	//Define the amount of damage the Villain does to the Hero on a loss
@@ -77,7 +75,7 @@ public class Lair implements Location{
 			}
 			
 			selected_hero.adjustHealth(-health);
-			
+			// Displays remaining health and whether the hero has died
 			String title = "Failure";
 			String body = selected_hero.getName() + " was defeated by " + villain_name + " and lost " +
 			health + " Health Points. They now have " + selected_hero.getHealth() + " Health Points";
@@ -116,6 +114,12 @@ public class Lair implements Location{
 		
 	}
 	
+	/**
+	 * Displays heroes to be selected
+	 * 
+	 * @param team
+	 * @return Hero selected
+	 */
 	private Hero displayHeroSelect(Team team) {
 		
 		Selectable[] heros = new Selectable[1];

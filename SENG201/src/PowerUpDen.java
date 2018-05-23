@@ -1,10 +1,19 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 
+/**
+ * Allows heroes to use haggling booster and illusion booster 
+ * 
+ * @author fer25
+ * @author par116
+ */
 public class PowerUpDen implements Location {
 	
 	private MenuSystem m;
 
+	/**
+	 * Store the MenuSystem locally on the object construction
+	 * @param m
+	 */
 	public PowerUpDen(MenuSystem m) {
 
 		this.m = m;
@@ -27,7 +36,7 @@ public class PowerUpDen implements Location {
 			}
 			
 		}
-		
+		// If hero is in possession of power ups
 		while (!items.isEmpty()) {
 			
 			Hero selected_hero = selectHero(team);
@@ -39,7 +48,7 @@ public class PowerUpDen implements Location {
 			
 			String title = "Welcome to the Power Up Den";
 			String description = "What healing item would you like to use?";
-			
+			// GUI layout for selection of power ups
 			Selectable[] items_array = new Selectable[1];
 			items_array = items.toArray(items_array);
 			ItemSelector selector = new ItemSelector(title, description, items_array, true);
@@ -61,6 +70,12 @@ public class PowerUpDen implements Location {
 		info.blockTillOK();
 	}
 	
+	/**
+	 * Allow a hero to be selected through GUI and returns the selected hero
+	 * 
+	 * @param team
+	 * @return Selected hero
+	 */
 	private Hero selectHero(Team team) {
 		String title = "Welcome to the Power Up Den";
 		String description = "Which Hero would you like to heal?";

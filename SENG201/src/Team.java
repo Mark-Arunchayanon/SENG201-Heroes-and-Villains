@@ -1,4 +1,3 @@
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
@@ -6,9 +5,9 @@ import java.util.Set;
 import javax.swing.JOptionPane;
 
 /**
- * Creates and manages a Team of Heros.
+ * Creates and manages a Team of Heroes.
  * @author fer25
- * 
+ * @author par116
  */
 public class Team {
 	
@@ -81,6 +80,10 @@ public class Team {
 		
 	}
 	
+	/**
+	 *  Takes the name from input and sets the name for each hero in the team
+	 *  Two heroes cannot share the same name
+	 */
 	private void setNames() {
 		
 		String title = "Setup your Team";

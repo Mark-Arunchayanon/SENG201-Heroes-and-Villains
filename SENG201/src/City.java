@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Random;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -13,12 +14,10 @@ import javax.swing.JTextPane;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
-import javax.swing.BoxLayout;
-import javax.swing.JScrollPane;
-import java.awt.Component;
+
 
 /**
- * Defines the Cities that the game is based around. When a City is created, so to is all the 
+ * Defines the Cities that the game is based around. When a City is created, so is all the 
  * locations and objects within the City.
  * 
  * @author fer25
@@ -27,6 +26,8 @@ import java.awt.Component;
 
 public class City extends JPanel{
 
+	private int PERCENT_CHANCE_CHANGE = 15;
+	
 	private ArrayList<Location> locations = new ArrayList<Location>(4);
 	//Directions is used to randomise which direction goes to which location.
 	private ArrayList<Integer> directions = new ArrayList<Integer>(4);
@@ -56,7 +57,7 @@ public class City extends JPanel{
 			directions.add(i);			
 		}
 		
-		//Shuffle directions to randomise which direction points to which location
+		//Shuffle directions to randomize which direction points to which location
 		Collections.shuffle(directions);
 		
 		while (!lair.checkVillainDefeated() && team.checkHealth()) {
@@ -78,10 +79,23 @@ public class City extends JPanel{
 			if(travel_direction == 4) {
 				displayTeamStatus();
 			} else {			
-				locations.get(travel_direction).travelTo(team, last_city);
+				travel();
 			}
 		}
 		
+	}
+	
+	private void travel() {
+		Random r = new Random();
+		locations.get(travel_direction).travelTo(team, last_city);
+		
+		int ran_chance = r.nextInt(100);
+		ArrayList<Saleable> team_stash = team.getTeamItems();
+		
+		if (ran_chance < PERCENT_CHANCE_CHANGE) {
+			String message = "Unfortunately there was a theif on the loose, one of your items have been stolen";
+			
+		}
 	}
 	
 	/**
