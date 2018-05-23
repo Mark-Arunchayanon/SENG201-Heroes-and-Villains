@@ -136,5 +136,13 @@ public class MenuSystem {
 		
 		return input;
 	}
+	
+	/**
+	 * Returns the frame that MenuSystem uses for the GUI
+	 * @return The GUI frame
+	 */
+	public JFrame getFrame() {
+		return frame;
+	}
 
 }

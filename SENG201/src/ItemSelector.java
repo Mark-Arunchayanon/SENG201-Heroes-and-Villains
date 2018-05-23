@@ -10,6 +10,8 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextPane;
+import javax.swing.SwingUtilities;
+
 import java.awt.Panel;
 import javax.swing.JScrollPane;
 import javax.swing.BoxLayout;
@@ -27,6 +29,7 @@ public class ItemSelector extends JPanel implements ActionListener {
 	
 	ButtonGroup radio_buttons = new ButtonGroup();
 	JTextPane txtpnDescriptor;
+	JTextPane txtpnDescription;
 	
 	public ItemSelector(String title, String description, Selectable[] items) {
 		
@@ -51,7 +54,7 @@ public class ItemSelector extends JPanel implements ActionListener {
 		gbc_txtpnTitle.gridy = 0;
 		add(txtpnTitle, gbc_txtpnTitle);
 		
-		JTextPane txtpnDescription = new JTextPane();
+		txtpnDescription = new JTextPane();
 		txtpnDescription.setText(description);
 		GridBagConstraints gbc_txtpnDescription = new GridBagConstraints();
 		gbc_txtpnDescription.gridwidth = 2;
@@ -168,6 +171,14 @@ public class ItemSelector extends JPanel implements ActionListener {
 		
 		return selected;
 		
+	}
+	
+	public void descriptionTextSet(String text) {
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				txtpnDescription.setText(text);
+			}
+		});
 	}
 
 }

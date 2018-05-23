@@ -3,6 +3,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.swing.JOptionPane;
+
 /**
  * Creates and manages a Team of Heros.
  * @author fer25
@@ -16,11 +18,13 @@ public class Team {
 			(HeroStatSelector) new Illusionist(), (HeroStatSelector) new Physician(),
 			(HeroStatSelector) new Stickler(),(HeroStatSelector) new Strongman()};
 	
+	private String teamName;
+	
 	//Create arrayList to store the Heros in the Team
 	private ArrayList<Hero> heros = new ArrayList<Hero>();
 	
 	//Create variables to store team stats
-	private int team_size;
+	private int team_size = 0;
 	private int cash = 0;
 	private boolean map = false;
 	private boolean PU_map = false;
@@ -37,24 +41,63 @@ public class Team {
 		
 		this.m = m;
 		
-		//Establish the size of the team
-		String message = "How many Heros would you like in your team?";
+		String title = "Setup your Team";
+		String body = "How many Heros would you like in your team?\n"
+				+ "Please enter an Integer from one to three";
 		
-		String[] options = {"One", "Two", "Three"};
+		StringGetPanel Sget = new StringGetPanel(title, body);
+		m.updatePanel(Sget);
 		
-		team_size = m.displayMenu(message, options) + 1;
+		while (team_size == 0) {
+			try {
+				int team_size = Integer.parseInt(Sget.getUserString());
+				
+				if (team_size < 1 || team_size > 3) {
+					team_size =0;
+					JOptionPane.showMessageDialog(m.getFrame(),
+							"Value must be from one to three",
+							"Invalid Input",
+							JOptionPane.INFORMATION_MESSAGE);
+				}
+			} catch (NumberFormatException e){
+				JOptionPane.showMessageDialog(m.getFrame(),
+						"Please enter an integer",
+						"Invalid Input",
+						JOptionPane.INFORMATION_MESSAGE);
+			}
+			
+		}
 		
 		//Fill the stats variables and heros arrayList
 		for (int i = 0; i < team_size; i++) {
 			
 			Hero new_hero = createHero();
 			
-			addHero(new_hero);
+			heros.add(new_hero);
+			
+		}
+		
+		setNames();
+		
+	}
+	
+	private void setNames() {
+		
+		String title = "Setup your Team";
+		StringGetPanel Sget = new StringGetPanel(title);
+		m.updatePanel(Sget);
+		for(int i = 1; i <= heros.size(); i++) {
+			
+			String body = "What would you like the name"
+					+ "of your number " + i + " Hero to be?";
+			Sget.bodyTextSet(body);
+			
+			heros.get(i).setName(Sget.getUserString());
 			
 		}
 		
 	}
-	
+
 	/**
 	 * Queries the user on what type of hero they would like to create
 	 * based on the HERO_TYPES array. Creates the desired Hero and
@@ -63,6 +106,8 @@ public class Team {
 	 * @return The created Hero
 	 */
 	private Hero createHero() {
+		
+		String title = "Setup your Team";
 		
 		//Get user to select what type of hero they desire
 		String message = "What type of hero would you like?";
@@ -92,16 +137,6 @@ public class Team {
 		selected_hero.setName(name);
 		
 		return selected_hero;
-		
-	}
-	
-	/**
-	 * Adds a Hero to the Team's heros ArrayList 
-	 * @param hero The hero to be added
-	 */
-	private void addHero(Hero hero) {		
-		
-		heros.add(hero);
 		
 	}
 	
