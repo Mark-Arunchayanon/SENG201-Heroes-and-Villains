@@ -4,7 +4,7 @@
  * about the Hero object before its creation.
  * 
  * @author fer25
- *
+ * @author par116
  */
 public interface HeroStatSelector {
 

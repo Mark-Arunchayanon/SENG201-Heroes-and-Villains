@@ -118,7 +118,12 @@ public class DiceRoll implements VillainGame {
 			}
 		});
 		
-		
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		// Returns false if the hero wins and true if villain wins	
 		if (player_score == 2) {
 			return false;

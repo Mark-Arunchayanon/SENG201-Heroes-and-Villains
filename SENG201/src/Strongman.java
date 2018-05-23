@@ -46,7 +46,7 @@ public class Strongman implements HeroStatSelector {
 
 	@Override
 	public Hero createHero() {
-
+		// Creates hero with the defines statistics
 		Hero hero = new Hero(TOTAL_HEALTH, ILLUSION, HEALING, HAGGLING);
 		
 		return hero;

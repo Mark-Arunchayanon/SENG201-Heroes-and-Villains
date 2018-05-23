@@ -2,7 +2,7 @@
  * Provides an interface for a game that can be played in a Villains Lair
  * 
  * @author fer25
- *
+ * @author par116
  */
 
 public interface VillainGame {

@@ -112,7 +112,13 @@ public class PaperScissorsRock implements VillainGame {
 			}
 		});
 		
-		// Rteurns false if hero wins, returns true if villain wins
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		// Returns false if hero wins, returns true if villain wins
 		if(player_score == 2) {
 			return false;
 		} else {

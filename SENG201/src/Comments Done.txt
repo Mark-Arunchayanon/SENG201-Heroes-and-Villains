@@ -1,33 +1,33 @@
 City
-Dandy
-Diceroll
-Explorer
+Dandy - Done
+Diceroll - Done
+Explorer - Done
 Game
-Guess a Number
+Guess a Number - Done
 HagglingBooseter
 HealingItem
 Hero
-HeroStatSelector
+HeroStatSelector - Done
 Hospital
 IllusionBooster
-Illusionist
+Illusionist - Done
 InformationPanel
 ItemSelector
 Lair
-Location
+Location - Done
 Map
 MenuSystem
-PaperScissorsRock
-Physician
+PaperScissorsRock - Done
+Physician - Done
 PowerUp
 PowerUpDen
 Saleable
 Selectable
 Shop
-Stickler
-Strongman
+Stickler - Done
+Strongman - Done
 Team
-VillainGame
+VillainGame - Done
 
 Paper Scissors Rock. Wrong person Wins
 Most healing items are free

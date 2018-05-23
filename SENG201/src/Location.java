@@ -3,7 +3,7 @@
  * to from the home base in the centre of the City
  * 
  * @author fer25
- *
+ * @author par116
  */
 public interface Location {
 
