@@ -1,10 +1,5 @@
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
 import java.util.Random;
 
-import javax.swing.JPanel;
-import javax.swing.JTextPane;
 
 /**
  * A location that incorporates a Villain. Allows the user to play the Villain at a game

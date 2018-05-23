@@ -13,16 +13,13 @@ public class Map implements Saleable, PowerUp {
 	//price charged
 	private static final int PRICE_VARIATION = 15;
 	
-	private Random r = new Random();
 	// Create variables to calculate price of map according to hero haggling skill
 	private int price;
 	private int temp_price;
 	private int current_haggling;
 	
-	/**
-	 * Calculates a price for map not taking in account of haggling skill
-	 */
-	public Map() {
+	@Override
+	public void setRandom(Random r) {
 		
 		price = r.nextInt(PRICE_VARIATION * 2) + BASE_PRICE - PRICE_VARIATION;
 		

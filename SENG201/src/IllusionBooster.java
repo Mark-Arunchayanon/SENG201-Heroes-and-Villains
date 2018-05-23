@@ -19,18 +19,14 @@ public class IllusionBooster implements Saleable, PowerUp {
 	//Pre calulation of constants
 	private static final int BOOST_COEFFICIENT = MAX_BOOST - MIN_BOOST;
 	
-	private Random r = new Random();
 	// Create variables for illusion boost price and amount, and for haggling skill
 	private int price;
 	private static int boost;
 	private int temp_price;
 	private int current_haggling;
 	
-	/**
-	 * Calculate the boost amount and the price according to the boost amount
-	 * 
-	 */
-	public IllusionBooster() {
+	@Override
+	public void setRandom(Random r) {
 		
 		boost = r.nextInt(BOOST_COEFFICIENT) + MIN_BOOST;
 		

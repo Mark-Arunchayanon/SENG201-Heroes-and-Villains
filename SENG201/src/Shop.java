@@ -43,8 +43,7 @@ public class Shop implements Location {
 				items.add((Saleable) power_up.newInstance());
 			} catch (InstantiationException | IllegalAccessException e) {
 				// Shouldn't throw error
-				System.out.println(e.getMessage());
-				//e.printStackTrace();
+				e.printStackTrace();
 			}
 			
 		}
@@ -55,6 +54,9 @@ public class Shop implements Location {
 			items.add((Saleable) new HealingItem());
 			
 		}
+		
+		//Provide Saleables a pseudo random number generator to generate prices etc.
+		for (Saleable item : items) item.setRandom(r);
 		
 		Collections.shuffle(items);
 		
