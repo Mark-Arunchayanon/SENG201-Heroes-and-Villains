@@ -5,7 +5,7 @@
  * @author par116
  */
 
-public class Illusionist implements HeroStatSelector {
+public class Illusionist extends HeroStatSelector {
 	
 	// Defining the statistics for each skill
 	private static final int CASH = 90;
@@ -14,27 +14,6 @@ public class Illusionist implements HeroStatSelector {
 	private static final int ILLUSION = 130;
 	private static final int HAGGLING = 100;
 	private static final boolean MAP = false;
-	
-	@Override
-	public String getDescriptor() {
-		
-		// Description of the hero
-		String s = "If you can put up with the constant vanishing, Illusionists are good to have arround.\n"
-				+ "They have an uncanny knack to change the outcome of a game that already seems lost.\n"
-				+ "Their Illusion stat gets a bonus. They all seem to take their illusions too seriously\n"
-				+ "however and tend to become a menace to themselves and others. Their Health and\n"
-				+ "Healing stats take a hit. Because of this they are constantly having to pay to get\n"
-				+ "themselves fixed. Their Cash takes a hit\n"
-				+ "Amount of cash: $" + CASH
-				+ "\nTotal Health: "+ TOTAL_HEALTH
-				+ "\nHealing Skill: " + HEALING
-				+ "\nIllusion Skill: " + ILLUSION
-				+ "\nHaggling Skill: " + HAGGLING
-				+ "\nOwns a Map: " + MAP;
-		
-		return s;
-		
-	}
 	
 	@Override
 	public int getCash() {
@@ -47,17 +26,28 @@ public class Illusionist implements HeroStatSelector {
 	}
 
 	@Override
-	public Hero createHero() {
-		// Creates hero with the defines statistics
-		Hero hero = new Hero(TOTAL_HEALTH, ILLUSION, HEALING, HAGGLING);
-		
-		return hero;
-		
+	public String getTitle() {
+		return "Illusionist";
 	}
 
 	@Override
-	public String getTitle() {
-		return "Illusionist";
+	protected int getHaggling() {
+		return HAGGLING;
+	}
+
+	@Override
+	protected int getHealing() {
+		return HEALING;
+	}
+
+	@Override
+	protected int getIllusion() {
+		return ILLUSION;
+	}
+
+	@Override
+	protected int getTotalHealth() {
+		return TOTAL_HEALTH;
 	}
 	
 }

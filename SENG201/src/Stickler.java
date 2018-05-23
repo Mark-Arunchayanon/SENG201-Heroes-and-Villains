@@ -5,7 +5,7 @@
  * @author par116
  */
 
-public class Stickler implements HeroStatSelector {
+public class Stickler extends HeroStatSelector {
 	
 	// Defining the statistics for each skill
 	private static final int CASH = 90;
@@ -14,25 +14,6 @@ public class Stickler implements HeroStatSelector {
 	private static final int ILLUSION = 90;
 	private static final int HAGGLING = 130;
 	private static final boolean MAP = false;
-	
-	@Override
-	public String getDescriptor() {
-		
-		// Description of the hero
-		String s = "If you find yourself trying to survive with only $2 fried rice from The Wok, a Stickler\n"
-				+ "will definately become your best friend. A Stickler will haggle the price down low enough \n"
-				+ "that you can afford it with minimum wage part time job. Being skilled in haggling does not \n"
-				+ "mean that Stickler is a millionare. Healing and illusion abilities also take a hit\n"
-				+ "Amount of cash: $" + CASH
-				+ "\nTotal Health: "+ TOTAL_HEALTH
-				+ "\nHealing Skill: " + HEALING
-				+ "\nIllusion Skill: " + ILLUSION
-				+ "\nHaggling Skill: " + HAGGLING
-				+ "\nOwns a Map: " + MAP;
-		
-		return s;
-		
-	}
 	
 	@Override
 	public int getCash() {
@@ -45,17 +26,28 @@ public class Stickler implements HeroStatSelector {
 	}
 
 	@Override
-	public Hero createHero() {
-		// Creates hero with the defines statistics
-		Hero hero = new Hero(TOTAL_HEALTH, ILLUSION, HEALING, HAGGLING);
-		
-		return hero;
-		
+	public String getTitle() {
+		return "Stickler";
 	}
 
 	@Override
-	public String getTitle() {
-		return "Stickler";
+	protected int getHaggling() {
+		return HAGGLING;
+	}
+
+	@Override
+	protected int getHealing() {
+		return HEALING;
+	}
+
+	@Override
+	protected int getIllusion() {
+		return ILLUSION;
+	}
+
+	@Override
+	protected int getTotalHealth() {
+		return TOTAL_HEALTH;
 	}
 	
 }
