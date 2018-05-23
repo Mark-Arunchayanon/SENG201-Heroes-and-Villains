@@ -1,34 +1,37 @@
-City
+City -
 Dandy - Done
 Diceroll - Done
 Explorer - Done
 Game
 Guess a Number - Done
-HagglingBooseter
-HealingItem
-Hero
+HagglingBooster - Done
+HealingItem -
+Hero -
 HeroStatSelector - Done
-Hospital
-IllusionBooster
+Hospital -
+IllusionBooster -
 Illusionist - Done
-InformationPanel
-ItemSelector
+InformationPanel -
+ItemSelector -
 Lair
 Location - Done
-Map
-MenuSystem
+Map -
+MenuSystem -
 PaperScissorsRock - Done
 Physician - Done
-PowerUp
+PowerUp -
 PowerUpDen
-Saleable
-Selectable
-Shop
+Saleable -
+Selectable -
+Shop -
 Stickler - Done
 Strongman - Done
-Team
+Team -
 VillainGame - Done
 
 Paper Scissors Rock. Wrong person Wins
 Most healing items are free
 All items seem to have the same random boost
+Reward for beating villain
+Stealing a gift from stash of items
+Healing stat

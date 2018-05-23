@@ -41,6 +41,10 @@ public class GuessANumber implements VillainGame {
 	
 	private JTextField txtType;
 	
+	/**
+	 * store the MenuSystem locally on the object construction
+	 * @param m
+	 */
 	public GuessANumber(MenuSystem m) {
 		this.m = m;		
 	}

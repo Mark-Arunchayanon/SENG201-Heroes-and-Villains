@@ -39,6 +39,10 @@ public class PaperScissorsRock implements VillainGame {
 	private MenuSystem m;
 	private int player_choice;
 	
+	/**
+	 * store the MenuSystem locally on the object construction
+	 * @param m
+	 */
 	public PaperScissorsRock(MenuSystem m) {
 		this.m = m;
 	}
@@ -51,7 +55,7 @@ public class PaperScissorsRock implements VillainGame {
 		int player_score = 0, villain_score = 0;
 		int illusion = playing_hero.getIllusion();
 		
-		// List of the optionc to choose from
+		// List of the options to choose from
 		String[] options = {"Paper", "Scissors", "Rock"};
 		
 		while(player_score < 2 && villain_score < 2) {

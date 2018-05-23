@@ -3,7 +3,7 @@ import java.util.Random;
 /**
  * Defines a PowerUp object that increases a Hero's haggling stat
  * @author fer25
- *
+ * @author par116
  */
 public class HagglingBooster implements Saleable, PowerUp {
 	
@@ -16,16 +16,19 @@ public class HagglingBooster implements Saleable, PowerUp {
 	//price charged
 	private static final int PRICE_VARIATION = 15;
 	
-	//Pre calulation of constants
+	//Pre calculation of constants
 	private static final int BOOST_COEFFICIENT = MAX_BOOST - MIN_BOOST;
 	
 	private Random r = new Random();
-	
+	// Create variables haggling boost statistics and hero haggling skill
 	private int price;
 	private static int boost;
 	private int temp_price;
 	private int current_haggling;
 	
+	/**
+	 * Calculates and defines the price and boost for Haggling Booster
+	 */
 	public HagglingBooster() {
 		
 		boost = r.nextInt(BOOST_COEFFICIENT) + MIN_BOOST;
@@ -38,7 +41,7 @@ public class HagglingBooster implements Saleable, PowerUp {
 
 	@Override
 	public void applyBonus(Team team, Hero hero) {
-		
+		// Apply boost
 		hero.adjustPUHaggling(boost);
 
 	}
@@ -63,6 +66,7 @@ public class HagglingBooster implements Saleable, PowerUp {
 
 	@Override
 	public String getDescriptor() {
+		// Calculate price according to the current hero customer's haggling skill
 		temp_price = (int) Math.round(price * 100 / current_haggling);
 		
 		String s = "Haggling Booster\nA Power-Up that increases a Hero's Haggling Stat\n"

@@ -8,9 +8,8 @@ import javax.swing.SwingUtilities;
 /**
  * Defines a Saleable object that has the ability to restore health to a Hero.
  * 
- * 
  * @author fer25
- *
+ * @author par116
  */
 public class HealingItem implements Saleable, Selectable {
 
@@ -23,7 +22,7 @@ public class HealingItem implements Saleable, Selectable {
 	private static final int PRICE_COEFF = 40;
 	//Defines the number of times health is added to the Hero
 	private static final int HEAL_DIVISOR = 4;
-	//Define number of miliseconds in a second
+	//Define number of milliseconds in a second
 	private static final int S_TO_MILIS = 1000;
 	
 	private Random r = new Random();
@@ -68,7 +67,6 @@ public class HealingItem implements Saleable, Selectable {
 				
 				//Heal Hero
 				hero.adjustHealth(heal / HEAL_DIVISOR);
-				System.out.println(hero.getHealth());///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////Change
 				
 				//Check to see if healing complete
 				if (elapsed_time >= time * S_TO_MILIS) {

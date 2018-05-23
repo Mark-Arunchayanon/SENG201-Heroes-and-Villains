@@ -40,6 +40,10 @@ public class DiceRoll implements VillainGame {
 	
 	private MenuSystem m;
 	
+	/**
+	 * store the MenuSystem locally on the object construction
+	 * @param m
+	 */
 	public DiceRoll(MenuSystem m) {
 		this.m = m;
 	}
