@@ -126,7 +126,7 @@ public class Lair implements Location{
 		Selectable[] heros = new Selectable[1];
 		heros = team.getHeros().toArray(heros);
 		
-		ItemSelector selector = new ItemSelector(villain_taunt, "Select a hero", heros);
+		ItemSelector selector = new ItemSelector(villain_taunt, "Select a hero", heros, true);
 		
 		m.updatePanel(selector);
 		

@@ -60,7 +60,7 @@ public class Hospital extends JPanel implements Location{
 			
 			Selectable[] items_array = new Selectable[1];
 			items_array = items.toArray(items_array);
-			ItemSelector selector = new ItemSelector(title, description, items_array);
+			ItemSelector selector = new ItemSelector(title, description, items_array, true);
 			left_panel = selector;
 			displayHospital();
 			
@@ -172,7 +172,7 @@ public class Hospital extends JPanel implements Location{
 		
 		Selectable[] heros = new Selectable[1];
 		heros = team.getHeros().toArray(heros);
-		ItemSelector selector = new ItemSelector(title, description, heros);
+		ItemSelector selector = new ItemSelector(title, description, heros, true);
 		left_panel = selector;
 		displayHospital();
 		

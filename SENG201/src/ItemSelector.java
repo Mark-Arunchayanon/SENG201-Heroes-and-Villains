@@ -31,11 +31,14 @@ public class ItemSelector extends JPanel implements ActionListener {
 	JTextPane txtpnDescriptor;
 	JTextPane txtpnDescription;
 	
-	public ItemSelector(String title, Selectable[] items) {
-		this(title, "", items);
+	public ItemSelector(String title, Selectable[] items, boolean cancelable) {
+		this(title, "", items, cancelable);
 	}
 	
-	public ItemSelector(String title, String description, Selectable[] items) {
+	/**
+	 * @wbp.parser.constructor
+	 */
+	public ItemSelector(String title, String description, Selectable[] items, boolean cancelable) {
 		
 		this.items = items;
 		
@@ -108,18 +111,21 @@ public class ItemSelector extends JPanel implements ActionListener {
 		btnSelect.setActionCommand(select_string);
 		btnSelect.addActionListener(this);
 		GridBagConstraints gbc_btnSelect = new GridBagConstraints();
+		if(!cancelable) gbc_btnSelect.gridwidth = 2;
 		gbc_btnSelect.insets = new Insets(0, 0, 0, 5);
 		gbc_btnSelect.gridx = 0;
 		gbc_btnSelect.gridy = 3;
 		add(btnSelect, gbc_btnSelect);
 		
-		JButton btnCancel = new JButton(cancel_string);
-		btnCancel.setActionCommand(cancel_string);
-		btnCancel.addActionListener(this);
-		GridBagConstraints gbc_btnCancel = new GridBagConstraints();
-		gbc_btnCancel.gridx = 1;
-		gbc_btnCancel.gridy = 3;
-		add(btnCancel, gbc_btnCancel);
+		if(cancelable) {
+			JButton btnCancel = new JButton(cancel_string);
+			btnCancel.setActionCommand(cancel_string);
+			btnCancel.addActionListener(this);
+			GridBagConstraints gbc_btnCancel = new GridBagConstraints();
+			gbc_btnCancel.gridx = 1;
+			gbc_btnCancel.gridy = 3;
+			add(btnCancel, gbc_btnCancel);
+		}
 		
 	}
 

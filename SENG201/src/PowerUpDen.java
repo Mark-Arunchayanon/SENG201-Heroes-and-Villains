@@ -42,7 +42,7 @@ public class PowerUpDen implements Location {
 			
 			Selectable[] items_array = new Selectable[1];
 			items_array = items.toArray(items_array);
-			ItemSelector selector = new ItemSelector(title, description, items_array);
+			ItemSelector selector = new ItemSelector(title, description, items_array, true);
 			m.updatePanel(selector);
 			
 			PowerUp selected_item = (PowerUp) selector.getSelectedObject();
@@ -67,7 +67,7 @@ public class PowerUpDen implements Location {
 		
 		Selectable[] heros = new Selectable[1];
 		heros = team.getHeros().toArray(heros);
-		ItemSelector selector = new ItemSelector(title, description, heros);
+		ItemSelector selector = new ItemSelector(title, description, heros, true);
 		m.updatePanel(selector);
 		
 		Hero selected_hero = (Hero) selector.getSelectedObject();

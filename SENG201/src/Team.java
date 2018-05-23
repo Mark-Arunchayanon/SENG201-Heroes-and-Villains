@@ -18,7 +18,7 @@ public class Team {
 			(Selectable) new Illusionist(), (Selectable) new Physician(),
 			(Selectable) new Stickler(),(Selectable) new Strongman()};
 	
-	private String teamName;
+	private String team_name;
 	
 	//Create arrayList to store the Heros in the Team
 	private ArrayList<Hero> heros = new ArrayList<Hero>();
@@ -42,11 +42,15 @@ public class Team {
 		this.m = m;
 		
 		String title = "Setup your Team";
-		String body = "How many Heros would you like in your team?\n"
-				+ "Please enter an Integer from one to three";
-		
+		String body = "What will your Team's name be?";
 		StringGetPanel Sget = new StringGetPanel(title, body);
 		m.updatePanel(Sget);
+		team_name = Sget.getUserString();		
+		
+		body = "How many Heros would you like in your team?\n"
+				+ "Please enter an Integer from one to three";
+		
+		Sget.bodyTextSet(body);
 		
 		while (team_size == 0) {
 			try {
@@ -77,6 +81,7 @@ public class Team {
 	private void setNames() {
 		
 		String title = "Setup your Team";
+		
 		StringGetPanel Sget = new StringGetPanel(title);
 		m.updatePanel(Sget);
 		for(int i = 1; i <= heros.size(); i++) {
@@ -112,7 +117,7 @@ public class Team {
 	 */
 	private void createHeros() {
 		String title = "Setup your Team";
-		ItemSelector selector = new ItemSelector(title, HERO_TYPES);
+		ItemSelector selector = new ItemSelector(title, HERO_TYPES, false);
 		m.updatePanel(selector);
 		for(int i = 1; i <= team_size; i++) {
 			String body = "What would you like the type"
