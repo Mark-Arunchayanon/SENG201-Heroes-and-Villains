@@ -2,7 +2,7 @@ City -
 Dandy - Done
 Diceroll - Done
 Explorer - Done
-Game
+Game - Done
 Guess a Number - Done
 HagglingBooster - Done
 HealingItem - Done
@@ -12,17 +12,17 @@ Hospital - Done
 IllusionBooster - Done
 Illusionist - Done
 InformationPanel - Done
-ItemSelector -
+ItemSelector - Done
 Lair
 Location - Done
 Map - Done
-MenuSystem -
+MenuSystem - Done
 PaperScissorsRock - Done
 Physician - Done
 PowerUp - Done
 PowerUpDen
-Saleable -
-Selectable -
+Saleable - Done
+Selectable - Done
 Shop -
 Stickler - Done
 Strongman - Done

@@ -3,7 +3,7 @@
  * in the game shop
  * 
  * @author fer25
- *
+ * @author par116
  */
 public interface Saleable extends Selectable {
 

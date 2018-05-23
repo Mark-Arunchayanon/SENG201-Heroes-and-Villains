@@ -16,11 +16,17 @@ import java.awt.Panel;
 import javax.swing.JScrollPane;
 import javax.swing.BoxLayout;
 
+/**
+ * Provides a GUI interface for selecting items that extends selectable
+ * 
+ * @author fer25
+ * @author par116
+ */
 public class ItemSelector extends JPanel implements ActionListener {
-	
+	// Define string for buttons
 	private String select_string = "Select";
 	private String cancel_string = "Cancel";
-	
+	// Create a list for selectable items
 	private Selectable[] items;
 	
 	private int selected = -2;
@@ -149,6 +155,11 @@ public class ItemSelector extends JPanel implements ActionListener {
 			
 	}
 	
+	/**
+	 * Waits for an item to be selected and returns the selected item
+	 * 
+	 * @return Selectable item
+	 */
 	public Selectable getSelectedObject() {
 		
 		synchronized(synchronizer) 	{		
@@ -168,6 +179,11 @@ public class ItemSelector extends JPanel implements ActionListener {
 		
 	}
 	
+	/**
+	 * Waits for item to be selected and returns the item index from a list
+	 * 
+	 * @return Index of the selected item
+	 */
 	public int getSelectedIndex() {
 		
 		synchronized(synchronizer) 	{		
@@ -182,9 +198,14 @@ public class ItemSelector extends JPanel implements ActionListener {
 		return selected;
 		
 	}
-	
+	/**
+	 * Sets the instruction line to the text parameter
+	 * 
+	 * @param text
+	 */
 	public void descriptionTextSet(String text) {
 		SwingUtilities.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				txtpnDescription.setText(text);
 			}

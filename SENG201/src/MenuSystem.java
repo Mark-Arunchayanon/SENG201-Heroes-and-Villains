@@ -1,6 +1,3 @@
-import java.util.InputMismatchException;
-import java.util.Scanner;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
@@ -9,10 +6,10 @@ import javax.swing.SwingUtilities;
  * Provides functionality for a simple number based menu system
  * 
  * @author fer25
- *
+ * @author par116
  */
 public class MenuSystem {
-	
+	//
 	private static final JFrame frame = new JFrame("Heros Game");
 	
 	public MenuSystem() {
@@ -36,9 +33,13 @@ public class MenuSystem {
 	public void updatePanel(JPanel panel) {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
+				// Remove current GUI content
 				frame.getContentPane().removeAll();
+				// Place new GUI content
 				frame.getContentPane().add(panel);
+				// Recalculates the layout of the components on the panel
 				frame.revalidate();
+				// Removes artifacts from previous GUI
 				frame.repaint();
 			}			
 		});
