@@ -3,7 +3,7 @@ import java.util.Random;
 /**
  * Defines a PowerUp object that provides the team with a map
  * @author fer25
- *
+ * @author par116
  */
 public class Map implements Saleable, PowerUp {
 	
@@ -14,11 +14,14 @@ public class Map implements Saleable, PowerUp {
 	private static final int PRICE_VARIATION = 15;
 	
 	private Random r = new Random();
-	
+	// Create variables to calculate price of map according to hero haggling skill
 	private int price;
 	private int temp_price;
 	private int current_haggling;
 	
+	/**
+	 * Calculates a price for map not taking in account of haggling skill
+	 */
 	public Map() {
 		
 		price = r.nextInt(PRICE_VARIATION * 2) + BASE_PRICE - PRICE_VARIATION;

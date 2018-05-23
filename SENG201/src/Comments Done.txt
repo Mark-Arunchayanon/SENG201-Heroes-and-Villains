@@ -15,7 +15,7 @@ InformationPanel - Done
 ItemSelector -
 Lair
 Location - Done
-Map -
+Map - Done
 MenuSystem -
 PaperScissorsRock - Done
 Physician - Done
@@ -34,3 +34,6 @@ All items seem to have the same random boost
 Reward for beating villain
 Stealing a gift from stash of items
 Healing stat
+map needs to disappear next city
+health booster disappearing between cities
+Random int change
