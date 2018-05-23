@@ -90,7 +90,7 @@ public class Hero implements Selectable {
 	 */
 	public String getStats() {
 		
-		String s = "Current Stats: \nHealth: ";
+		String s = "Health: ";
 		s += health;
 		s += "\nIllusion Skill: ";
 		s += (illusion + pu_illusion);

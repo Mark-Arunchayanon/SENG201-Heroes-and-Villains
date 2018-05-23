@@ -118,7 +118,7 @@ public class Shop implements Location {
 		
 		String title = "Welcome to the Shop";
 		String description = "What would " + selected_hero.getName() +
-				" like to purchase?.\nYou have " + team.getCash() + "$";
+				" like to purchase?.\nYou have $" + team.getCash();
 		
 		Selectable[] items_array = new Selectable[1];
 		items_array = items.toArray(items_array);

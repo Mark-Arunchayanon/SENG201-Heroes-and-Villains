@@ -28,70 +28,84 @@ public class PowerUpDen implements Location {
 			
 		}
 		
-		m.displayMessage("Welcome to the Power Up Den");
-		
-		String[] hero_ids = team.heroIdentifiers();
-		
 		while (!items.isEmpty()) {
 			
-			Hero selected_hero;
+			Hero selected_hero = selectHero(team);
 		
-			if(hero_ids.length > 1) {
-				
-				String message = "What Hero would you like to apply a Power Up to?";
-				
-				String [] options = Arrays.copyOf(hero_ids, hero_ids.length + 1);
-				
-				options[options.length - 1] = "Leave the Power Up Den";
-				
-				int selected = m.displayMenu(message, options);
-				
-				if (selected == options.length - 1) {
-					return;
-				}
-				
-				selected_hero = team.getHero(selected);
-				
-			} else {
-				
-				String message = "Would you like to apply a Power Up?";
-				String [] options = {"Yes", "No I would like to travel back to my Home Base"};
-				
-				int selected = m.displayMenu(message, options);
-				
-				if (selected == 1) {
-					return;
-				}
-				
-				selected_hero  = team.getHero(0);
-				
-			}
-						
-			String message = "What Power Up would you like to apply to " + selected_hero.getName();
-			
-			String[] options = new String[items.size() + 1];
-			
-			for (int i = 0; i < items.size(); i++) {
-				
-				options[i] = items.get(i).getApplicationDescriptor();
-				
+			//User want to return to Home Base
+			if (selected_hero == null) {
+				return;
 			}
 			
-			options[options.length - 1] = "Actually, " + selected_hero.getName() + " doesn't need a Power Up";
+			String title = "Welcome to the Power Up Den";
+			String description = "What healing item would you like to use?";
 			
-			int selected  = m.displayMenu(message, options);
+			Selectable[] items_array = new Selectable[1];
+			items_array = items.toArray(items_array);
+			ItemSelector selector = new ItemSelector(title, description, items_array);
+			m.updatePanel(selector);
 			
-			if (selected < options.length - 1) {
-				
-				items.get(selected).applyBonus(team, selected_hero);
-				all_items.remove((Saleable) items.get(selected));
-				items.remove(selected);
-				
+			PowerUp selected_item = (PowerUp) selector.getSelectedObject();
+			
+			if (selected_item == null); //Do nothing, Application cancelled
+			else {
+				applyItem(selected_hero, team, selected_item, all_items, items);
 			}
 			
 		}
 		
-		m.displayMessage("You do not have any Power Ups to apply");
+		String title = "If you get a Job, maybe you could afford some Power Ups";
+		String body = "You do not have any Power Ups to apply";
+		InformationPanel info = new InformationPanel(title, body);
+		m.updatePanel(info);
+		info.blockTillOK();
+	}
+	
+	private Hero selectHero(Team team) {
+		String title = "Welcome to the Power Up Den";
+		String description = "Which Hero would you like to heal?";
+		
+		Selectable[] heros = new Selectable[1];
+		heros = team.getHeros().toArray(heros);
+		ItemSelector selector = new ItemSelector(title, description, heros);
+		m.updatePanel(selector);
+		
+		Hero selected_hero = (Hero) selector.getSelectedObject();
+		
+		return selected_hero;
+	}
+	
+	/**
+	 * Applies selected_item to selected_hero and removes selected_item from
+	 * all_items and items
+	 * @param selected_hero The Hero to have the HealingItem applied to
+	 * @param selected_item The HealingItem to apply to the Hero
+	 * @param all_items The Team's inventory
+	 * @param items The Hospital's inventory of the Team's HealingItems
+	 */
+	private void applyItem(Hero selected_hero, Team team, PowerUp selected_item,
+			ArrayList<Saleable> all_items, ArrayList<PowerUp> items) {
+		
+		selected_item.applyBonus(team, selected_hero);
+		//Remove the item from the Team's inventory
+		all_items.remove((Saleable) selected_item);
+		items.remove(selected_item);
+		
+		String title;
+		String body;
+		//Inform the user that the action has been completed
+		if (selected_item instanceof Map) {
+			title = "Your team now owns a map of the current City";
+			body = "The Map powerup has been applied";
+		} else {
+			title = "The Power Up has been applied";
+			body = "The " + selected_item.getTitle() + " has been applied to "
+			+ selected_hero.getName() + ".\n Their new stats are:\n\n" + selected_hero.getStats();
+		}
+		
+		InformationPanel info = new InformationPanel(title, body);
+		m.updatePanel(info);
+		info.blockTillOK();
 		
 	}
 

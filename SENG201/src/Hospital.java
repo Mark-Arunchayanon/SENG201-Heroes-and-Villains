@@ -48,7 +48,7 @@ public class Hospital extends JPanel implements Location{
 		//Allow healing items to be applied while the Team has some in their inventory
 		while (!items.isEmpty()) {
 			
-			Hero selected_hero = selectHero(team);
+			Hero selected_hero = selectHero();
 			
 			//User want to return to Home Base
 			if (selected_hero == null) {
@@ -166,7 +166,7 @@ public class Hospital extends JPanel implements Location{
 		
 	}
 	
-	private Hero selectHero(Team team) {
+	private Hero selectHero() {
 		String title = "Welcome to the Hospital";
 		String description = "Which Hero would you like to heal?";
 		
