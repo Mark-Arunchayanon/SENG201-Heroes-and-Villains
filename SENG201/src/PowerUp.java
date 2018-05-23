@@ -4,7 +4,7 @@
  * PowerUpDen
  * 
  * @author fer25
- *
+ * @author par116
  */
 public interface PowerUp extends Selectable {
 

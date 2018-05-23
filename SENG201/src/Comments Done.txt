@@ -19,7 +19,7 @@ Map - Done
 MenuSystem -
 PaperScissorsRock - Done
 Physician - Done
-PowerUp -
+PowerUp - Done
 PowerUpDen
 Saleable -
 Selectable -
