@@ -25,12 +25,14 @@ public class HealingItem implements Saleable, Selectable {
 	//Define number of milliseconds in a second
 	private static final int S_TO_MILIS = 1000;
 	
-	private Random r = new Random();
+	//Calculate constants
+	private static final int HEAL_COEFFICIENT = (MAX_HEAL - MIN_HEAL)/HEAL_DIVISOR;
+	private static final int TIME_COEFFICIENT = MAX_HEAL_TIME - MIN_HEAL_TIME;
 	
 	//Generate the HealingItem's stats
-	private int heal = (r.nextInt((MAX_HEAL - MIN_HEAL) / HEAL_DIVISOR) * HEAL_DIVISOR + MIN_HEAL);
-	private int time = r.nextInt(MAX_HEAL_TIME - MIN_HEAL_TIME) + MIN_HEAL_TIME;
-	private int price = heal * PRICE_COEFF / time;
+	private int heal;
+	private int time;
+	private int price;
 	private int temp_price;
 	private int current_haggling;
 	
@@ -79,6 +81,13 @@ public class HealingItem implements Saleable, Selectable {
 		}
 		
 	};
+	
+	@Override
+	public void setRandom(Random r) {		
+		heal = r.nextInt(HEAL_COEFFICIENT) * HEAL_DIVISOR + MIN_HEAL;
+		time = r.nextInt(TIME_COEFFICIENT) + MIN_HEAL_TIME;
+		price = heal * PRICE_COEFF / time;
+	}
 
 	@Override
 	public int getPrice() {

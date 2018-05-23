@@ -18,23 +18,18 @@ public class HagglingBooster implements Saleable, PowerUp {
 	
 	//Pre calculation of constants
 	private static final int BOOST_COEFFICIENT = MAX_BOOST - MIN_BOOST;
-	
-	private Random r = new Random();
+
 	// Create variables haggling boost statistics and hero haggling skill
 	private int price;
 	private static int boost;
 	private int temp_price;
 	private int current_haggling;
 	
-	/**
-	 * Calculates and defines the price and boost for Haggling Booster
-	 */
-	public HagglingBooster() {
-		
+	@Override
+	public void setRandom(Random r) {		
 		boost = r.nextInt(BOOST_COEFFICIENT) + MIN_BOOST;
 		
-		price = PRICE_COEFFICIENT * boost;
-		
+		price = PRICE_COEFFICIENT * boost;		
 		price += r.nextInt(PRICE_VARIATION * 2) + price - PRICE_VARIATION;
 		
 	}

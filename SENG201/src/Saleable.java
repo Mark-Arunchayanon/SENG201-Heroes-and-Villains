@@ -1,3 +1,5 @@
+import java.util.Random;
+
 /**
  * Provides an interface to allow the product to be purchased
  * in the game shop
@@ -21,4 +23,12 @@ public interface Saleable extends Selectable {
 	 */
 	public int getPrice();
 	
+	/**
+	 * Provides a sudo random number generator to the object.
+	 * This means that the same generator can be used for all object creations
+	 * as if multiple new Random object are created in quick succession they
+	 * all tend to produce the same first few numbers
+	 * @param The Random object to be used by the Saleable
+	 */
+	public void setRandom(Random r);
 }
