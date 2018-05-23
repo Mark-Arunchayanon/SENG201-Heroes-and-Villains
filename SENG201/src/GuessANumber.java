@@ -11,15 +11,25 @@ import java.awt.Font;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
-
+/**
+ * This is a game called Guess a Number, guess the correct number to win
+ * Numbers range from 1-10 and it is best out three games
+ * 
+ * @author fer25
+ * @author par116
+ */
 public class GuessANumber implements VillainGame {
 	
-	private Random num = new Random();
-	private JPanel panel = new JPanel();	
+	// Variables to calculate the chance of illusion skill working	
 	private static final int MAX_VAL = 1000;
 	private static final int CHANCE_VAL = 70000;
+	// Create new class objects
+	private Random num = new Random();
+	private JPanel panel = new JPanel();
+	
 	private final int VILLAIN_NUM = num.nextInt(10);
 	private int guess = -1;
+	
 	private JLabel label_1;
 	private JLabel label_2;
 	private String label1;
@@ -39,6 +49,7 @@ public class GuessANumber implements VillainGame {
 	public boolean play(String villain_name, Hero playing_hero) {
 		// TODO Auto-generated method stub
 		
+		// Calls a method to setup GUI panel
 		DisplayGame();
 		
 		boolean not_finish = true;
@@ -46,13 +57,8 @@ public class GuessANumber implements VillainGame {
 		int villian_num = VILLAIN_NUM;
 		int illusion = playing_hero.getIllusion();
 		
-		
-		//m.displayMessage("You are allowed 3 guesses");
-		
-		//String[] options = {"One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten"};
-		
 		while (not_finish && num_guesses != 0) {
-			
+			// Waits for button to be pressed to continue the loop
 			synchronized(synchronizer) {
 				try {
 					synchronizer.wait();
@@ -63,7 +69,7 @@ public class GuessANumber implements VillainGame {
 			}
 			
 			num_guesses--;
-			
+			// Displays whether the number was correct or that the number is lower or higher
 			if (guess == villian_num) {
 				label1 = playing_hero.getName() + " guessed the correct number!";
 				not_finish = false;
@@ -81,10 +87,11 @@ public class GuessANumber implements VillainGame {
 				}
 			});
 		}
-		
+		// Calculating the chance of illusion working
 		int ran_chance = num.nextInt(MAX_VAL);
 		int win_chance = CHANCE_VAL / illusion;
 		
+		// Sets labels to display the winner and loser
 		if (not_finish == false) {
 			label1 = "Congratualtions. " + playing_hero.getName() + " beat " + villain_name;
 		} else {
@@ -101,6 +108,7 @@ public class GuessANumber implements VillainGame {
 			}
 		});
 		
+		// Returns false if hero wins and false if villain wins
 		if (not_finish == false) {
 			return false;
 		} else {
@@ -113,6 +121,10 @@ public class GuessANumber implements VillainGame {
 		
 	}
 
+	/**
+	 * Creates a panel with the components and actions needed for the game and updates the panel
+	 * Resets the panel this method is called
+	 */
 	private void DisplayGame() {
 		
 		panel.removeAll();

@@ -11,20 +11,31 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Font;
 import javax.swing.JButton;
-
+/**
+ * This is a game called Paper Scissors Rock, rock beats scissors,
+ * scissors beats paper and paper beats rock
+ * 3 Options to choose from, paper scissors or rock
+ * 
+ * @author fer25
+ * @author par116
+ */
 public class PaperScissorsRock implements VillainGame {
-
+	// Variables to calculate the chance of illusion skill working
 	private static final int MAX_VAL = 1000;
 	private static final int CHANCE_VAL = 70000;
+	// Create new class objects
 	private Random r = new Random();
 	private Object synchronizer = new Object();
 	private JPanel panel = new JPanel();
+	// Creating string variables for labels
 	private String label2;
 	private String label3;
 	private String label4;
+	// Creating labels for GUI panel
 	private JLabel label_2;
 	private JLabel label_3;
 	private JLabel label_4;
+	
 	private MenuSystem m;
 	private int player_choice;
 	
@@ -34,16 +45,17 @@ public class PaperScissorsRock implements VillainGame {
 
 	@Override
 	public boolean play(String villain_name, Hero playing_hero) {
-		System.out.print("d");
+		// Calls a method to setup GUI panel
 		DisplayGame();
-		System.out.print("done");
+		// Variables for hero and villain score, and hero illusion skill
 		int player_score = 0, villain_score = 0;
 		int illusion = playing_hero.getIllusion();
 		
+		// List of the optionc to choose from
 		String[] options = {"Paper", "Scissors", "Rock"};
 		
 		while(player_score < 2 && villain_score < 2) {
-			
+			// Waits for button to be pressed to continue the loop
 			synchronized(synchronizer) {
 				try {
 					synchronizer.wait();
@@ -53,8 +65,8 @@ public class PaperScissorsRock implements VillainGame {
 				}
 			}
 			
+			// Sets the labels to display what the hero and villain chose
 			int villain_choice = r.nextInt(options.length);
-			
 			label2 = villain_name + " chose " + options[villain_choice];
 			
 			if(player_choice == villain_choice) {
@@ -79,10 +91,11 @@ public class PaperScissorsRock implements VillainGame {
 				}
 			});
 		}
-		
+		// Calculating the chance of illusion skill working
 		int ran_chance = r.nextInt(MAX_VAL);
 		int win_chance = CHANCE_VAL / illusion;
 		
+		// Sets the label to a message on who lost and who won
 		if(player_score == 2) {
 			label2 = "Congratualtions. " + playing_hero.getName() + " beat " + villain_name;
 		} else {
@@ -99,6 +112,7 @@ public class PaperScissorsRock implements VillainGame {
 			}
 		});
 		
+		// Rteurns false if hero wins, returns true if villain wins
 		if(player_score == 2) {
 			return false;
 		} else {
@@ -111,6 +125,10 @@ public class PaperScissorsRock implements VillainGame {
 		
 	}
 	
+	/**
+	 * Creates a panel with the components and actions needed for the game and updates the panel
+	 * Resets the panel this method is called
+	 */
 	private void DisplayGame() {
 		
 		panel.removeAll();

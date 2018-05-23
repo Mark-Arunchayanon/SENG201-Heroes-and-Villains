@@ -24,18 +24,21 @@ public class DiceRoll implements VillainGame {
 	private static final int MAX_VAL = 1000;
 	private static final int CHANCE_VAL = 70000;
 	
+	// Create new class objects
 	private JPanel panel = new JPanel();
 	private Random num = new Random();
 	private Object synchronizer = new Object();
+	// Create labels for panel
 	private JLabel lab_1;
 	private JLabel lab_2;
 	private JLabel lab_3;
 	private JLabel lab_4;
+	// Creating string variables for labels
 	private String lab2;
 	private String lab3;
 	private String lab4;
-	private MenuSystem m;
 	
+	private MenuSystem m;
 	
 	public DiceRoll(MenuSystem m) {
 		this.m = m;
@@ -44,6 +47,7 @@ public class DiceRoll implements VillainGame {
 	@Override
 	public boolean play(String villain_name, Hero playing_hero) {
 		
+		// Calls a method to setup GUI panel
 		DisplayGame();
 		
 		//  Create new variables
@@ -57,7 +61,7 @@ public class DiceRoll implements VillainGame {
 		
 		// Runs the game until one of the player's score reaches 2. Press 1 and enter to roll, other input will not be accepted.
 		while(player_score < 2 && villain_score < 2) {
-			
+			// Waits for button to be pressed to continue the loop
 			synchronized(synchronizer) {
 				try {
 					synchronizer.wait();
@@ -66,9 +70,11 @@ public class DiceRoll implements VillainGame {
 					e.printStackTrace();
 				}
 			}
-			
+			// Random number for hero and villain between 1-6
 			hero_roll = num.nextInt(6);
 			villain_roll = num.nextInt(6);
+			
+			// Sets a message to labels on what the hero and villain rolled
 			lab2 = playing_hero.getName() + " rolled a " + options[hero_roll] + " and " + villain_name + " rolled a " + options[villain_roll];
 			if (hero_roll > villain_roll) {
 				player_score++;
@@ -91,7 +97,7 @@ public class DiceRoll implements VillainGame {
 			});
 		}
 		
-		
+		// Calculating the chance of illusion working
 		int ran_chance = num.nextInt(MAX_VAL);
 		int win_chance = CHANCE_VAL / illusion;
 		
@@ -112,6 +118,8 @@ public class DiceRoll implements VillainGame {
 			}
 		});
 		
+		
+		// Returns false if the hero wins and true if villain wins	
 		if (player_score == 2) {
 			return false;
 		} else {
@@ -123,6 +131,10 @@ public class DiceRoll implements VillainGame {
 		}
 	}
 	
+	/**
+	 * Creates a panel with the components and actions needed for the game and updates the panel
+	 * Resets the panel this method is called
+	 */
 	private void DisplayGame() {
 		
 		panel.removeAll();
