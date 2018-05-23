@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 /**
  * Defines Hero objects that are used as the protagonists of the game
  * @author fer25 par116

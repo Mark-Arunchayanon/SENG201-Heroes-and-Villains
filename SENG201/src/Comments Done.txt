@@ -6,12 +6,12 @@ Game
 Guess a Number - Done
 HagglingBooster - Done
 HealingItem - Done
-Hero -
+Hero - Done
 HeroStatSelector - Done
-Hospital -
-IllusionBooster -
+Hospital - Done
+IllusionBooster - Done
 Illusionist - Done
-InformationPanel -
+InformationPanel - Done
 ItemSelector -
 Lair
 Location - Done

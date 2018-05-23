@@ -4,8 +4,6 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.Panel;
 import java.util.ArrayList;
-import java.util.Arrays;
-
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -16,7 +14,7 @@ import javax.swing.JTextPane;
  * A location that allows HealingItems to be applied to a Hero
  * 
  * @author fer25
- *
+ * @author par116
  */
 public class Hospital extends JPanel implements Location{
 
@@ -25,6 +23,10 @@ public class Hospital extends JPanel implements Location{
 	
 	JPanel left_panel;
 	
+	/**
+	 * store the MenuSystem locally on the object construction
+	 * @param m
+	 */
 	public Hospital(MenuSystem m) {
 		this.m = m;
 	}
@@ -81,6 +83,10 @@ public class Hospital extends JPanel implements Location{
 		
 	}
 	
+	/**
+	 * Sets up the hospital and displays it when called.
+	 * Resets every time this method is called
+	 */
 	private void displayHospital() {
 		
 		removeAll();
@@ -166,10 +172,15 @@ public class Hospital extends JPanel implements Location{
 		
 	}
 	
+	/**
+	 * Allows the user to select which hero to be healed
+	 * 
+	 * @return selected hero
+	 */
 	private Hero selectHero() {
 		String title = "Welcome to the Hospital";
 		String description = "Which Hero would you like to heal?";
-		
+		// Updates GUI panel to allow user to select hero
 		Selectable[] heros = new Selectable[1];
 		heros = team.getHeros().toArray(heros);
 		ItemSelector selector = new ItemSelector(title, description, heros, true);
