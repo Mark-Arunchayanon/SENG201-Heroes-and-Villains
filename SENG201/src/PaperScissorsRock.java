@@ -176,6 +176,7 @@ public class PaperScissorsRock implements VillainGame {
 		
 		JButton button1 = new JButton("Paper");
 		button1.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				synchronized(synchronizer) {
 					player_choice = 0;
@@ -191,6 +192,7 @@ public class PaperScissorsRock implements VillainGame {
 		
 		JButton button2 = new JButton("Scissors");
 		button2.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				synchronized(synchronizer) {
 					//TODO try except
@@ -207,6 +209,7 @@ public class PaperScissorsRock implements VillainGame {
 		
 		JButton button3 = new JButton("Rock");
 		button3.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				synchronized(synchronizer) {
 					//TODO try except

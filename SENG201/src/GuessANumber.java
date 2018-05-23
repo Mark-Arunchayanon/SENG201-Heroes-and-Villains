@@ -173,6 +173,7 @@ public class GuessANumber implements VillainGame {
 		button1.setFont(new Font("Tahoma", Font.BOLD, 13));
 		GridBagConstraints gbc_button1 = new GridBagConstraints();
 		button1.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				synchronized(synchronizer) {
 					guess = 1;
@@ -190,6 +191,7 @@ public class GuessANumber implements VillainGame {
 		button2.setFont(new Font("Tahoma", Font.BOLD, 13));
 		GridBagConstraints gbc_button2 = new GridBagConstraints();
 		button2.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				synchronized(synchronizer) {
 					guess = 2;
@@ -207,6 +209,7 @@ public class GuessANumber implements VillainGame {
 		button3.setFont(new Font("Tahoma", Font.BOLD, 13));
 		GridBagConstraints gbc_button3 = new GridBagConstraints();
 		button3.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				synchronized(synchronizer) {
 					guess = 3;
@@ -224,6 +227,7 @@ public class GuessANumber implements VillainGame {
 		button4.setFont(new Font("Tahoma", Font.BOLD, 13));
 		GridBagConstraints gbc_button4 = new GridBagConstraints();
 		button4.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				synchronized(synchronizer) {
 					guess = 4;
@@ -241,6 +245,7 @@ public class GuessANumber implements VillainGame {
 		button5.setFont(new Font("Tahoma", Font.BOLD, 13));
 		GridBagConstraints gbc_button5 = new GridBagConstraints();
 		button5.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				synchronized(synchronizer) {
 					guess = 5;
@@ -258,6 +263,7 @@ public class GuessANumber implements VillainGame {
 		button6.setFont(new Font("Tahoma", Font.BOLD, 13));
 		GridBagConstraints gbc_button6 = new GridBagConstraints();
 		button6.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				synchronized(synchronizer) {
 					guess = 6;
@@ -275,6 +281,7 @@ public class GuessANumber implements VillainGame {
 		button7.setFont(new Font("Tahoma", Font.BOLD, 13));
 		GridBagConstraints gbc_button7 = new GridBagConstraints();
 		button7.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				synchronized(synchronizer) {
 					guess = 7;
@@ -292,6 +299,7 @@ public class GuessANumber implements VillainGame {
 		button8.setFont(new Font("Tahoma", Font.BOLD, 13));
 		GridBagConstraints gbc_button8 = new GridBagConstraints();
 		button8.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				synchronized(synchronizer) {
 					guess = 8;
@@ -309,6 +317,7 @@ public class GuessANumber implements VillainGame {
 		button9.setFont(new Font("Tahoma", Font.BOLD, 13));
 		GridBagConstraints gbc_button9 = new GridBagConstraints();
 		button9.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				synchronized(synchronizer) {
 					guess = 9;
@@ -326,6 +335,7 @@ public class GuessANumber implements VillainGame {
 		button10.setFont(new Font("Tahoma", Font.BOLD, 13));
 		GridBagConstraints gbc_button10 = new GridBagConstraints();
 		button10.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				synchronized(synchronizer) {
 					guess = 10;

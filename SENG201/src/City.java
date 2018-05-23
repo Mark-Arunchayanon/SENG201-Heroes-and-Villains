@@ -22,7 +22,7 @@ import java.awt.Component;
  * locations and objects within the City.
  * 
  * @author fer25
- *
+ * @author par116
  */
 
 public class City extends JPanel{
@@ -84,6 +84,9 @@ public class City extends JPanel{
 		
 	}
 	
+	/**
+	 * Creates a the layout of city GUI
+	 */
 	private void displayOptions() {
 		
 		String[] direction_button_text =  getDirectionButtonText();
@@ -235,6 +238,9 @@ public class City extends JPanel{
 		return direction_strings;
 	}
 	
+	/**
+	 * Displays information for the selected hero 
+	 */
 	private void displayTeamStatus() {
 		
 		InformationPanel display = new InformationPanel("Status", "Sum Stuff");
