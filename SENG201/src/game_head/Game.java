@@ -81,7 +81,7 @@ public class Game {
 		
 		//Create chiding messages
 		String title = "You are a Failure";
-		String body = "All your Heros perished under your command.\nYou should be ashamed.";
+		String body = "All your Heroes perished under your command.\nYou should be ashamed.";
 		//Create GUI panel
 		InformationPanel info = new InformationPanel(title, body);
 		//Display panel
@@ -104,7 +104,7 @@ public class Game {
 		
 		String title = "Congratulations";
 		String body = "You completed the game with " + city_count + ""
-				+ "Cities, using " + team.getTeamSize() + "Heros, in " + formatted_time + 
+				+ "Cities, using " + team.getTeamSize() + "Heroes, in " + formatted_time + 
 				":\n\nThe Status of your team on completion is\n" + team.getStatus();
 		
 		InformationPanel info = new InformationPanel(title, body);
@@ -136,8 +136,8 @@ public class Game {
 		
 		// Welcome message 
 		String title = "Welcome to Hero Game";
-		String body = "How many Cities would you like to explore?\n"
-				+ "Please enter an integer from " + MIN_CITIES + " to " + MAX_CITIES;
+		String body = "<html>How many Cities would you like to explore?<BR>"
+				+ "Please enter an integer from " + MIN_CITIES + " to " + MAX_CITIES + "</html>";
 		
 		StringGetPanel Sget = new StringGetPanel(title, body);
 		m.updatePanel(Sget);

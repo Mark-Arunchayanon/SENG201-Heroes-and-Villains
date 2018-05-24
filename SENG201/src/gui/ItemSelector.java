@@ -119,6 +119,7 @@ public class ItemSelector extends JPanel implements ActionListener {
 		add(txtpnDescriptor, gbc_txtpnDescriptor);
 		
 		JButton btnSelect = new JButton(select_string);
+		btnSelect.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		btnSelect.setActionCommand(select_string);
 		btnSelect.addActionListener(this);
 		GridBagConstraints gbc_btnSelect = new GridBagConstraints();
@@ -130,6 +131,7 @@ public class ItemSelector extends JPanel implements ActionListener {
 		
 		if(cancelable) {
 			JButton btnCancel = new JButton(cancel_string);
+			btnCancel.setFont(new Font("Tahoma", Font.PLAIN, 24));
 			btnCancel.setActionCommand(cancel_string);
 			btnCancel.addActionListener(this);
 			GridBagConstraints gbc_btnCancel = new GridBagConstraints();

@@ -2,6 +2,8 @@ package gui;
 import javax.swing.JPanel;
 import java.awt.GridBagLayout;
 import javax.swing.JTextPane;
+
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JButton;
@@ -57,6 +59,7 @@ public class InformationPanel extends JPanel {
 		txtpnBody.setText(Body);
 		
 		JButton btnOK = new JButton("OK");
+		btnOK.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		btnOK.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {				
 				synchronized (synchronizer) {

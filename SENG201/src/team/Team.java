@@ -80,9 +80,8 @@ public class Team {
 		
 		getTeamName();
 		
-		
-		body = "How many Heros would you like in your team?\n"
-				+ "Please enter an Integer from " + MIN_HEROS + " to " + MAX_HEROS;
+		body = "<html>How many Heroes would you like in your team?\n<BR>"
+				+ "Please enter an Integer from " + MIN_HEROS + " to " + MAX_HEROS + "<html>";
 		
 		Sget.bodyTextSet(body);
 		
@@ -118,8 +117,8 @@ public class Team {
 	private void getTeamName() {
 		
 		String title = "Setup your Team";
-		String body = "What will your Team's name be?\nEnter a String from "
-		+ MIN_LENGTH_NAME + " to " + MAX_LENGTH_NAME + " charachters long";
+		String body = "<html>What will your Team's name be?\n<BR>Enter a String from "
+		+ MIN_LENGTH_NAME + " to " + MAX_LENGTH_NAME + " charachters long</html>";
 		StringGetPanel Sget = new StringGetPanel(title, body);
 		m.updatePanel(Sget);
 		
