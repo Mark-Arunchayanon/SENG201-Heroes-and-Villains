@@ -1,17 +1,14 @@
 package gui;
 import javax.swing.JPanel;
 import java.awt.GridBagLayout;
-import java.awt.Panel;
 import java.awt.GridBagConstraints;
-import javax.swing.BoxLayout;
 import javax.swing.JTextPane;
 import javax.swing.SwingUtilities;
 
 import java.awt.Insets;
-import javax.swing.JLabel;
-import java.awt.Component;
-import javax.swing.JSeparator;
 import javax.swing.JButton;
+import javax.swing.JLabel;
+
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -23,7 +20,7 @@ public class StringGetPanel extends JPanel {
 	private String user_text;
 	private Object synchronizer = new Object();
 	
-	private JTextPane txtpndescription;
+	private JLabel txtpndescription;
 	private JTextField textPane;
 	
 	public StringGetPanel(String title) {
@@ -39,12 +36,13 @@ public class StringGetPanel extends JPanel {
 		gridBagLayout.columnWidths = new int[] {10};
 		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0};
 		gridBagLayout.columnWeights = new double[]{1.0};
-		gridBagLayout.rowWeights = new double[]{Double.MIN_VALUE, Double.MIN_VALUE, 1.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.5, 1.0, 1.0, 0.5};
 		setLayout(gridBagLayout);
 		
-		JTextPane txtpnTitle = new JTextPane();
+		JLabel txtpnTitle = new JLabel();
 		txtpnTitle.setFont(new Font("Tahoma", Font.PLAIN, 36));
-		txtpnTitle.setEditable(false);
+		txtpnTitle.setFocusable(false);
+		txtpnTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		txtpnTitle.setText(title);
 		GridBagConstraints gbc_txtpnTitle = new GridBagConstraints();
 		gbc_txtpnTitle.insets = new Insets(0, 0, 5, 0);
@@ -53,9 +51,10 @@ public class StringGetPanel extends JPanel {
 		gbc_txtpnTitle.gridy = 0;
 		add(txtpnTitle, gbc_txtpnTitle);
 		
-		txtpndescription = new JTextPane();
+		txtpndescription = new JLabel();
+		txtpndescription.setHorizontalAlignment(SwingConstants.CENTER);
 		txtpndescription.setFont(new Font("Tahoma", Font.PLAIN, 24));
-		txtpndescription.setEditable(false);
+		txtpndescription.setFocusable(false);
 		txtpndescription.setText(body);
 		GridBagConstraints gbc_txtpndescription = new GridBagConstraints();
 		gbc_txtpndescription.insets = new Insets(0, 0, 5, 0);
@@ -70,11 +69,13 @@ public class StringGetPanel extends JPanel {
 		textPane.setColumns(10);
 		GridBagConstraints gbc_textPane = new GridBagConstraints();
 		gbc_textPane.insets = new Insets(0, 0, 5, 0);
+		//gbc_textPane.fill = GridBagConstraints.BOTH;
 		gbc_textPane.gridx = 0;
 		gbc_textPane.gridy = 2;
 		add(textPane, gbc_textPane);
 		
 		JButton btn = new JButton("Submit");
+		btn.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				synchronized(synchronizer) {

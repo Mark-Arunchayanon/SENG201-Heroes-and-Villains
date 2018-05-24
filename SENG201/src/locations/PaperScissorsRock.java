@@ -150,7 +150,7 @@ public class PaperScissorsRock extends VillainGame {
 		panel.setLayout(gbl_panel);
 		
 		JLabel label_1 = new JLabel("Paper Scissors Rock");
-		label_1.setFont(new Font("Tahoma", Font.BOLD, 13));
+		label_1.setFont(new Font("Tahoma", Font.BOLD, 36));
 		GridBagConstraints gbc_label_1 = new GridBagConstraints();
 		gbc_label_1.gridwidth = 3;
 		gbc_label_1.insets = new Insets(0, 0, 5, 0);
@@ -159,6 +159,7 @@ public class PaperScissorsRock extends VillainGame {
 		panel.add(label_1, gbc_label_1);
 		
 		label_2 = new JLabel("");
+		label_2.setFont(new Font("Tahoma", Font.BOLD, 24));
 		GridBagConstraints gbc_label_2 = new GridBagConstraints();
 		gbc_label_2.gridwidth = 3;
 		gbc_label_2.insets = new Insets(0, 0, 5, 5);
@@ -175,6 +176,7 @@ public class PaperScissorsRock extends VillainGame {
 		panel.add(label_3, gbc_label_3);
 		
 		JButton button1 = new JButton("Paper");
+		button1.setFont(new Font("Tahoma", Font.BOLD, 24));
 		button1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -191,6 +193,7 @@ public class PaperScissorsRock extends VillainGame {
 		panel.add(button1, gbc_button1);
 		
 		JButton button2 = new JButton("Scissors");
+		button2.setFont(new Font("Tahoma", Font.BOLD, 24));
 		button2.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -208,6 +211,7 @@ public class PaperScissorsRock extends VillainGame {
 		panel.add(button2, gbc_button2);
 		
 		JButton button3 = new JButton("Rock");
+		button3.setFont(new Font("Tahoma", Font.BOLD, 24));
 		button3.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

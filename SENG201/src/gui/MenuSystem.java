@@ -11,7 +11,7 @@ import javax.swing.SwingUtilities;
  */
 public class MenuSystem {
 	//
-	private static final JFrame frame = new JFrame("Heros Game");
+	private static final JFrame frame = new JFrame("Heroes Game");
 	
 	public MenuSystem() {
 		

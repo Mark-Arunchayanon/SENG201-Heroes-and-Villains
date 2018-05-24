@@ -144,7 +144,7 @@ public class GuessANumber extends VillainGame {
 		panel.setLayout(gridBagLayout);
 		
 		JLabel lblNewLabel_1 = new JLabel("Guess A Number");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 36));
 		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
 		gbc_lblNewLabel_1.gridwidth = 5;
 		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 0);
@@ -171,7 +171,7 @@ public class GuessANumber extends VillainGame {
 		panel.add(label_2, gbc_label_2);
 		
 		JButton button1 = new JButton("1");
-		button1.setFont(new Font("Tahoma", Font.BOLD, 13));
+		button1.setFont(new Font("Tahoma", Font.BOLD, 20));
 		GridBagConstraints gbc_button1 = new GridBagConstraints();
 		button1.setBackground(Color.BLACK);
 	    button1.setForeground(Color.WHITE);
@@ -191,7 +191,7 @@ public class GuessANumber extends VillainGame {
 		panel.add(button1, gbc_button1);
 		
 		JButton button2 = new JButton("2");
-		button2.setFont(new Font("Tahoma", Font.BOLD, 13));
+		button2.setFont(new Font("Tahoma", Font.BOLD, 20));
 		GridBagConstraints gbc_button2 = new GridBagConstraints();
 		button2.setBackground(Color.BLACK);
 	    button2.setForeground(Color.WHITE);
@@ -211,7 +211,7 @@ public class GuessANumber extends VillainGame {
 		panel.add(button2, gbc_button2);
 		
 		JButton button3 = new JButton("3");
-		button3.setFont(new Font("Tahoma", Font.BOLD, 13));
+		button3.setFont(new Font("Tahoma", Font.BOLD, 20));
 		GridBagConstraints gbc_button3 = new GridBagConstraints();
 		button3.setBackground(Color.BLACK);
 	    button3.setForeground(Color.WHITE);
@@ -231,7 +231,7 @@ public class GuessANumber extends VillainGame {
 		panel.add(button3, gbc_button3);
 		
 		JButton button4 = new JButton("4");
-		button4.setFont(new Font("Tahoma", Font.BOLD, 13));
+		button4.setFont(new Font("Tahoma", Font.BOLD, 20));
 		GridBagConstraints gbc_button4 = new GridBagConstraints();
 		button4.setBackground(Color.BLACK);
 	    button4.setForeground(Color.WHITE);
@@ -251,7 +251,7 @@ public class GuessANumber extends VillainGame {
 		panel.add(button4, gbc_button4);
 		
 		JButton button5 = new JButton("5");
-		button5.setFont(new Font("Tahoma", Font.BOLD, 13));
+		button5.setFont(new Font("Tahoma", Font.BOLD, 20));
 		GridBagConstraints gbc_button5 = new GridBagConstraints();
 		button5.setBackground(Color.BLACK);
 	    button5.setForeground(Color.WHITE);
@@ -271,7 +271,7 @@ public class GuessANumber extends VillainGame {
 		panel.add(button5, gbc_button5);
 		
 		JButton button6 = new JButton("6");
-		button6.setFont(new Font("Tahoma", Font.BOLD, 13));
+		button6.setFont(new Font("Tahoma", Font.BOLD, 20));
 		GridBagConstraints gbc_button6 = new GridBagConstraints();
 		button6.setBackground(Color.BLACK);
 	    button6.setForeground(Color.WHITE);
@@ -291,7 +291,7 @@ public class GuessANumber extends VillainGame {
 		panel.add(button6, gbc_button6);
 		
 		JButton button7 = new JButton("7");
-		button7.setFont(new Font("Tahoma", Font.BOLD, 13));
+		button7.setFont(new Font("Tahoma", Font.BOLD, 20));
 		GridBagConstraints gbc_button7 = new GridBagConstraints();
 		button7.setBackground(Color.BLACK);
 	    button7.setForeground(Color.WHITE);
@@ -311,7 +311,7 @@ public class GuessANumber extends VillainGame {
 		panel.add(button7, gbc_button7);
 		
 		JButton button8 = new JButton("8");
-		button8.setFont(new Font("Tahoma", Font.BOLD, 13));
+		button8.setFont(new Font("Tahoma", Font.BOLD, 20));
 		GridBagConstraints gbc_button8 = new GridBagConstraints();
 		button8.setBackground(Color.BLACK);
 	    button8.setForeground(Color.WHITE);
@@ -331,7 +331,7 @@ public class GuessANumber extends VillainGame {
 		panel.add(button8, gbc_button8);
 		
 		JButton button9 = new JButton("9");
-		button9.setFont(new Font("Tahoma", Font.BOLD, 13));
+		button9.setFont(new Font("Tahoma", Font.BOLD, 20));
 		GridBagConstraints gbc_button9 = new GridBagConstraints();
 		button9.setBackground(Color.BLACK);
 	    button9.setForeground(Color.WHITE);
@@ -351,7 +351,7 @@ public class GuessANumber extends VillainGame {
 		panel.add(button9, gbc_button9);
 		
 		JButton button10 = new JButton("10");
-		button10.setFont(new Font("Tahoma", Font.BOLD, 13));
+		button10.setFont(new Font("Tahoma", Font.BOLD, 20));
 		GridBagConstraints gbc_button10 = new GridBagConstraints();
 		button10.setBackground(Color.BLACK);
 	    button10.setForeground(Color.WHITE);

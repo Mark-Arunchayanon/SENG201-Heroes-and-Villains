@@ -158,7 +158,7 @@ public class DiceRoll extends VillainGame {
 		panel.setLayout(gbl_panel);
 		
 		lab_1 = new JLabel("Roll the Dice");
-		lab_1.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lab_1.setFont(new Font("Tahoma", Font.BOLD, 36));
 		lab_1.setHorizontalAlignment(SwingConstants.CENTER);
 		GridBagConstraints gbc_lab_1 = new GridBagConstraints();
 		gbc_lab_1.fill = GridBagConstraints.BOTH;
@@ -178,6 +178,7 @@ public class DiceRoll extends VillainGame {
 		panel.add(lab_2, gbc_lab_2);
 		
 		JButton btnNewButton = new JButton("Click to roll the dice");
+		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 24));
 		btnNewButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

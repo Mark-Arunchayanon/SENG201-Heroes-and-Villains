@@ -10,8 +10,10 @@ import java.util.Collections;
 import java.util.Random;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextPane;
+import javax.swing.SwingConstants;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
@@ -186,14 +188,13 @@ public class City extends JPanel{
 		gridBagLayout.rowWeights = new double[]{1.0, 2.0, 2.0, 2.0, 2.0};
 		setLayout(gridBagLayout);
 		
-		JTextPane txtpnWelcomeToYour = new JTextPane();
-		txtpnWelcomeToYour.setEditable(false);
-		txtpnWelcomeToYour.setText("Welcome to your Home Base.\r\nWhat would you like to do?");
+		JLabel txtpnWelcomeToYour = new JLabel();
+		txtpnWelcomeToYour.setFocusable(false);
+		txtpnWelcomeToYour.setText("<html>Welcome to your Home Base.<BR>What would you like to do?</html>");
 		txtpnWelcomeToYour.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		StyledDocument txtpnWelcomeToYour_SD = txtpnWelcomeToYour.getStyledDocument();
+		txtpnWelcomeToYour.setHorizontalAlignment(SwingConstants.CENTER);
 		SimpleAttributeSet center = new SimpleAttributeSet();
 		StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
-		txtpnWelcomeToYour_SD.setParagraphAttributes(0, txtpnWelcomeToYour_SD.getLength(), center, false);
 		GridBagConstraints gbc_txtpnWelcomeToYour = new GridBagConstraints();
 		gbc_txtpnWelcomeToYour.gridwidth = 3;
 		gbc_txtpnWelcomeToYour.insets = new Insets(0, 0, 5, 5);
