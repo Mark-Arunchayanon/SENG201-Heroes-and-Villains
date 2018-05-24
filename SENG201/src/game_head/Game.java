@@ -178,7 +178,7 @@ public class Game {
 		Hero hero2 = new Dandy().createHero();
 		hero2.setName("Hero 2");
 		Hero[] heros = {hero1, hero2};
-		Team team = new Team(m, heros, true);
+		Team team = new Team(m, "Team", heros, true);
 		City city1 = new City(team, false, m);
 		City city2 = new City(team, true, m);
 		

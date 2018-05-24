@@ -53,10 +53,12 @@ public class Team {
 	/**
 	 * For testing purposes
 	 * @param m The menusystem being used for the GUI
-	 * @param heros An array of heros to add to the team
+	 * @param temp_heros An array of heros to add to the team
 	 * @param map True if the test team has a map, False otherwise
+	 * @param name The name for the Team
 	 */
-	public Team(MenuSystem m, Hero[] temp_heros, boolean map) {
+	public Team(MenuSystem m, String name, Hero[] temp_heros, boolean map) {
+		
 		this.m = m;
 		this.map = map;
 		
@@ -67,6 +69,8 @@ public class Team {
 		
 		//Give the testing team some cash
 		cash = 10000;
+		
+		team_name = name;
 		
 	}
 	
@@ -84,6 +88,9 @@ public class Team {
 		
 	}
 	
+	/**
+	 * Gets the user to enter their desired team size
+	 */
 	private void userGetTeamSize() {
 		
 		String title = "Setup your Team";
@@ -376,7 +383,7 @@ public class Team {
 		if (map) s += "\nOwns a map of this city\n\n";
 		else s += "\nDoes not own a map of this city\n\n";
 		
-		s += "===========Heros===========\n\n";
+		s += "===========Heroes==========\n\n";
 		
 		for (Hero hero : heros) {
 			s += hero.getName() + ":\n" +
