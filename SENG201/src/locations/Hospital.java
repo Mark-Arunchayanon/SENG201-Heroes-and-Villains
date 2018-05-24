@@ -1,5 +1,6 @@
 package locations;
 import java.awt.Component;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -133,15 +134,16 @@ public class Hospital extends JPanel implements Location{
 		gbl_panel.rowWeights = new double[]{Double.MIN_VALUE, 1.0};
 		panel.setLayout(gbl_panel);
 		
-		JTextPane txtpnCurrentHealingOperations = new JTextPane();
-		txtpnCurrentHealingOperations.setText("Current Healing Operations.\nTime Till Completion");
-		txtpnCurrentHealingOperations.setEditable(false);
+		JLabel CurrentHealingOperations = new JLabel();
+		CurrentHealingOperations.setText("<html>Current Healing Operations.\n<BR>Time Till Completion</html>");
+		CurrentHealingOperations.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		CurrentHealingOperations.setFocusable(false);
 		GridBagConstraints gbc_txtpnCurrentHealingOperations = new GridBagConstraints();
 		gbc_txtpnCurrentHealingOperations.insets = new Insets(0, 0, 0, 5);
 		gbc_txtpnCurrentHealingOperations.fill = GridBagConstraints.BOTH;
 		gbc_txtpnCurrentHealingOperations.gridx = 0;
 		gbc_txtpnCurrentHealingOperations.gridy = 0;
-		panel.add(txtpnCurrentHealingOperations, gbc_txtpnCurrentHealingOperations);
+		panel.add(CurrentHealingOperations, gbc_txtpnCurrentHealingOperations);
 		
 		Panel timer_panel = new Panel();
 		GridBagConstraints gbc_timer_panel = new GridBagConstraints();

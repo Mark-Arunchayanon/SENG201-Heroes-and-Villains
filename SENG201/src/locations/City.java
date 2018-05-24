@@ -188,11 +188,11 @@ public class City extends JPanel{
 		gridBagLayout.rowWeights = new double[]{1.0, 2.0, 2.0, 2.0, 2.0};
 		setLayout(gridBagLayout);
 		
-		JLabel txtpnWelcomeToYour = new JLabel();
-		txtpnWelcomeToYour.setFocusable(false);
-		txtpnWelcomeToYour.setText("<html>Welcome to your Home Base.<BR>What would you like to do?</html>");
-		txtpnWelcomeToYour.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		txtpnWelcomeToYour.setHorizontalAlignment(SwingConstants.CENTER);
+		JLabel WelcomeLabel = new JLabel();
+		WelcomeLabel.setFocusable(false);
+		WelcomeLabel.setText("<html>Welcome to your Home Base.<BR>What would you like to do?</html>");
+		WelcomeLabel.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		WelcomeLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		SimpleAttributeSet center = new SimpleAttributeSet();
 		StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
 		GridBagConstraints gbc_txtpnWelcomeToYour = new GridBagConstraints();
@@ -201,9 +201,10 @@ public class City extends JPanel{
 		gbc_txtpnWelcomeToYour.fill = GridBagConstraints.BOTH;
 		gbc_txtpnWelcomeToYour.gridx = 0;
 		gbc_txtpnWelcomeToYour.gridy = 0;
-		add(txtpnWelcomeToYour, gbc_txtpnWelcomeToYour);
+		add(WelcomeLabel, gbc_txtpnWelcomeToYour);
 		
 		JButton btnCheckTeamStatus = new JButton("Check Team Status");
+		btnCheckTeamStatus.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		ActionListener btnCheckTeamStatusListner = new ActionListener() {
 
 			@Override
@@ -222,12 +223,13 @@ public class City extends JPanel{
 		gbc_btnCheckTeamStatus.gridy = 1;
 		add(btnCheckTeamStatus, gbc_btnCheckTeamStatus);
 		
-		JButton btnTravelNorth = new JButton(direction_button_text[0]);
+		JButton NorthButton = new JButton(direction_button_text[0]);
+		NorthButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		GridBagConstraints gbc_btnTravelNorth = new GridBagConstraints();
 		gbc_btnTravelNorth.insets = new Insets(0, 0, 5, 5);
 		gbc_btnTravelNorth.gridx = 1;
 		gbc_btnTravelNorth.gridy = 2;
-		add(btnTravelNorth, gbc_btnTravelNorth);
+		add(NorthButton, gbc_btnTravelNorth);
 		ActionListener btnTravelNorthListner = new ActionListener() {
 
 			@Override
@@ -239,14 +241,15 @@ public class City extends JPanel{
 				}				
 			}			
 		};
-		btnTravelNorth.addActionListener(btnTravelNorthListner);
+		NorthButton.addActionListener(btnTravelNorthListner);
 		
-		JButton btnTravelWest = new JButton(direction_button_text[3]);
+		JButton WestButton = new JButton(direction_button_text[3]);
+		WestButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		GridBagConstraints gbc_btnTravelWest = new GridBagConstraints();
 		gbc_btnTravelWest.insets = new Insets(0, 0, 5, 5);
 		gbc_btnTravelWest.gridx = 0;
 		gbc_btnTravelWest.gridy = 3;
-		add(btnTravelWest, gbc_btnTravelWest);
+		add(WestButton, gbc_btnTravelWest);
 		ActionListener btnTravelWestListner = new ActionListener() {
 
 			@Override
@@ -259,14 +262,15 @@ public class City extends JPanel{
 				
 			}			
 		};
-		btnTravelWest.addActionListener(btnTravelWestListner);
+		WestButton.addActionListener(btnTravelWestListner);
 		
-		JButton btnTravelEast = new JButton(direction_button_text[1]);
+		JButton EastButton = new JButton(direction_button_text[1]);
+		EastButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		GridBagConstraints gbc_btnTravelEast = new GridBagConstraints();
 		gbc_btnTravelEast.insets = new Insets(0, 0, 5, 0);
 		gbc_btnTravelEast.gridx = 2;
 		gbc_btnTravelEast.gridy = 3;
-		add(btnTravelEast, gbc_btnTravelEast);
+		add(EastButton, gbc_btnTravelEast);
 		ActionListener btnTravelEastListner = new ActionListener() {
 
 			@Override
@@ -279,14 +283,15 @@ public class City extends JPanel{
 				
 			}			
 		};
-		btnTravelEast.addActionListener(btnTravelEastListner);
+		EastButton.addActionListener(btnTravelEastListner);
 		
-		JButton btnTravelSouth = new JButton(direction_button_text[2]);
+		JButton SouthButton = new JButton(direction_button_text[2]);
+		SouthButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		GridBagConstraints gbc_btnTravelSouth = new GridBagConstraints();
 		gbc_btnTravelSouth.insets = new Insets(0, 0, 0, 5);
 		gbc_btnTravelSouth.gridx = 1;
 		gbc_btnTravelSouth.gridy = 4;
-		add(btnTravelSouth, gbc_btnTravelSouth);
+		add(SouthButton, gbc_btnTravelSouth);
 		ActionListener btnTravelSouthListner = new ActionListener() {
 
 			@Override
@@ -299,7 +304,7 @@ public class City extends JPanel{
 				
 			}			
 		};
-		btnTravelSouth.addActionListener(btnTravelSouthListner);
+		SouthButton.addActionListener(btnTravelSouthListner);
 		
 		m.updatePanel(this);
 		

@@ -59,7 +59,7 @@ public class PowerUpDen implements Location {
 			}
 			
 			String title = "Welcome to the Power Up Den";
-			String description = "What healing item would you like to use?";
+			String description = "What Power Up item would you like to use?";
 			// GUI layout for selection of power ups
 			Selectable[] items_array = new Selectable[1];
 			items_array = items.toArray(items_array);
@@ -90,7 +90,7 @@ public class PowerUpDen implements Location {
 	 */
 	private Hero selectHero(Team team) {
 		String title = "Welcome to the Power Up Den";
-		String description = "Which Hero would you like to heal?";
+		String description = "Which Hero would you like to apply a Power Up to?";
 		
 		Selectable[] heros = new Selectable[1];
 		heros = team.getHeros().toArray(heros);

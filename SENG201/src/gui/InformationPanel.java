@@ -35,15 +35,16 @@ public class InformationPanel extends JPanel {
 		gridBagLayout.rowWeights = new double[]{Double.MIN_VALUE, 1.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
-		JTextPane txtpnTitle = new JTextPane();
-		txtpnTitle.setEditable(false);
-		txtpnTitle.setText(Title);
+		JTextPane TitlePane = new JTextPane();
+		TitlePane.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		TitlePane.setEditable(false);
+		TitlePane.setText(Title);
 		GridBagConstraints gbc_txtpnTitle = new GridBagConstraints();
 		gbc_txtpnTitle.insets = new Insets(0, 0, 5, 0);
 		gbc_txtpnTitle.fill = GridBagConstraints.BOTH;
 		gbc_txtpnTitle.gridx = 0;
 		gbc_txtpnTitle.gridy = 0;
-		add(txtpnTitle, gbc_txtpnTitle);
+		add(TitlePane, gbc_txtpnTitle);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
@@ -53,10 +54,11 @@ public class InformationPanel extends JPanel {
 		gbc_scrollPane.gridy = 1;
 		add(scrollPane, gbc_scrollPane);
 		
-		JTextPane txtpnBody = new JTextPane();
-		txtpnBody.setEditable(false);
-		scrollPane.setViewportView(txtpnBody);
-		txtpnBody.setText(Body);
+		JTextPane BodyPane = new JTextPane();
+		BodyPane.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		BodyPane.setEditable(false);
+		scrollPane.setViewportView(BodyPane);
+		BodyPane.setText(Body);
 		
 		JButton btnOK = new JButton("OK");
 		btnOK.setFont(new Font("Tahoma", Font.PLAIN, 24));
@@ -67,10 +69,10 @@ public class InformationPanel extends JPanel {
 				}				
 			}
 		});
-		GridBagConstraints gbc_btnOK = new GridBagConstraints();
-		gbc_btnOK.gridx = 0;
-		gbc_btnOK.gridy = 2;
-		add(btnOK, gbc_btnOK);
+		GridBagConstraints OKButton = new GridBagConstraints();
+		OKButton.gridx = 0;
+		OKButton.gridy = 2;
+		add(btnOK, OKButton);
 		
 	}
 	

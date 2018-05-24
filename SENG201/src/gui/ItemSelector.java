@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextPane;
@@ -37,8 +38,8 @@ public class ItemSelector extends JPanel implements ActionListener {
 	private Object synchronizer = new Object();
 	
 	ButtonGroup radio_buttons = new ButtonGroup();
-	JTextPane txtpnDescriptor;
-	JTextPane txtpnDescription;
+	JTextPane Descriptor;
+	JLabel Description;
 	
 	public ItemSelector(String title, Selectable[] items, boolean cancelable) {
 		this(title, "", items, cancelable);
@@ -58,28 +59,29 @@ public class ItemSelector extends JPanel implements ActionListener {
 		gridBagLayout.rowWeights = new double[]{Double.MIN_VALUE, Double.MIN_VALUE, 1.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
-		JTextPane txtpnTitle = new JTextPane();
-		txtpnTitle.setEditable(false);
-		txtpnTitle.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		txtpnTitle.setText(title);
-		GridBagConstraints gbc_txtpnTitle = new GridBagConstraints();
-		gbc_txtpnTitle.gridwidth = 2;
-		gbc_txtpnTitle.insets = new Insets(0, 0, 5, 0);
-		gbc_txtpnTitle.fill = GridBagConstraints.BOTH;
-		gbc_txtpnTitle.gridx = 0;
-		gbc_txtpnTitle.gridy = 0;
-		add(txtpnTitle, gbc_txtpnTitle);
+		JLabel TitleLabel = new JLabel();
+		TitleLabel.setFocusable(false);
+		TitleLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		TitleLabel.setText(title);
+		GridBagConstraints gbc_txtlblTitle = new GridBagConstraints();
+		gbc_txtlblTitle.gridwidth = 2;
+		gbc_txtlblTitle.insets = new Insets(0, 0, 5, 0);
+		gbc_txtlblTitle.fill = GridBagConstraints.BOTH;
+		gbc_txtlblTitle.gridx = 0;
+		gbc_txtlblTitle.gridy = 0;
+		add(TitleLabel, gbc_txtlblTitle);
 		
-		txtpnDescription = new JTextPane();
-		txtpnDescription.setEditable(false);
-		txtpnDescription.setText(description);
+		Description = new JLabel();
+		Description.setFocusable(false);
+		Description.setText(description);
 		GridBagConstraints gbc_txtpnDescription = new GridBagConstraints();
+		Description.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		gbc_txtpnDescription.gridwidth = 2;
 		gbc_txtpnDescription.insets = new Insets(0, 0, 5, 5);
 		gbc_txtpnDescription.fill = GridBagConstraints.BOTH;
 		gbc_txtpnDescription.gridx = 0;
 		gbc_txtpnDescription.gridy = 1;
-		add(txtpnDescription, gbc_txtpnDescription);
+		add(Description, gbc_txtpnDescription);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
@@ -96,48 +98,50 @@ public class ItemSelector extends JPanel implements ActionListener {
 		//Add all the radio buttons to the GUI. Select the first one
 		for (int i = 0; i < items.length; i++) {
 			
-			JRadioButton rdbtn = new JRadioButton(items[i].getTitle());
+			JRadioButton radioButtons = new JRadioButton(items[i].getTitle());
+			radioButtons.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			if(i == 0) {
-				rdbtn.setSelected(true);
+				radioButtons.setSelected(true);
 			}
-			rdbtn.setActionCommand(Integer.toString(i));
-			rdbtn.addActionListener(this);
-			panel.add(rdbtn);
+			radioButtons.setActionCommand(Integer.toString(i));
+			radioButtons.addActionListener(this);
+			panel.add(radioButtons);
 			
-			radio_buttons.add(rdbtn);
+			radio_buttons.add(radioButtons);
 			
 		}
 		
-		txtpnDescriptor = new JTextPane();
-		txtpnDescriptor.setEditable(false);
-		txtpnDescriptor.setText(items[0].getDescriptor());
+		Descriptor = new JTextPane();
+		Descriptor.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		Descriptor.setEditable(false);
+		Descriptor.setText(items[0].getDescriptor());
 		GridBagConstraints gbc_txtpnDescriptor = new GridBagConstraints();
 		gbc_txtpnDescriptor.insets = new Insets(0, 0, 5, 0);
 		gbc_txtpnDescriptor.fill = GridBagConstraints.BOTH;
 		gbc_txtpnDescriptor.gridx = 1;
 		gbc_txtpnDescriptor.gridy = 2;
-		add(txtpnDescriptor, gbc_txtpnDescriptor);
+		add(Descriptor, gbc_txtpnDescriptor);
 		
-		JButton btnSelect = new JButton(select_string);
-		btnSelect.setFont(new Font("Tahoma", Font.PLAIN, 24));
-		btnSelect.setActionCommand(select_string);
-		btnSelect.addActionListener(this);
+		JButton SelectButton = new JButton(select_string);
+		SelectButton.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		SelectButton.setActionCommand(select_string);
+		SelectButton.addActionListener(this);
 		GridBagConstraints gbc_btnSelect = new GridBagConstraints();
 		if(!cancelable) gbc_btnSelect.gridwidth = 2;
 		gbc_btnSelect.insets = new Insets(0, 0, 0, 5);
 		gbc_btnSelect.gridx = 0;
 		gbc_btnSelect.gridy = 3;
-		add(btnSelect, gbc_btnSelect);
+		add(SelectButton, gbc_btnSelect);
 		
 		if(cancelable) {
-			JButton btnCancel = new JButton(cancel_string);
-			btnCancel.setFont(new Font("Tahoma", Font.PLAIN, 24));
-			btnCancel.setActionCommand(cancel_string);
-			btnCancel.addActionListener(this);
+			JButton CancelButton = new JButton(cancel_string);
+			CancelButton.setFont(new Font("Tahoma", Font.PLAIN, 24));
+			CancelButton.setActionCommand(cancel_string);
+			CancelButton.addActionListener(this);
 			GridBagConstraints gbc_btnCancel = new GridBagConstraints();
 			gbc_btnCancel.gridx = 1;
 			gbc_btnCancel.gridy = 3;
-			add(btnCancel, gbc_btnCancel);
+			add(CancelButton, gbc_btnCancel);
 		}
 		
 	}
@@ -155,7 +159,7 @@ public class ItemSelector extends JPanel implements ActionListener {
 				synchronizer.notify();
 			} else {
 				int currently_selected = Integer.parseInt(e.getActionCommand());
-				txtpnDescriptor.setText(items[currently_selected].getDescriptor());
+				Descriptor.setText(items[currently_selected].getDescriptor());
 			}
 			
 		}
@@ -214,7 +218,7 @@ public class ItemSelector extends JPanel implements ActionListener {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				txtpnDescription.setText(text);
+				Description.setText(text);
 			}
 		});
 	}
