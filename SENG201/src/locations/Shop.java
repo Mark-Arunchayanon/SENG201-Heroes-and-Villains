@@ -56,8 +56,6 @@ public class Shop implements Location {
 		//Provide Saleables a pseudo random number generator to generate prices etc.
 		for (Saleable item : items) item.setRandom(r);
 		
-		Collections.shuffle(items);
-		
 	}
 	
 	@Override

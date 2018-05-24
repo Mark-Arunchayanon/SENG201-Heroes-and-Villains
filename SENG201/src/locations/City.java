@@ -130,7 +130,7 @@ public class City extends JPanel{
 	}
 	
 	private void travel() {
-		Random r = new Random();
+		
 		locations.get(travel_direction).travelTo(team, last_city);
 		
 		int ran_chance = r.nextInt(100);
@@ -180,7 +180,7 @@ public class City extends JPanel{
 		
 		GridBagLayout gridBagLayout = new GridBagLayout();
 
-		gridBagLayout.columnWidths = new int[]{0, 0, 0};
+		gridBagLayout.columnWidths = new int[]{0};
 		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0};
 		gridBagLayout.columnWeights = new double[]{2.0, 1.0, 2.0};
 		gridBagLayout.rowWeights = new double[]{1.0, 2.0, 2.0, 2.0, 2.0};

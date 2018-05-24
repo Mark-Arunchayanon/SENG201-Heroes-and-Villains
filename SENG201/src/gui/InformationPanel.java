@@ -7,6 +7,7 @@ import java.awt.Insets;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JScrollPane;
 
 /**
  * Replaces the current panel with a panel that displays some information and a button.
@@ -33,6 +34,7 @@ public class InformationPanel extends JPanel {
 		setLayout(gridBagLayout);
 		
 		JTextPane txtpnTitle = new JTextPane();
+		txtpnTitle.setEditable(false);
 		txtpnTitle.setText(Title);
 		GridBagConstraints gbc_txtpnTitle = new GridBagConstraints();
 		gbc_txtpnTitle.insets = new Insets(0, 0, 5, 0);
@@ -41,14 +43,18 @@ public class InformationPanel extends JPanel {
 		gbc_txtpnTitle.gridy = 0;
 		add(txtpnTitle, gbc_txtpnTitle);
 		
+		JScrollPane scrollPane = new JScrollPane();
+		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
+		gbc_scrollPane.fill = GridBagConstraints.BOTH;
+		gbc_scrollPane.insets = new Insets(0, 0, 5, 0);
+		gbc_scrollPane.gridx = 0;
+		gbc_scrollPane.gridy = 1;
+		add(scrollPane, gbc_scrollPane);
+		
 		JTextPane txtpnBody = new JTextPane();
+		txtpnBody.setEditable(false);
+		scrollPane.setViewportView(txtpnBody);
 		txtpnBody.setText(Body);
-		GridBagConstraints gbc_txtpnBody = new GridBagConstraints();
-		gbc_txtpnBody.insets = new Insets(0, 0, 5, 0);
-		gbc_txtpnBody.fill = GridBagConstraints.BOTH;
-		gbc_txtpnBody.gridx = 0;
-		gbc_txtpnBody.gridy = 1;
-		add(txtpnBody, gbc_txtpnBody);
 		
 		JButton btnOK = new JButton("OK");
 		btnOK.addActionListener(new ActionListener() {

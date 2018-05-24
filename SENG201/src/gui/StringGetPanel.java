@@ -15,6 +15,8 @@ import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 public class StringGetPanel extends JPanel {
 
@@ -22,7 +24,7 @@ public class StringGetPanel extends JPanel {
 	private Object synchronizer = new Object();
 	
 	private JTextPane txtpndescription;
-	private JTextPane textPane;
+	private JTextField textPane;
 	
 	public StringGetPanel(String title) {
 		this(title, "");
@@ -34,14 +36,14 @@ public class StringGetPanel extends JPanel {
 	 */
 	public StringGetPanel(String title, String body) {
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{0};
+		gridBagLayout.columnWidths = new int[] {10};
 		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0};
 		gridBagLayout.columnWeights = new double[]{1.0};
 		gridBagLayout.rowWeights = new double[]{Double.MIN_VALUE, Double.MIN_VALUE, 1.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
 		JTextPane txtpnTitle = new JTextPane();
-		txtpnTitle.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		txtpnTitle.setFont(new Font("Tahoma", Font.PLAIN, 36));
 		txtpnTitle.setEditable(false);
 		txtpnTitle.setText(title);
 		GridBagConstraints gbc_txtpnTitle = new GridBagConstraints();
@@ -52,6 +54,7 @@ public class StringGetPanel extends JPanel {
 		add(txtpnTitle, gbc_txtpnTitle);
 		
 		txtpndescription = new JTextPane();
+		txtpndescription.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		txtpndescription.setEditable(false);
 		txtpndescription.setText(body);
 		GridBagConstraints gbc_txtpndescription = new GridBagConstraints();
@@ -61,10 +64,12 @@ public class StringGetPanel extends JPanel {
 		gbc_txtpndescription.gridy = 1;
 		add(txtpndescription, gbc_txtpndescription);
 		
-		textPane = new JTextPane();
+		textPane = new JTextField();
+		textPane.setHorizontalAlignment(SwingConstants.CENTER);
+		textPane.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		textPane.setColumns(10);
 		GridBagConstraints gbc_textPane = new GridBagConstraints();
 		gbc_textPane.insets = new Insets(0, 0, 5, 0);
-		gbc_textPane.fill = GridBagConstraints.BOTH;
 		gbc_textPane.gridx = 0;
 		gbc_textPane.gridy = 2;
 		add(textPane, gbc_textPane);

@@ -71,6 +71,7 @@ public class ItemSelector extends JPanel implements ActionListener {
 		add(txtpnTitle, gbc_txtpnTitle);
 		
 		txtpnDescription = new JTextPane();
+		txtpnDescription.setEditable(false);
 		txtpnDescription.setText(description);
 		GridBagConstraints gbc_txtpnDescription = new GridBagConstraints();
 		gbc_txtpnDescription.gridwidth = 2;
@@ -108,6 +109,7 @@ public class ItemSelector extends JPanel implements ActionListener {
 		}
 		
 		txtpnDescriptor = new JTextPane();
+		txtpnDescriptor.setEditable(false);
 		txtpnDescriptor.setText(items[0].getDescriptor());
 		GridBagConstraints gbc_txtpnDescriptor = new GridBagConstraints();
 		gbc_txtpnDescriptor.insets = new Insets(0, 0, 5, 0);

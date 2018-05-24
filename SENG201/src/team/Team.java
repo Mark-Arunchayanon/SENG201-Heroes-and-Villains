@@ -381,4 +381,13 @@ public class Team {
 		return s;
 		
 	}
+
+	/**
+	 * Returns team_size, The initial number of Hero's in the Team
+	 * @return The team_size variable
+	 */
+	public String getTeamSize() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
