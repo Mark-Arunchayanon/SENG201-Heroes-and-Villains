@@ -11,6 +11,7 @@ import javax.swing.SwingUtilities;
 import gui.MenuSystem;
 import team.Hero;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
@@ -52,7 +53,7 @@ public class GuessANumber extends VillainGame {
 	@Override
 	public boolean play(String villain_name, Hero playing_hero) {
 		
-		villain_num = r.nextInt(10);
+		villain_num = r.nextInt(10) + 1;
 		
 		// Calls a method to setup GUI panel
 		DisplayGame();
@@ -92,16 +93,20 @@ public class GuessANumber extends VillainGame {
 		// Calculating the chance of illusion working
 		int ran_chance = r.nextInt(MAX_VAL);
 		int win_chance = CHANCE_VAL / illusion;
+		boolean return_val;
 		
 		//Clear label2
 		label2 = "";
 		// Sets labels to display the winner and loser
 		if (not_finish == false) {
 			label1 += " Congratualtions! " + playing_hero.getName() + " beat " + villain_name;
+			return_val = false;
 		} else {
 			label1 = "<html>The correct number was " + villain_num + ".<br>Unfortunately, " + playing_hero.getName() + " lost this game</html>";
+			return_val = true;
 			if (ran_chance >= win_chance) {
 				label2 = "However, " + playing_hero.getName() + " used their Illusion skill to trick " + villain_name + " and won regardless";
+				return_val = false;
 			}
 		}
 		
@@ -119,15 +124,7 @@ public class GuessANumber extends VillainGame {
 			e.printStackTrace();
 		}
 		// Returns false if hero wins and false if villain wins
-		if (not_finish == false) {
-			return false;
-		} else {
-			if (ran_chance >= win_chance) {
-				return false;
-			} else {
-				return true;
-			}
-		}
+		return return_val;
 		
 	}
 
@@ -176,6 +173,8 @@ public class GuessANumber extends VillainGame {
 		JButton button1 = new JButton("1");
 		button1.setFont(new Font("Tahoma", Font.BOLD, 13));
 		GridBagConstraints gbc_button1 = new GridBagConstraints();
+		button1.setBackground(Color.BLACK);
+	    button1.setForeground(Color.WHITE);
 		button1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -194,6 +193,8 @@ public class GuessANumber extends VillainGame {
 		JButton button2 = new JButton("2");
 		button2.setFont(new Font("Tahoma", Font.BOLD, 13));
 		GridBagConstraints gbc_button2 = new GridBagConstraints();
+		button2.setBackground(Color.BLACK);
+	    button2.setForeground(Color.WHITE);
 		button2.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -212,6 +213,8 @@ public class GuessANumber extends VillainGame {
 		JButton button3 = new JButton("3");
 		button3.setFont(new Font("Tahoma", Font.BOLD, 13));
 		GridBagConstraints gbc_button3 = new GridBagConstraints();
+		button3.setBackground(Color.BLACK);
+	    button3.setForeground(Color.WHITE);
 		button3.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -230,6 +233,8 @@ public class GuessANumber extends VillainGame {
 		JButton button4 = new JButton("4");
 		button4.setFont(new Font("Tahoma", Font.BOLD, 13));
 		GridBagConstraints gbc_button4 = new GridBagConstraints();
+		button4.setBackground(Color.BLACK);
+	    button4.setForeground(Color.WHITE);
 		button4.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -248,6 +253,8 @@ public class GuessANumber extends VillainGame {
 		JButton button5 = new JButton("5");
 		button5.setFont(new Font("Tahoma", Font.BOLD, 13));
 		GridBagConstraints gbc_button5 = new GridBagConstraints();
+		button5.setBackground(Color.BLACK);
+	    button5.setForeground(Color.WHITE);
 		button5.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -266,6 +273,8 @@ public class GuessANumber extends VillainGame {
 		JButton button6 = new JButton("6");
 		button6.setFont(new Font("Tahoma", Font.BOLD, 13));
 		GridBagConstraints gbc_button6 = new GridBagConstraints();
+		button6.setBackground(Color.BLACK);
+	    button6.setForeground(Color.WHITE);
 		button6.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -284,6 +293,8 @@ public class GuessANumber extends VillainGame {
 		JButton button7 = new JButton("7");
 		button7.setFont(new Font("Tahoma", Font.BOLD, 13));
 		GridBagConstraints gbc_button7 = new GridBagConstraints();
+		button7.setBackground(Color.BLACK);
+	    button7.setForeground(Color.WHITE);
 		button7.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -302,6 +313,8 @@ public class GuessANumber extends VillainGame {
 		JButton button8 = new JButton("8");
 		button8.setFont(new Font("Tahoma", Font.BOLD, 13));
 		GridBagConstraints gbc_button8 = new GridBagConstraints();
+		button8.setBackground(Color.BLACK);
+	    button8.setForeground(Color.WHITE);
 		button8.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -320,6 +333,8 @@ public class GuessANumber extends VillainGame {
 		JButton button9 = new JButton("9");
 		button9.setFont(new Font("Tahoma", Font.BOLD, 13));
 		GridBagConstraints gbc_button9 = new GridBagConstraints();
+		button9.setBackground(Color.BLACK);
+	    button9.setForeground(Color.WHITE);
 		button9.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -338,6 +353,8 @@ public class GuessANumber extends VillainGame {
 		JButton button10 = new JButton("10");
 		button10.setFont(new Font("Tahoma", Font.BOLD, 13));
 		GridBagConstraints gbc_button10 = new GridBagConstraints();
+		button10.setBackground(Color.BLACK);
+	    button10.setForeground(Color.WHITE);
 		button10.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

@@ -108,16 +108,20 @@ public class DiceRoll extends VillainGame {
 		// Calculating the chance of illusion working
 		int ran_chance = r.nextInt(MAX_VAL);
 		int win_chance = CHANCE_VAL / illusion;
+		boolean return_val;
 		
 		//Clear label 3
 		lab3 = "";
 		// Announce winner or loser. If Hero was defeated, the illusion skill may work and change the defeat into a win
 		if (player_score == 2) {
 			lab2 += " Congratualtions! " + playing_hero.getName() + " beat " + villain_name;
+			return_val = false;
 		} else {
 			lab2 += " Unfortunately, " + playing_hero.getName() + " lost this game";
+			return_val = true;
 			if (ran_chance >= win_chance) {
 				lab3 = "However, " + playing_hero.getName() + " used their Illusion skill to trick " + villain_name + " and won the game regardless";
+				return_val = false;
 			}
 		}
 		
@@ -135,15 +139,7 @@ public class DiceRoll extends VillainGame {
 			e.printStackTrace();
 		}
 		// Returns false if the hero wins and true if villain wins	
-		if (player_score == 2) {
-			return false;
-		} else {
-			if (ran_chance >= win_chance) {
-				return false;
-			} else {
-				return true;
-			}
-		}
+		return return_val;
 	}
 	
 	/**
