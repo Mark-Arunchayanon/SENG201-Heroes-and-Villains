@@ -2,6 +2,8 @@ package team;
 
 import static org.junit.jupiter.api.Assertions.fail;
 
+import java.awt.Robot;
+
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -12,12 +14,24 @@ import gui.MenuSystem;
 
 class TeamTest {
 	
-	MenuSystem m = new MenuSystem();
+	private static MenuSystem m = new MenuSystem();
 	
-	Team team
+	private static Team team1 = new Team(m);
+	
+	private static Hero[] heros1 = {new Hero(10, 11, 12, 13), new Hero(14, 15, 16, 16)};
+	
+	private static Hero[] heros2 = {new Hero(10, 11, 12, 13), new Hero(14, 15, 16, 16)};
+	
+	private static String[] hero_names = {"Hero 1", "Hero 2"};
+	
+	private static Team team2 = new Team(m, heros2, false);
+	
+	private static Team team3 = new Team(m, heros2, true);
+	
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
+		
 	}
 
 	@AfterAll
@@ -30,16 +44,6 @@ class TeamTest {
 
 	@AfterEach
 	void tearDown() throws Exception {
-	}
-
-	@Test
-	void testTeamMenuSystemHeroArrayBoolean() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testTeamMenuSystem() {
-		fail("Not yet implemented");
 	}
 
 	@Test

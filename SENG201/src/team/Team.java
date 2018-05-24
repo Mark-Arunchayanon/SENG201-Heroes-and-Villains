@@ -78,25 +78,8 @@ public class Team {
 		
 		this.m = m;
 		
-		String title = "Setup your Team";
-		String body = "What will your Team's name be?\nEnter a String from "
-		+ MIN_LENGTH_NAME + " to " + MAX_LENGTH_NAME + " charachters long";
-		StringGetPanel Sget = new StringGetPanel(title, body);
-		m.updatePanel(Sget);
+		getTeamName();
 		
-		while (team_name == null) {
-			team_name = Sget.getUserString();
-			
-			if(team_name.length() > MAX_LENGTH_NAME || team_name.length() < MIN_LENGTH_NAME) {
-				team_name = null;
-				
-				JOptionPane.showMessageDialog(m.getFrame(),
-						"Name must be from " + MIN_LENGTH_NAME + " to " + MAX_LENGTH_NAME + " charachters long",
-						"Invalid Input",
-						JOptionPane.INFORMATION_MESSAGE);
-			}
-			
-		}
 		
 		body = "How many Heros would you like in your team?\n"
 				+ "Please enter an Integer from " + MIN_HEROS + " to " + MAX_HEROS;
@@ -129,6 +112,33 @@ public class Team {
 		
 	}
 	
+	/**
+	 * Gets the User to input a team Name
+	 */
+	private void getTeamName() {
+		
+		String title = "Setup your Team";
+		String body = "What will your Team's name be?\nEnter a String from "
+		+ MIN_LENGTH_NAME + " to " + MAX_LENGTH_NAME + " charachters long";
+		StringGetPanel Sget = new StringGetPanel(title, body);
+		m.updatePanel(Sget);
+		
+		while (team_name == null) {
+			team_name = Sget.getUserString();
+			
+			if(team_name.length() > MAX_LENGTH_NAME || team_name.length() < MIN_LENGTH_NAME) {
+				team_name = null;
+				
+				JOptionPane.showMessageDialog(m.getFrame(),
+						"Name must be from " + MIN_LENGTH_NAME + " to " + MAX_LENGTH_NAME + " charachters long",
+						"Invalid Input",
+						JOptionPane.INFORMATION_MESSAGE);
+			}
+			
+		}
+		
+	}
+
 	/**
 	 *  Takes the name from input and sets the name for each hero in the team
 	 *  Two heroes cannot share the same name
