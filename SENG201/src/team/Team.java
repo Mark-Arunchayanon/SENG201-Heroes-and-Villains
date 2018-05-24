@@ -76,14 +76,21 @@ public class Team {
 	 */
 	public Team(MenuSystem m) {
 		
-		this.m = m;
+		this.m = m;		
+		userGetTeamName();		
+		userGetTeamSize();		
+		userCreateHeros();		
+		userSetNames();
 		
-		getTeamName();
+	}
+	
+	private void userGetTeamSize() {
 		
-		body = "<html>How many Heroes would you like in your team?\n<BR>"
+		String title = "Setup your Team";
+		String body = "<html>How many Heroes would you like in your team?\n<BR>"
 				+ "Please enter an Integer from " + MIN_HEROS + " to " + MAX_HEROS + "<html>";
-		
-		Sget.bodyTextSet(body);
+		StringGetPanel Sget = new StringGetPanel(title, body);
+		m.updatePanel(Sget);
 		
 		while (team_size == 0) {
 			try {
@@ -105,16 +112,12 @@ public class Team {
 			
 		}
 		
-		createHeros();
-		
-		setNames();
-		
 	}
-	
+
 	/**
 	 * Gets the User to input a team Name
 	 */
-	private void getTeamName() {
+	private void userGetTeamName() {
 		
 		String title = "Setup your Team";
 		String body = "<html>What will your Team's name be?\n<BR>Enter a String from "
@@ -142,7 +145,7 @@ public class Team {
 	 *  Takes the name from input and sets the name for each hero in the team
 	 *  Two heroes cannot share the same name
 	 */
-	private void setNames() {
+	private void userSetNames() {
 		
 		String title = "Setup your Team";
 		
@@ -179,7 +182,7 @@ public class Team {
 	 * variables.
 	 * @return The created Hero
 	 */
-	private void createHeros() {
+	private void userCreateHeros() {
 		String title = "Setup your Team";
 		ItemSelector selector = new ItemSelector(title, HERO_TYPES, false);
 		m.updatePanel(selector);
