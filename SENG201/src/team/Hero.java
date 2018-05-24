@@ -85,11 +85,11 @@ public class Hero implements Selectable {
 		String s = "Health: ";
 		s += health;
 		s += "\nIllusion Skill: ";
-		s += (illusion + pu_illusion);
+		s += getIllusion();
 		s += "\nHealing Skill: ";
 		s += healing;
 		s += "\nHaggling Skill: ";
-		s += (haggling + pu_haggling);
+		s += getHaggling();
 		
 		return s;
 		
