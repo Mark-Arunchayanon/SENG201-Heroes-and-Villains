@@ -42,8 +42,8 @@ public class City extends JPanel{
 	//Minimum cash bonus for clearing this city
 	private static final int MIN_CASH_BONUS = 40;
 	
-	private static final int CASH_DELTA = MAX_CASH_BONUS - MIN_CASH_BONUS;
-	
+	//Calculate Constants
+	private static final int CASH_DELTA = MAX_CASH_BONUS - MIN_CASH_BONUS;	
 	
 	@SuppressWarnings("rawtypes")
 	private static final Class[] SALEABLES = {HagglingBooster.class,
@@ -57,10 +57,16 @@ public class City extends JPanel{
 	private Random r = new Random();
 	private Team team;
 	private boolean last_city;
+	private Lair lair;
 	
 	private Object synchronizer = new Object();
 	private int travel_direction;
 	
+	/**
+	 * @param team The Team that is traveling to the City
+	 * @param last_city Instructs the city to create a lair with a Super Villain if set to True
+	 * @param m The MenuSystem containing the GUI
+	 */
 	public City(Team team, boolean last_city, MenuSystem m) {
 		
 		this.m = m;
@@ -68,7 +74,7 @@ public class City extends JPanel{
 		this.last_city = last_city;
 		
 		//Create the locations that can be traveled to within the city
-		Lair lair = new Lair(m);
+		lair = new Lair(m);
 		locations.add((Location) lair);
 		locations.add((Location) new Hospital(m));
 		locations.add((Location) new PowerUpDen(m));
@@ -115,7 +121,7 @@ public class City extends JPanel{
 			//Display a congratulations screen
 			String title = "Congratulations!";
 			String body = "As a thank you gesture for defeating"
-					+ " our Villain the City would like to gift you $" + cash;
+					+ " our Villain, the City would like to gift you $" + cash;
 			InformationPanel info = new InformationPanel(title, body);
 			m.updatePanel(info);
 			info.blockTillOK();
@@ -160,6 +166,7 @@ public class City extends JPanel{
 			m.updatePanel(info);		
 			info.blockTillOK();			
 		}
+		
 	}
 	
 	/**

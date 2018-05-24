@@ -25,15 +25,18 @@ public class Team {
 			(Selectable) new Illusionist(), (Selectable) new Physician(),
 			(Selectable) new Stickler(),(Selectable) new Strongman()};
 	
+	//Set the maximum and  minimum amount of Hero's allowed in the Team
 	private static final int MAX_HEROS = 3;
 	private static final int MIN_HEROS = 1;
-	
-	private String team_name;
+	//Set the maximum and minimum length of a Team Name
+	private static final int MIN_LENGTH_NAME = 2;
+	private static final int MAX_LENGTH_NAME = 10;
 	
 	//Create arrayList to store the Heros in the Team
 	private ArrayList<Hero> heros = new ArrayList<Hero>();
 	
 	//Create variables to store team stats
+	private String team_name = null;
 	private int team_size = 0;
 	private int cash = 0;
 	private boolean map = false;
@@ -76,10 +79,24 @@ public class Team {
 		this.m = m;
 		
 		String title = "Setup your Team";
-		String body = "What will your Team's name be?";
+		String body = "What will your Team's name be?\nEnter a String from "
+		+ MIN_LENGTH_NAME + " to " + MAX_LENGTH_NAME + " charachters long";
 		StringGetPanel Sget = new StringGetPanel(title, body);
 		m.updatePanel(Sget);
-		team_name = Sget.getUserString();		
+		
+		while (team_name == null) {
+			team_name = Sget.getUserString();
+			
+			if(team_name.length() > MAX_LENGTH_NAME || team_name.length() < MIN_LENGTH_NAME) {
+				team_name = null;
+				
+				JOptionPane.showMessageDialog(m.getFrame(),
+						"Name must be from " + MIN_LENGTH_NAME + " to " + MAX_LENGTH_NAME + " charachters long",
+						"Invalid Input",
+						JOptionPane.INFORMATION_MESSAGE);
+			}
+			
+		}
 		
 		body = "How many Heros would you like in your team?\n"
 				+ "Please enter an Integer from " + MIN_HEROS + " to " + MAX_HEROS;
@@ -212,9 +229,19 @@ public class Team {
 	 * otherwise
 	 */
 	public boolean checkHealth() {
-		// TODO Auto-generated method stub
 		
-		return true;
+		//Make a list to store heros that need to be kept
+		ArrayList<Hero> heros_to_keep = new ArrayList<Hero>();
+		
+		for (Hero hero : heros) {
+			if(hero.getHealth() > 0) {
+				heros_to_keep.add(hero);
+			}
+		}
+		
+		heros = heros_to_keep;
+		
+		return !heros.isEmpty();
 		
 	}
 

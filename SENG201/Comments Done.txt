@@ -28,12 +28,3 @@ Stickler - Done
 Strongman - Done
 Team - Done
 VillainGame - Done
-
-Most healing items are free
-All items seem to have the same random boost
-Reward for beating villain
-Stealing a gift from stash of items
-Healing stat
-map needs to disappear next city
-health booster disappearing between cities
-Random int change

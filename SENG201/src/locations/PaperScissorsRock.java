@@ -86,7 +86,7 @@ public class PaperScissorsRock extends VillainGame {
 				player_score++;
 			}
 			
-			label4 = "Current scores are:\n" + playing_hero.getName() + "'s score: " + player_score + "\n" + villain_name +
+			label4 = "Current scores are:\n" + playing_hero.getName() + "'s score: " + "  " + player_score + "\n" + villain_name +
 					"'s score: " + villain_score;
 
 			SwingUtilities.invokeLater(new Runnable() {
@@ -101,14 +101,18 @@ public class PaperScissorsRock extends VillainGame {
 		// Calculating the chance of illusion skill working
 		int ran_chance = r.nextInt(MAX_VAL);
 		int win_chance = CHANCE_VAL / illusion;
+		boolean return_val;
 		
 		// Sets the label to a message on who lost and who won
 		if(player_score == 2) {
 			label2 += " Congratualtions! " + playing_hero.getName() + " beat " + villain_name;
+			return_val = false;
 		} else {
 			label2 += " Unfortunately, " + playing_hero.getName() + " lost this game";
+			return_val = true;
 			if (ran_chance >= win_chance) {
 				label3 = "However, " + playing_hero.getName() + " used ther Illusion skill to trick " + villain_name + " and won regardless";
+				return_val = false;
 			}
 		}
 		
@@ -124,16 +128,9 @@ public class PaperScissorsRock extends VillainGame {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+		
 		// Returns false if hero wins, returns true if villain wins
-		if(player_score == 2) {
-			return false;
-		} else {
-			if (ran_chance >= win_chance) {
-				return false;
-			} else {
-				return true;
-			}
-		}
+		return return_val;
 		
 	}
 	

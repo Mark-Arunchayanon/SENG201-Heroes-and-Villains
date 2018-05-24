@@ -17,6 +17,10 @@ import team.Team;
  */
 public class Game {
 	
+	///////////////////////////////////////////////////////////////////////////////////////////////
+	private static final boolean DEBUG = true;
+	///////////////////////////////////////////////////////////////////////////////////////////////
+	
 	private static final MenuSystem m = new MenuSystem();
 	
 	private static final int MAX_CITIES = 6;
@@ -28,7 +32,25 @@ public class Game {
 	 */
 	public static void main(String[] args) {
 		
-		int city_count = 0;
+		int city_count = getCityCount();
+		
+		// Create a team
+		Team team = new Team(m);
+		//Variable for checking if the team is alive
+		boolean alive = true;
+		for (int i = 0; i < city_count-1 && alive; i++) {
+			City city = new City(team, false, m);
+			
+			alive = team.checkHealth();
+		}
+		
+		City city = new City(team, true, m);
+		
+		
+	}
+
+	private static int getCityCount() {
+		
 		// Welcome message 
 		String title = "Welcome to Hero Game";
 		String body = "How many Cities would you like to explore?\n"
@@ -37,12 +59,18 @@ public class Game {
 		StringGetPanel Sget = new StringGetPanel(title, body);
 		m.updatePanel(Sget);
 		
+		int city_count = 0;
+		
 		// Only allow input to be integers and between MIN_CITIES and MAX_CITIES
 		while (city_count == 0) {
 			try {
 				city_count = Integer.parseInt(Sget.getUserString());
 				
-				if (city_count == -314159265) testing();
+				//Provide a method to skip Team creation if Debugging
+				if (city_count == -314159265 && DEBUG) {
+					city_count = 0;
+					testing();
+				}
 				else if (city_count < MIN_CITIES || city_count > MAX_CITIES) {
 					city_count = 0;
 					JOptionPane.showMessageDialog(m.getFrame(),
@@ -58,16 +86,8 @@ public class Game {
 			}
 			
 		}
-		// Create a team
-		Team team = new Team(m);
-		boolean alive = true;
-		for (int i = 0; i < city_count-1 && alive; i++) {
-			City city = new City(team, false, m);
-		}
 		
-		City city = new City(team, true, m);
-		
-		
+		return city_count;
 	}
 
 	private static void testing() {
