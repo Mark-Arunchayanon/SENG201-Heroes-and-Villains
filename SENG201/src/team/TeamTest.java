@@ -249,14 +249,20 @@ class TeamTest {
 		
 		int adj_cash1 = 5;
 		
-		team1.adjustCash(adj_cash1);
+		assertTrue(team1.adjustCash(adj_cash1));
 		
 		assertEquals(10000 + adj_cash1, team1.getCash());
 		
 		//#####################################################
-		//Check that cash cannot become negative
+		//Check that cash cannot become overdrawn
 		
-		team1.adjustCash(-(team1.getCash() + 1));
+		int current_cash = team1.getCash();
+		
+		assertFalse(team1.adjustCash(-(team1.getCash() + 1)));
+		
+		assertEquals(current_cash, team1.getCash());
+		
+		assertTrue(team1.adjustCash(-team1.getCash()));
 		
 		assertEquals(0, team1.getCash());
 		
@@ -317,13 +323,21 @@ class TeamTest {
 	}
 
 	@Test
-	void testGetStatus() {
-		fail("Not yet implemented");
-	}
-
-	@Test
 	void testGetTeamSize() {
-		fail("Not yet implemented");
+		
+		assertEquals(heros.length, team1.getTeamSize());
+		
+		//#####################################################
+		//Check that team_sizze does not change when a hero is removed
+		
+		int index = 0;
+		
+		heros[0].adjustHealth(-(heros[index].getHealth() + 1));
+		
+		team1.checkHealth();
+		
+		assertEquals(heros.length, team1.getTeamSize());
+		
 	}
 
 }

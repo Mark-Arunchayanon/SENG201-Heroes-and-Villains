@@ -7,10 +7,10 @@ import javax.swing.JOptionPane;
 
 import gui.ItemSelector;
 import gui.MenuSystem;
+import gui.Selectable;
 import gui.StringGetPanel;
 import saleable.HealingItem;
 import saleable.Saleable;
-import saleable.Selectable;
 
 /**
  * Creates and manages a Team of Heroes.
@@ -61,6 +61,8 @@ public class Team {
 		
 		this.m = m;
 		this.map = map;
+		
+		team_size = temp_heros.length;
 		
 		//Add heros to team
 		for(Hero hero : temp_heros) {
@@ -405,8 +407,7 @@ public class Team {
 	 * Returns team_size, The initial number of Hero's in the Team
 	 * @return The team_size variable
 	 */
-	public String getTeamSize() {
-		// TODO Auto-generated method stub
-		return null;
+	public int getTeamSize() {
+		return team_size;
 	}
 }

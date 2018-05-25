@@ -4,7 +4,7 @@ import java.util.Random;
 import gui.InformationPanel;
 import gui.ItemSelector;
 import gui.MenuSystem;
-import saleable.Selectable;
+import gui.Selectable;
 import team.Hero;
 import team.Team;
 

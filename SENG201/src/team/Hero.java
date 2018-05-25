@@ -1,5 +1,5 @@
 package team;
-import saleable.Selectable;
+import gui.Selectable;
 
 /**
  * Defines Hero objects that are used as the protagonists of the game

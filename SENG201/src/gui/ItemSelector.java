@@ -14,8 +14,6 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextPane;
 import javax.swing.SwingUtilities;
 
-import saleable.Selectable;
-
 import java.awt.Panel;
 import javax.swing.JScrollPane;
 import javax.swing.BoxLayout;

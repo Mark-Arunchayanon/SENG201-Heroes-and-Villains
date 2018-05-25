@@ -1,6 +1,8 @@
 package saleable;
 import java.util.Random;
 
+import gui.Selectable;
+
 /**
  * Provides a superclass to allow the product to be purchased
  * in the game shop

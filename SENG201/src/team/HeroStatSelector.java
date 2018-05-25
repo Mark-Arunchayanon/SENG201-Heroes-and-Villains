@@ -1,5 +1,5 @@
 package team;
-import saleable.Selectable;
+import gui.Selectable;
 
 /**
  * Provides an interface to define objects that can create

@@ -1,4 +1,4 @@
-package saleable;
+package gui;
 /**
  * Provides an interface to allow an object to be selected using ItemSelector
  * 

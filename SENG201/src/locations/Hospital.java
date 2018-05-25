@@ -16,9 +16,9 @@ import javax.swing.JTextPane;
 import gui.InformationPanel;
 import gui.ItemSelector;
 import gui.MenuSystem;
+import gui.Selectable;
 import saleable.HealingItem;
 import saleable.Saleable;
-import saleable.Selectable;
 import team.Hero;
 import team.Team;
 
