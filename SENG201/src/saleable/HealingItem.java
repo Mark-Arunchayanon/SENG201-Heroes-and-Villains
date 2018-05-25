@@ -159,7 +159,6 @@ public class HealingItem extends Saleable {
 
 	@Override
 	public String getSaleDescriptor() {
-		//Adjust the price of the item based on the haggling ability of the Hero
 				
 		String description = "Healing Potion\nHeals a hero over a period of time\nHealth boost: "
 		+ heal + "\nHeal time: " + time + "s" + "\nPrice: $" + temp_price;

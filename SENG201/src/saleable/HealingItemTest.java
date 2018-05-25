@@ -1,6 +1,7 @@
 package saleable;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.Random;
@@ -13,15 +14,12 @@ import org.junit.jupiter.api.Test;
 
 class HealingItemTest {
 	
-	private static HealingItem item = new HealingItem();
+	private static HealingItem item;
 	
 	private static  Random r = new Random();
 
 	@BeforeAll
-	static void setUpBeforeClass() throws Exception {
-		
-		item.setRandom(r);
-		
+	static void setUpBeforeClass() throws Exception {		
 	}
 
 	@AfterAll
@@ -30,6 +28,11 @@ class HealingItemTest {
 
 	@BeforeEach
 	void setUp() throws Exception {
+		
+		item = new HealingItem();
+		
+		item.setRandom(r);
+		
 	}
 
 	@AfterEach
@@ -37,13 +40,10 @@ class HealingItemTest {
 	}
 
 	@Test
-	void testSetRandom() {
-		fail("Not yet implemented");
-	}
-
-	@Test
 	void testGetTitle() {
-		fail("Not yet implemented");
+
+		assertTrue("Healing Potion".equals(item.getTitle()));
+		
 	}
 
 	@Test
@@ -60,44 +60,22 @@ class HealingItemTest {
 		item.sold();
 		
 		template = "Stats for this Healing Potion:\n"
-				+ "Healing Amount:  " + adj_heal + 
-				"\nHealing Time: " + time;
+				+ "Healing Amount:  " + item.getHealing() + 
+				"\nHealing Time: " + item.getTime();
 		
 	}
 
 	@Test
-	void testGetHealingDescriptor() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testHeal() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testSetLabel() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testSetHealing() {
-		fail("Not yet implemented");
-	}
-
-	@Test
 	void testSetHaggling() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testGetPrice() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testSold() {
-		fail("Not yet implemented");
+		
+		int hero_haggling = 130;
+		
+		int price = item.getPrice();
+		
+		item.setHaggling(hero_haggling);
+		
+		assertEquals(price * 100 / hero_haggling, item.getPrice());
+		
 	}
 
 }
