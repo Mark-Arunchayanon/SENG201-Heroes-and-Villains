@@ -2,11 +2,14 @@ package gui;
 import javax.swing.JPanel;
 import java.awt.GridBagLayout;
 import javax.swing.JTextPane;
+import javax.swing.SwingConstants;
 
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JButton;
+import javax.swing.JLabel;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
@@ -36,16 +39,17 @@ public class InformationPanel extends JPanel {
 		gridBagLayout.rowWeights = new double[]{Double.MIN_VALUE, 1.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
-		JTextPane TitlePane = new JTextPane();
-		TitlePane.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		TitlePane.setEditable(false);
-		TitlePane.setText(Title);
+		JLabel TitleLabel = new JLabel();
+		TitleLabel.setFont(new Font("Tahoma", Font.PLAIN, 36));
+		TitleLabel.setFocusable(false);
+		TitleLabel.setText(Title);
+		TitleLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		GridBagConstraints gbc_txtpnTitle = new GridBagConstraints();
 		gbc_txtpnTitle.insets = new Insets(0, 0, 5, 0);
 		gbc_txtpnTitle.fill = GridBagConstraints.BOTH;
 		gbc_txtpnTitle.gridx = 0;
 		gbc_txtpnTitle.gridy = 0;
-		add(TitlePane, gbc_txtpnTitle);
+		add(TitleLabel, gbc_txtpnTitle);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
@@ -56,7 +60,7 @@ public class InformationPanel extends JPanel {
 		add(scrollPane, gbc_scrollPane);
 		
 		JTextPane BodyPane = new JTextPane();
-		BodyPane.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		BodyPane.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		BodyPane.setEditable(false);
 		scrollPane.setViewportView(BodyPane);
 		BodyPane.setText(Body);

@@ -24,6 +24,7 @@ import javax.swing.BoxLayout;
  * @author fer25
  * @author par116
  */
+@SuppressWarnings("serial")
 public class ItemSelector extends JPanel implements ActionListener {
 	// Define string for buttons
 	private String select_string = "Select";
@@ -72,7 +73,7 @@ public class ItemSelector extends JPanel implements ActionListener {
 		
 		JLabel TitleLabel = new JLabel();
 		TitleLabel.setFocusable(false);
-		TitleLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		TitleLabel.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		TitleLabel.setText(title);
 		GridBagConstraints gbc_txtlblTitle = new GridBagConstraints();
 		gbc_txtlblTitle.gridwidth = 2;
