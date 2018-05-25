@@ -128,9 +128,26 @@ public class HealingItem extends Saleable {
 		adj_heal = heal * healing / 100;
 	}
 	
+	/**
+	 * Provided for JUnit testing
+	 * @return The healing value of the item
+	 */
+	public int getHealing() {
+		return adj_heal;
+	}
+	
+	/**
+	 * Provided for JUnit testing
+	 * @return The amount of time healing will take
+	 */
+	public int getTime() {
+		return time;
+	}
+	
 	@Override
 	public void setRandom(Random r) {		
 		heal = r.nextInt(HEAL_COEFFICIENT) + MIN_HEAL;
+		adj_heal = heal;
 		time = r.nextInt(TIME_COEFFICIENT) + MIN_HEAL_TIME;
 		price = heal * PRICE_COEFF / time;
 	}

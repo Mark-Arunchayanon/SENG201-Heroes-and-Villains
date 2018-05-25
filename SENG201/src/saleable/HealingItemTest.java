@@ -1,5 +1,6 @@
 package saleable;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.Random;
@@ -49,7 +50,18 @@ class HealingItemTest {
 	void testGetDescriptor() {
 		
 		String template = "Healing Potion\nHeals a hero over a period of time\nHealth boost: "
-				+ heal + "\nHeal time: " + time + "s" + "\nPrice: $" + temp_price;
+				+ item.getHealing() + "\nHeal time: " + item.getTime() + "s" + "\nPrice: $" + item.getPrice();
+		
+		assertEquals(template, item.getDescriptor());
+		
+		//#####################################################
+		//Test that description changes when sold
+		
+		item.sold();
+		
+		template = "Stats for this Healing Potion:\n"
+				+ "Healing Amount:  " + adj_heal + 
+				"\nHealing Time: " + time;
 		
 	}
 
