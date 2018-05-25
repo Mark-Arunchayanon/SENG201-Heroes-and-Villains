@@ -103,7 +103,8 @@ public class HealingItem extends Saleable {
 	/**
 	 * Apply the HealingItem to the Hero. This causes the TimerTask to be initiated and
 	 * will continue to run until the Healing is complete
-	 * @param selected_hero
+	 * @param selected_hero Current hero and stats
+	 * @param team Object
 	 */
 	public void heal(Hero selected_hero, Team team) {
 		hero = selected_hero;
@@ -122,7 +123,8 @@ public class HealingItem extends Saleable {
 	}
 	
 	/**
-	 * @param Sets the healing stat adjusted healing value
+	 * Sets healing stat
+	 * @param healing Sets the healing stat adjusted healing value
 	 */
 	public void setHealing(int healing) {
 		adj_heal = heal * healing / 100;

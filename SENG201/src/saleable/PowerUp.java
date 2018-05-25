@@ -14,8 +14,9 @@ public abstract class PowerUp extends Saleable {
 
 	/**
 	 * Applies a PowerUp to the correct stat of either a Hero or a
-	 * Team depending on the type of PowerUp 
-	 * @param hero
+	 * Team depending on the type of PowerUp
+	 * @param team Object 
+	 * @param hero Hero stat
 	 */
 	public abstract void applyBonus(Team team, Hero hero);
 	

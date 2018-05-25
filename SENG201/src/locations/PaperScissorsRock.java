@@ -43,8 +43,9 @@ public class PaperScissorsRock extends VillainGame {
 	private int player_choice;
 	
 	/**
-	 * store the MenuSystem locally on the object construction
-	 * @param m
+	 * store the MenuSystem and Random locally on object construction
+	 * @param m MenuSystem containing GUI
+	 * @param r pseudo random number generator
 	 */
 	public PaperScissorsRock(MenuSystem m, Random r) {
 		super(m,r);

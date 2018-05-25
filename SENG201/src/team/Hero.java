@@ -154,7 +154,7 @@ public class Hero implements Selectable {
 	
 	/**
 	 * Adds illusion_increase to pu_illusion
-	 * @param illusion_increase
+	 * @param illusion_increase Boost amount
 	 */
 	public void adjustPUIllusion(int illusion_increase) {
 		
@@ -163,8 +163,8 @@ public class Hero implements Selectable {
 	}
 	
 	/**
-	 * Adds illusion_increase to pu_illusion
-	 * @param illusion_increase
+	 * Adds haggling_increase to pu_illusion
+	 * @param haggling_increase Boost amount
 	 */
 	public void adjustPUHaggling(int haggling_increase) {
 		

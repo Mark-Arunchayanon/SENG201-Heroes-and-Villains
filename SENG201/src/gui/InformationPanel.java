@@ -18,14 +18,15 @@ import javax.swing.JScrollPane;
  * @author par116
  * @author fer25
  */
+@SuppressWarnings("serial")
 public class InformationPanel extends JPanel {
 	
 	private Object synchronizer = new Object();
 	/**
 	 * Constructing the panel with a title and a message
 	 * 
-	 * @param Title
-	 * @param Body
+	 * @param Title String title info
+	 * @param Body String description or statement
 	 */
 	public InformationPanel(String Title, String Body) {
 		GridBagLayout gridBagLayout = new GridBagLayout();

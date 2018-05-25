@@ -34,7 +34,7 @@ public class Game {
 
 	/**
 	 * Sets up and displays the game welcome page. Then asks for the amount of cities desired(3-6)
-	 * @param args
+	 * @param args String arguments
 	 */
 	public static void main(String[] args) {
 		
@@ -132,6 +132,10 @@ public class Game {
 		
 	}
 
+	/**
+	 * Allows player to input the amount of cities wanted
+	 * Includes function to skip team creation for debugging purposes
+	 */
 	private static void getCityCount() {
 		
 		// Welcome message 
@@ -171,6 +175,9 @@ public class Game {
 		}
 	}
 
+	/**
+	 *  For debugging purposes, skips pass creating team and heroes
+	 */
 	private static void testing() {
 		
 		Hero hero1 = new Explorer().createHero();
@@ -179,8 +186,8 @@ public class Game {
 		hero2.setName("Hero 2");
 		Hero[] heros = {hero1, hero2};
 		Team team = new Team(m, "Team", heros, true);
-		City city1 = new City(team, false, m);
-		City city2 = new City(team, true, m);
+		new City(team, false, m);
+		new City(team, true, m);
 		
 	}
 

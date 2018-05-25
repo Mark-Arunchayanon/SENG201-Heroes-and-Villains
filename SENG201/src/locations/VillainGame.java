@@ -16,6 +16,11 @@ public abstract class VillainGame {
 	MenuSystem m;
 	Random r;
 	
+	/**
+	 * store the MenuSystem and Random locally on object construction
+	 * @param m MenuSystem containing GUI
+	 * @param r pseudo random number generator
+	 */
 	public VillainGame(MenuSystem m , Random r) {
 		this.m = m;
 		this.r = r;
@@ -25,6 +30,7 @@ public abstract class VillainGame {
 	 * Initiates the game to be played
 	 * @return true if villain wins, false otherwise
 	 * @param villain_name The name of the villain
+	 * @param playing_hero Currunt hero object
 	 */
 	public abstract boolean play(String villain_name, Hero playing_hero);
 	

@@ -129,8 +129,8 @@ public class Team {
 	private void userGetTeamName() {
 		
 		String title = "Setup your Team";
-		String body = "<html>What will your Team's name be?\n<BR>Enter a String from "
-		+ MIN_LENGTH_NAME + " to " + MAX_LENGTH_NAME + " charachters long</html>";
+		String body = "<html>What will your Team's name be?<BR>Enter a String from "
+		+ MIN_LENGTH_NAME + " to " + MAX_LENGTH_NAME + " characters long</html>";
 		StringGetPanel Sget = new StringGetPanel(title, body);
 		m.updatePanel(Sget);
 		
@@ -213,9 +213,9 @@ public class Team {
 	}
 	
 	/**
-	 * Creates a Set<String> containing the names of all
+	 * Creates a set of strings containing the names of all
 	 * the Hero's in the Team's heros ArrayList
-	 * @return The created Set
+	 * @return names The created Set
 	 */
 	public Set<String> heroNames() {
 		
