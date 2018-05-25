@@ -39,12 +39,25 @@ public class ItemSelector extends JPanel implements ActionListener {
 	JTextPane Descriptor;
 	JLabel Description;
 	
+	/**
+	 *  Display a panel with radio buttons for player to select on the left side
+	 * 
+	 * @param title String Question or statement
+	 * @param items ArrayList of items
+	 * @param cancelable boolean true or false
+	 */
 	public ItemSelector(String title, Selectable[] items, boolean cancelable) {
 		this(title, "", items, cancelable);
 	}
 	
 	/**
-	 * @wbp.parser.constructor
+	 *  Display a panel with radio buttons for player to select on the left side and 
+	 *  display the description of the selection on the right hand side of the panel
+	 * 
+	 * @param title String Question or statement
+	 * @param description String description of items
+	 * @param items ArrayList of items
+	 * @param cancelable boolean true or false
 	 */
 	public ItemSelector(String title, String description, Selectable[] items, boolean cancelable) {
 		
@@ -210,7 +223,7 @@ public class ItemSelector extends JPanel implements ActionListener {
 	/**
 	 * Sets the instruction line to the text parameter
 	 * 
-	 * @param text
+	 * @param text String instruction
 	 */
 	public void descriptionTextSet(String text) {
 		SwingUtilities.invokeLater(new Runnable() {

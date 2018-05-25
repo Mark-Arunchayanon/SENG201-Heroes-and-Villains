@@ -24,7 +24,7 @@ public class PowerUpDen implements Location {
 
 	/**
 	 * Store the MenuSystem locally on the object construction
-	 * @param m
+	 * @param m MenuSystem containing GUI
 	 */
 	public PowerUpDen(MenuSystem m) {
 

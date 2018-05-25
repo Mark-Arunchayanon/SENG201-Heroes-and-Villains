@@ -44,7 +44,8 @@ public class DiceRoll extends VillainGame {
 	
 	/**
 	 * store the MenuSystem and Random locally on object construction
-	 * @param m
+	 * @param m MenuSystem containing GUI
+	 * @param r pseudo random number generator
 	 */
 	public DiceRoll(MenuSystem m, Random r) {
 		super(m,r);

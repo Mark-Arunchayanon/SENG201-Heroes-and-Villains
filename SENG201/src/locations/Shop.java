@@ -1,7 +1,5 @@
 package locations;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.Random;
 
 import gui.InformationPanel;
@@ -16,8 +14,13 @@ import saleable.Saleable;
 import team.Hero;
 import team.Team;
 
+/**
+ * Provides a way for heroes to purchase power ups and healing items
+ * @author fer25
+ * @author par116
+ */
 public class Shop implements Location {
-	
+	// Max and min number of items in shop
 	private static final int MIN_ITEMS = 10;
 	private static final int MAX_ITEMS = 25;
 	
@@ -29,9 +32,13 @@ public class Shop implements Location {
 	
 	private MenuSystem m;
 	private Random r = new Random();
-
+	// Array list of Saleable items
 	private ArrayList<Saleable> items = new ArrayList<Saleable>();
 	
+	/**
+	 * Creates a random amount of each type of item
+	 * @param m MenuSystem containing GUI
+	 */
 	public Shop (MenuSystem m) {
 		
 		this.m = m;
@@ -61,7 +68,7 @@ public class Shop implements Location {
 	@Override
 	public void travelTo(Team team, boolean last_city) {
 		
-		
+		//
 		while(!items.isEmpty()) {
 			
 			Hero selected_hero = selectHero(team);
@@ -108,6 +115,12 @@ public class Shop implements Location {
 		
 	}
 
+	/**
+	 * Allows player to select and purchase items
+	 * @param team team stat (purse)
+	 * @param selected_hero Hero customer
+	 * @return Purchased item
+	 */
 	private Saleable selectItem(Team team, Hero selected_hero) {
 		
 		//Inform each item of the selected Hero's haggling ability
@@ -130,6 +143,11 @@ public class Shop implements Location {
 		return purchased_item;
 	}
 
+	/**
+	 * Select hero that will buy items
+	 * @param team Team stat
+	 * @return Selected hero
+	 */
 	private Hero selectHero(Team team) {
 		String title = "Welcome to the Shop";
 		String description = "Which Hero would like to purchase something?";

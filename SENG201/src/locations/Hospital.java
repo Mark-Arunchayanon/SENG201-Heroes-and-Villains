@@ -37,7 +37,7 @@ public class Hospital extends JPanel implements Location{
 	
 	/**
 	 * store the MenuSystem locally on the object construction
-	 * @param m
+	 * @param m MenuSystem containing GUI
 	 */
 	public Hospital(MenuSystem m) {
 		this.m = m;

@@ -29,7 +29,7 @@ public class MenuSystem {
 	
 	/**
 	 * Updates the current panel with panel from the parameter
-	 * @param panel
+	 * @param panel JPanel new panel to update
 	 */
 	public void updatePanel(JPanel panel) {
 		SwingUtilities.invokeLater(new Runnable() {

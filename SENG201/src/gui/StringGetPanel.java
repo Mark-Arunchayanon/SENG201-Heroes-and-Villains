@@ -2,7 +2,6 @@ package gui;
 import javax.swing.JPanel;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
-import javax.swing.JTextPane;
 import javax.swing.SwingUtilities;
 
 import java.awt.Insets;
@@ -28,8 +27,9 @@ public class StringGetPanel extends JPanel {
 	}
 	
 	/**
-	 * Create the panel.
-	 * @wbp.parser.constructor
+	 * Creates a panel with title and body 
+	 * @param title String Instructions
+	 * @param body String description
 	 */
 	public StringGetPanel(String title, String body) {
 		GridBagLayout gridBagLayout = new GridBagLayout();
@@ -91,6 +91,10 @@ public class StringGetPanel extends JPanel {
 
 	}
 	
+	/**
+	 * Set description text
+	 * @param text STring Description
+	 */
 	public void bodyTextSet(String text) {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
@@ -99,6 +103,10 @@ public class StringGetPanel extends JPanel {
 		});
 	}
 	
+	/**
+	 * Clears the text box after the button is presed
+	 * @return Player's input in text box
+	 */
 	public String getUserString() {
 		
 		synchronized(synchronizer) {

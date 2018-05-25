@@ -38,11 +38,11 @@ public abstract class Saleable implements Selectable {
 	}
 	
 	/**
-	 * Provides a sudo random number generator to the object.
+	 * Provides a psuedo random number generator to the object.
 	 * This means that the same generator can be used for all object creations
 	 * as if multiple new Random object are created in quick succession they
 	 * all tend to produce the same first few numbers
-	 * @param The Random object to be used by the Saleable
+	 * @param r The Random object to be used by the Saleable
 	 */
 	public abstract void setRandom(Random r);
 	
